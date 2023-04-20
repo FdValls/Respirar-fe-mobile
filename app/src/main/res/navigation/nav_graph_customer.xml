@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_customer"
+    app:startDestination="@id/fragment_customer">
+    <fragment
+        android:id="@+id/fragment_customer"
+        android:name="com.example.projectFinal.fragments.Fragment_customer"
+        android:label="fragment_customer"
+        tools:layout="@layout/fragment_customer" />
+    <fragment
+        android:id="@+id/listExpensas"
+        android:name="com.example.projectFinal.recycleview.ListExpensas"
+        android:label="fragment_list_expensas"
+        tools:layout="@layout/fragment_list_expensas" >
+        <action
+            android:id="@+id/action_listExpensas_to_expensasDetailFragment"
+            app:destination="@id/expensasDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expensasDetailFragment"
+        android:name="com.example.projectFinal.fragments.ExpensasDetailFragment"
+        android:label="fragment_expensas_detail"
+        tools:layout="@layout/fragment_expensas_detail" />
+    <fragment
+        android:id="@+id/fragment_logout_customer"
+        android:name="com.example.projectFinal.fragments.Fragment_logout_customer"
+        android:label="fragment_logout_customer"
+        tools:layout="@layout/fragment_logout_customer" >
+        <action
+            android:id="@+id/action_fragment_logout_customer_to_activityLogin2"
+            app:destination="@id/activityLogin2" />
+    </fragment>
+    <activity
+        android:id="@+id/activityLogin2"
+        android:name="com.example.projectFinal.activities.ActivityLogin"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <fragment
+        android:id="@+id/fragment_edit_customer2"
+        android:name="com.example.projectFinal.fragments.Fragment_edit_customer"
+        android:label="fragment_edit_customer"
+        tools:layout="@layout/fragment_edit_customer" >
+        <action
+            android:id="@+id/action_fragment_edit_customer2_to_fragment_customer"
+            app:destination="@id/fragment_customer" />
+    </fragment>
+</navigation>

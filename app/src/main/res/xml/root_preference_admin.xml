@@ -1,0 +1,43 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <PreferenceCategory android:title="Visibles">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="check_box_preference_1"
+            android:title="Night Mode" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="switch_preference_1"
+            android:title="Buscador habilitado" />
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Datos">
+
+        <EditTextPreference
+            android:defaultValue="nombre"
+            app:allowDividerAbove="true"
+            app:key="signature_string"
+            app:title="Nombre"
+            app:useSimpleSummaryProvider="false" />
+
+        <ListPreference
+            app:defaultValue="true"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="Zonas"
+            app:useSimpleSummaryProvider="true" />
+
+        <PreferenceCategory app:title="Contacto">
+
+            <SwitchPreferenceCompat
+                app:key="sync"
+                app:title="Envio automatico de emails" />
+
+        </PreferenceCategory>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
