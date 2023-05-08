@@ -23,10 +23,7 @@
             android:name=".activities.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.GoogleSignInActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.ActivityLogin"
+            android:name=".activities.MainActivity"
             android:exported="false" />
         <activity
             android:name=".activities.SplashActivity"

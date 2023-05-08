@@ -1,44 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/nav_graph_admin"
     app:startDestination="@id/fragment_login">
     <fragment
         android:id="@+id/fragment_login"
-        android:name="com.example.projectFinal.fragments.Fragment_admin"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_admin" />
-    <fragment
-        android:id="@+id/fragment_logout"
-        android:name="com.example.projectFinal.fragments.Fragment_logout"
-        android:label="fragment_logout"
-        tools:layout="@layout/fragment_logout" >
-        <action
-            android:id="@+id/action_fragment_logout_to_activityLogin"
-            app:destination="@id/activityLogin" />
-    </fragment>
-    <activity
-        android:id="@+id/activityLogin"
-        android:name="com.example.projectFinal.activities.ActivityLogin"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" />
-    <activity
-        android:id="@+id/settingActivity"
-        android:name="com.example.projectFinal.activities.SettingActivity"
-        android:label="SettingActivity" />
-    <fragment
-        android:id="@+id/listProperty"
-        android:name="com.example.projectFinal.recycleview.ListProperty"
-        android:label="fragment_list_property"
-        tools:layout="@layout/fragment_list_property" >
-        <action
-            android:id="@+id/action_listProperty_to_expensasDetailFragment2"
-            app:destination="@id/expensasDetailFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/expensasDetailFragment2"
-        android:name="com.example.projectFinal.fragments.ExpensasDetailFragment"
-        android:label="fragment_expensas_detail"
-        tools:layout="@layout/fragment_expensas_detail" />
+        android:name="com.example.projectFinal.fragments.Fragment_login"
+        android:label="Fragment_login" />
 </navigation>
