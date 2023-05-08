@@ -37,10 +37,6 @@ class Fragment_login : Fragment() {
         val buttonLogin = view.findViewById<Button>(R.id.loginButton)
         val buttonRegister = view.findViewById<Button>(R.id.loginRegister)
         val userName = view.findViewById<EditText>(R.id.username)
-        val fragmentManager = requireActivity().supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-
 
         buttonLogin.setOnClickListener {
 
