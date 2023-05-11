@@ -43,7 +43,7 @@ class Fragment_login : Fragment() {
             parentFragmentManager.commit {
                 replace<Fragment_edit_customer>(R.id.fragmentContainerView)
                 setReorderingAllowed(true)
-                disallowAddToBackStack()
+//                disallowAddToBackStack()
             }
 
             if (userName.text.toString() == "fer"){
