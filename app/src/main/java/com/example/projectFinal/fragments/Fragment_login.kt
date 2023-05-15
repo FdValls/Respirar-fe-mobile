@@ -45,6 +45,41 @@ class Fragment_login : Fragment() {
         val fingerPrint = view.findViewById<TextView>(R.id.loginBiometricButton);
         val context = activity?.applicationContext
 
+//        buttonLogin.setOnClickListener {
+//
+//            parentFragmentManager.commit {
+//                replace<Fragment_admin>(R.id.fragmentContainerView)
+//                setReorderingAllowed(true)
+////                disallowAddToBackStack()
+//            }
+//
+//            if (userName.text.toString() == "fer"){
+//                Toast.makeText(
+//                    requireContext(),
+//                    "true",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }else{
+//                Toast.makeText(
+//                    requireContext(),
+//                    "false",
+//                    Toast.LENGTH_SHORT
+//                ).show()
+//            }
+//
+//
+//        }
+//
+//        buttonRegister.setOnClickListener {
+//            Toast.makeText(
+//                requireContext(),
+//                "Probando boton REGISTER!",
+//                Toast.LENGTH_SHORT
+//            ).show()
+//        }
+//
+//
+
         buttonLogin.setOnClickListener {
 
             parentFragmentManager.commit {
@@ -109,11 +144,6 @@ class Fragment_login : Fragment() {
         fingerPrint.setOnClickListener {
             biometricPrompt.authenticate(promptInfo)
         }
-
-
-
-
-
     }
 
 }

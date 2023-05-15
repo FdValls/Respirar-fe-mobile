@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_fragment_login_to_expensasDetailFragment2"
             app:destination="@id/expensasDetailFragment2" />
+        <action
+            android:id="@+id/action_fragment_login_to_fragment_admin"
+            app:destination="@id/fragment_admin" />
     </fragment>
     <fragment
         android:id="@+id/fragment_edit_customer"
@@ -25,4 +28,10 @@
         android:name="com.example.projectFinal.fragments.ExpensasDetailFragment"
         android:label="fragment_expensas_detail"
         tools:layout="@layout/fragment_expensas_detail" />
+    <fragment
+        android:id="@+id/fragment_admin"
+        android:name="com.example.projectFinal.fragments.Fragment_admin"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
+    <include app:graph="@navigation/mobile_navigation" />
 </navigation>

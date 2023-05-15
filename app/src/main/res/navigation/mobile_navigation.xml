@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.projectFinal.activities.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.projectFinal.activities.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.projectFinal.activities.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_notification"
+        android:name="com.example.projectFinal.activities.ui.notification.NotificationFragment"
+        android:label="Notification"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/nav_administration"
+        android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"
+        android:label="Administration"
+        tools:layout="@layout/fragment_administration" />
+    <fragment
+        android:id="@+id/nav_users"
+        android:name="com.example.projectFinal.activities.ui.users.UsersFragment"
+        android:label="Users"
+        tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/nav_organization"
+        android:name="com.example.projectFinal.activities.ui.organization.OrganizationFragment"
+        android:label="Organization"
+        tools:layout="@layout/fragment_organization" />
+</navigation>
