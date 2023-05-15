@@ -29,7 +29,7 @@
                 android:id="@+id/loginText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textColor="@color/purple"
                 android:textSize="36sp"
@@ -79,6 +79,32 @@
                 android:text="@string/register"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
+
+            <TextView
+                android:id="@+id/loginBiometricText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="65dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/finger_print_text"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/loginBiometricButton"
+                android:layout_width="80dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="0dp"
+                android:backgroundTint="@color/purple"
+                android:paddingTop="2dp"
+                android:textSize="18sp"
+                android:clickable="true"
+                android:background="@drawable/custom_edittext"
+                android:drawableStart="@drawable/fingerprint"
+                android:drawableTint="@color/white"
+                android:paddingStart="15dp"
+                android:layout_gravity="center"/>
 
         </LinearLayout>
 

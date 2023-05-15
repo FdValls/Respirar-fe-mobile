@@ -7,10 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
+import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
+import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import kotlin.math.log
 
 class Fragment_login : Fragment() {
@@ -37,6 +42,8 @@ class Fragment_login : Fragment() {
         val buttonLogin = view.findViewById<Button>(R.id.loginButton)
         val buttonRegister = view.findViewById<Button>(R.id.loginRegister)
         val userName = view.findViewById<EditText>(R.id.username)
+        val fingerPrint = view.findViewById<TextView>(R.id.loginBiometricButton);
+        val context = activity?.applicationContext
 
         buttonLogin.setOnClickListener {
 
@@ -70,6 +77,40 @@ class Fragment_login : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        var executor = ContextCompat.getMainExecutor(context!!)
+        var canAuthenticate = false
+
+        fun moveToEditCustomerFragment() {
+            parentFragmentManager.commit {
+                replace<Fragment_edit_customer>(R.id.fragmentContainerView)
+                setReorderingAllowed(true)
+            }
+            Toast.makeText(
+                requireContext(),
+                "Login succeeded",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+
+        var biometricPrompt = androidx.biometric.BiometricPrompt(this, ContextCompat.getMainExecutor(context!!), object: androidx.biometric.BiometricPrompt.AuthenticationCallback(){
+            override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
+                super.onAuthenticationSucceeded(result)
+                moveToEditCustomerFragment()
+            }
+        })
+
+        var promptInfo = androidx.biometric.BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Biometric Authentication")
+            .setSubtitle("Login using your finger print")
+            .setNegativeButtonText("Cancel")
+            .build()
+
+        fingerPrint.setOnClickListener {
+            biometricPrompt.authenticate(promptInfo)
+        }
+
+
 
 
 
