@@ -11,30 +11,31 @@ import com.example.projectFinal.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
 
-private var _binding: FragmentGalleryBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-  private val binding get() = _binding!!
+    private var _binding: FragmentGalleryBinding? = null
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
-    val galleryViewModel =
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        val galleryViewModel =
             ViewModelProvider(this).get(GalleryViewModel::class.java)
 
-    _binding = FragmentGalleryBinding.inflate(inflater, container, false)
-    val root: View = binding.root
+        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
-    val textView: TextView = binding.textGallery
-    galleryViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
+        val textView: TextView = binding.textGallery
+        galleryViewModel.text.observe(viewLifecycleOwner) {
+            textView.text = it
+        }
+        return root
     }
-    return root
-  }
 
-override fun onDestroyView() {
+    override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }

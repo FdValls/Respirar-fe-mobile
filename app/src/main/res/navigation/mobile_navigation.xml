@@ -37,4 +37,9 @@
         android:name="com.example.projectFinal.activities.ui.users.UsersFragment"
         android:label="Users"
         tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/nav_organization"
+        android:name="com.example.projectFinal.activities.ui.organization.OrganizationFragment"
+        android:label="Organization"
+        tools:layout="@layout/fragment_organization" />
 </navigation>

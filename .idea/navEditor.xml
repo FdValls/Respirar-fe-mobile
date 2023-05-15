@@ -56,6 +56,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="nav_organization">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_slideshow">
                     <value>
                       <LayoutPositions>
@@ -73,8 +85,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="491" />
+                            <option name="y" value="13" />
                           </Point>
                         </option>
                       </LayoutPositions>
