@@ -15,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.example.projectFinal.R
 import com.example.projectFinal.utils.UserSession
 
-class Fragment_edit_customer : Fragment() {
+class  Fragment_edit_customer : Fragment() {
 
     private lateinit var avatarImage: ImageView
     private lateinit var btnSave: Button
