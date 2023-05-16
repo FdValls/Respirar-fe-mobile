@@ -8,6 +8,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.navigation.fragment.NavHostFragment
@@ -18,9 +19,7 @@ import com.example.projectFinal.databinding.ActivityNavBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class LoginActivity : AppCompatActivity() {
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    private lateinit var buttonLogin: Button
     private lateinit var buttonRegister: Button
     private lateinit var userName: EditText
 
@@ -30,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val buttonLogin = binding.loginButton
-        val buttonRegister = binding.loginRegister
+        buttonRegister = binding.loginRegister
         userName = binding.username
 
         buttonLogin.setOnClickListener {
@@ -39,15 +38,15 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        buttonRegister.setOnClickListener {
+            Toast.makeText(
+                this,
+                "Probando boton REGISTER!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
-//    buttonRegister.setOnClickListener
-//    {
-//        Toast.makeText(
-//            this,
-//            "Probando boton REGISTER!",
-//            Toast.LENGTH_SHORT
-//        ).show()
-//    }
 
 }

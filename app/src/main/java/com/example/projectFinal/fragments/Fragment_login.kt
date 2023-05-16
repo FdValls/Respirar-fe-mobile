@@ -11,12 +11,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
-import kotlin.math.log
+import androidx.biometric.BiometricManager
+import androidx.fragment.app.replace
+
 
 class Fragment_login : Fragment() {
 
@@ -45,80 +45,12 @@ class Fragment_login : Fragment() {
         val fingerPrint = view.findViewById<TextView>(R.id.loginBiometricButton);
         val context = activity?.applicationContext
 
-//        buttonLogin.setOnClickListener {
-//
-//            parentFragmentManager.commit {
-//                replace<Fragment_admin>(R.id.fragmentContainerView)
-//                setReorderingAllowed(true)
-////                disallowAddToBackStack()
-//            }
-//
-//            if (userName.text.toString() == "fer"){
-//                Toast.makeText(
-//                    requireContext(),
-//                    "true",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }else{
-//                Toast.makeText(
-//                    requireContext(),
-//                    "false",
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//
-//
-//        }
-//
-//        buttonRegister.setOnClickListener {
-//            Toast.makeText(
-//                requireContext(),
-//                "Probando boton REGISTER!",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//
-//
-
-        buttonLogin.setOnClickListener {
-
-            parentFragmentManager.commit {
-                replace<Fragment_edit_customer>(R.id.fragmentContainerView)
-                setReorderingAllowed(true)
-//                disallowAddToBackStack()
-            }
-
-            if (userName.text.toString() == "fer"){
-                Toast.makeText(
-                    requireContext(),
-                    "true",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }else{
-                Toast.makeText(
-                    requireContext(),
-                    "false",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-
-
-        }
-
-        buttonRegister.setOnClickListener {
-            Toast.makeText(
-                requireContext(),
-                "Probando boton REGISTER!",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
         var executor = ContextCompat.getMainExecutor(context!!)
         var canAuthenticate = false
 
         fun moveToEditCustomerFragment() {
             parentFragmentManager.commit {
-                replace<Fragment_edit_customer>(R.id.fragmentContainerView)
+                replace<Fragment_edit_customer>(R.id.fragment_edit_customer)
                 setReorderingAllowed(true)
             }
             Toast.makeText(
