@@ -1,29 +1,15 @@
 package com.example.projectFinal.activities
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
 import com.example.projectFinal.R
 import com.example.projectFinal.databinding.ActivityMainBinding
-import com.example.projectFinal.databinding.ActivityNavBinding
-import com.example.projectFinal.fragments.Fragment_edit_customer
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
-import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
-import androidx.biometric.BiometricManager
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
