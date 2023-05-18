@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="400dp"
     android:layout_height="400sp"
     android:layout_gravity="center"
-    android:background="@drawable/consorcio1"
+    android:background="@drawable/fiwarefoundationmain"
     tools:context=".activities.SplashActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
