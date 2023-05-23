@@ -78,5 +78,20 @@ dependencies {
     implementation "androidx.preference:preference-ktx:1.2.0"
     implementation 'com.squareup.picasso:picasso:2.71828'
 
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    //GSON - Json Fácil
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //Interceptor de HTTP
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingVersion"
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
+
 
 }

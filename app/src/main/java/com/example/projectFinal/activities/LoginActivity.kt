@@ -1,20 +1,31 @@
 package com.example.projectFinal.activities
 
+import RequestManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.projectFinal.R
 import com.example.projectFinal.databinding.ActivityMainBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+//import sendRequest
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var buttonRegister: Button
     private lateinit var userName: EditText
+    private lateinit var password: EditText
+    private val requestManager = RequestManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +35,20 @@ class LoginActivity : AppCompatActivity() {
         val buttonLogin = binding.loginButton
         buttonRegister = binding.loginRegister
         userName = binding.username
+        password = binding.password
 
         buttonLogin.setOnClickListener {
-            val intent =
-                Intent(applicationContext, NavActivity::class.java)
-            startActivity(intent)
-            finish()
+            lifecycleScope.launch {
+                if (requestManager.sendRequest(
+                        userName.text.toString(),
+                        password.text.toString()
+                    )
+                ) {
+                    Toast.makeText(this@LoginActivity, requestManager.retunCode(), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@LoginActivity, requestManager.retunCode(), Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
         buttonRegister.setOnClickListener {
@@ -58,12 +77,15 @@ class LoginActivity : AppCompatActivity() {
             ).show()
         }
 
-        var biometricPrompt = androidx.biometric.BiometricPrompt(this, ContextCompat.getMainExecutor(this!!), object: androidx.biometric.BiometricPrompt.AuthenticationCallback(){
-            override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
-                super.onAuthenticationSucceeded(result)
-                moveToEditCustomerFragment()
-            }
-        })
+        var biometricPrompt = androidx.biometric.BiometricPrompt(
+            this,
+            ContextCompat.getMainExecutor(this!!),
+            object : androidx.biometric.BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: androidx.biometric.BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    moveToEditCustomerFragment()
+                }
+            })
 
         var promptInfo = androidx.biometric.BiometricPrompt.PromptInfo.Builder()
             .setTitle("Biometric Authentication")

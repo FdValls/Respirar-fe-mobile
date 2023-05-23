@@ -1,6 +1,7 @@
 buildscript {
     ext {
         kotlin_version = '1.8.21'
+        okhttpLoggingVersion = '4.7.2'
     }
     repositories {
         // Make sure that you have the following two repositories
