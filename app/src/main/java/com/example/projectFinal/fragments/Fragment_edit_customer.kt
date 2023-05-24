@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.projectFinal.R
-import com.example.projectFinal.utils.UserSession
 
 class  Fragment_edit_customer : Fragment() {
 
@@ -40,8 +39,6 @@ class  Fragment_edit_customer : Fragment() {
 
         nameText.paintFlags = nameText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         passwordText.paintFlags = passwordText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
-        nameText.text = UserSession.userName
 
         Glide.with(this)
             .load("https://www.w3schools.com/howto/img_avatar.png")

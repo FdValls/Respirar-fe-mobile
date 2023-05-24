@@ -13,6 +13,9 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.example.projectFinal.R
 import com.example.projectFinal.databinding.ActivityMainBinding
+import com.example.projectFinal.entities.GlobalVariables
+import com.example.projectFinal.entities.RequestRefreshToken
+import com.example.projectFinal.entities.RequestUserInfoToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -27,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var password: EditText
     private val requestManager = RequestManager()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -40,11 +44,16 @@ class LoginActivity : AppCompatActivity() {
         buttonLogin.setOnClickListener {
             lifecycleScope.launch {
                 if (requestManager.sendRequest(
-                        userName.text.toString(),
-                        password.text.toString()
+                        "admin@test.com",
+                        "1234"
                     )
                 ) {
                     Toast.makeText(this@LoginActivity, requestManager.retunCode(), Toast.LENGTH_SHORT).show()
+                    val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
+                    RequestUserInfoToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken, GlobalVariables.getInstance().myXSubjectToken)
+                    RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken,)
+                    println("Valor de myXSubjectToken: $myXSubjectToken")
+
                 } else {
                     Toast.makeText(this@LoginActivity, requestManager.retunCode(), Toast.LENGTH_SHORT).show()
                 }

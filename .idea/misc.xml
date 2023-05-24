@@ -58,6 +58,7 @@
         <entry key="app/src/main/res/layout/fragment_admin.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/fragment_customer.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
+        <entry key="app/src/main/res/xml/root_preference_admin.xml" value="0.18177083333333333" />
       </map>
     </option>
   </component>

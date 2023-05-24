@@ -1,6 +1,8 @@
 import ar.edu.ort.requestexamples.data.TrustAllCerts
-import ar.edu.ort.requestexamples.entities.MyData
+import com.example.projectFinal.utils.MyData
 import ar.edu.ort.requestexamples.interfaces.ApiService
+import com.example.projectFinal.entities.GlobalVariables
+import com.example.projectFinal.utils.TokenClass.Companion.assignValueToGlobalVariable
 import com.google.gson.Gson
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -13,6 +15,7 @@ class RequestManager {
 
     var code : String = ""
     var succesfull : Boolean = false
+    var value = ""
 
     suspend fun sendRequest(email: String, passwd: String): Boolean {
 
@@ -27,16 +30,13 @@ class RequestManager {
             .build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://ip172-18-0-28-chm079o9ec4g00au4plg-3000.direct.labs.play-with-docker.com/") // Reemplaza con la URL de tu endpoint local
+            .baseUrl(GlobalVariables.getInstance().url) // Reemplaza con la URL de tu endpoint local
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
 
         val apiService = retrofit.create(ApiService::class.java)
 
-        //HACE LA PEGADA
-        //TRAERNOS DEL LABEL USER Y PASS Y PEGARLO ACA
-        //USAR LOGICA DE CODE 201 Y SEGUIR
         val myData = MyData(email, passwd)
         val gson = Gson()
         val json = gson.toJson(myData)
@@ -47,7 +47,6 @@ class RequestManager {
 
         code = response.code().toString()
 
-
         retunCode()
 
         if (response.isSuccessful) {
@@ -56,7 +55,12 @@ class RequestManager {
             if (responseBody != null) {
                 val responseBodyString = responseBody.string()
                 println("------------------------------BODY" + responseBodyString)
-                println("------------------------------HEADER" + gson.toJson(response.headers()))
+                println("------------------------------HEADER " + gson.toJson(response.headers()))
+                println("------------------------------X-Subject-Token " + response.headers()["X-Subject-Token"])
+                value = response.headers()["X-Subject-Token"].toString()
+                assignValueToGlobalVariable(value)
+
+
             } else {
                 println("Empty response body")
             }
@@ -69,6 +73,5 @@ class RequestManager {
     fun retunCode(): String {
        return code
     }
-
 }
 

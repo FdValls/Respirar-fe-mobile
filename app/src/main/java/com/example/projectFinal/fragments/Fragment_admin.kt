@@ -11,8 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.projectFinal.R
-import com.example.projectFinal.utils.UserSession
-import com.example.projectFinal.utils.WeatherSession
 
 class Fragment_admin : Fragment() {
 
@@ -41,17 +39,6 @@ class Fragment_admin : Fragment() {
         btbContacto = view.findViewById(R.id.id_btn_contacto)
         btbContacto.setBackgroundColor(Color.BLACK)
 
-        fotoPerfil = view.findViewById(R.id.id_photo_perfil)
-        Glide.with(this)
-            .load(UserSession.userPhoto)
-            .circleCrop()
-            .override(300, 300)
-            .into(fotoPerfil)
-
-        nombreCompleto.text = "Hola, ${UserSession.userName}"
-        paisPerfil.text = WeatherSession.pais
-        horaPerfil.text = WeatherSession.hora
-        tempPerfil.text = WeatherSession.temperatura
 
     }
 
