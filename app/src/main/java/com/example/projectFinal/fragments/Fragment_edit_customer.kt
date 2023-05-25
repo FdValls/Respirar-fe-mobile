@@ -35,13 +35,28 @@ class  Fragment_edit_customer : Fragment() {
         avatarImage = view.findViewById(R.id.avatar_image)
 
         val nameText = view.findViewById<TextView>(R.id.nameText)
-        val passwordText = view.findViewById<TextView>(R.id.password_text)
+        val descripcion_text = view.findViewById<TextView>(R.id.descripcion_text)
+        val website_text = view.findViewById<TextView>(R.id.website_text)
+        val email_text = view.findViewById<TextView>(R.id.email_text)
+
         btnSave = view.findViewById(R.id.save_button)
 
         nameText.paintFlags = nameText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-        passwordText.paintFlags = passwordText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        descripcion_text.paintFlags = descripcion_text.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        website_text.paintFlags = website_text.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        email_text.paintFlags = email_text.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         nameText.text = UserSession.userName
+
+      //  val usuario = obtenerUsuarioActual()   //obtener el usuario por el token o similar
+
+       // if (usuario != null) {
+         //   when (usuario.tipo) {
+         //       "master" -> mostrarCamposEdicionMaster(usuario)
+           //     "customer" -> mostrarCamposEdicionCustomer(usuario)
+         //       else -> println("Tipo de usuario desconocido")
+         //   }
+       // }
 
         Glide.with(this)
             .load("https://www.w3schools.com/howto/img_avatar.png")
@@ -55,4 +70,29 @@ class  Fragment_edit_customer : Fragment() {
             v.findNavController().navigate(a)
         }
     }
+/*
+    private fun mostrarCamposEdicionMaster(usuario: Usuario) {
+        // Configurar campos específicos para usuario "master"
+        // Aquí puedes realizar acciones como asignar valores a los campos correspondientes
+    }
+
+    private fun mostrarCamposEdicionCustomer(usuario: Usuario) {
+        // Configurar campos específicos para usuario "customer"
+        // Aquí puedes realizar acciones como asignar valores a los campos correspondientes
+    }
+
+    data class Usuario(val tipo: String, val nombre: String, val correo: String, val direccion: String)
+
+    private fun obtenerUsuarioActual(): Usuario? {
+        // Simulación de obtención del usuario actual desde una fuente de datos (por ejemplo, UserSession)
+        val userType = UserSession.userType // Obtén el tipo de usuario desde UserSession
+        val userName = UserSession.userName // Obtén el nombre de usuario desde UserSession
+        // Obtén otros datos del usuario según sea necesario
+
+        return if (userType != null && userName != null) {
+            Usuario(userType, userName, "", "") // Devuelve el objeto Usuario con los datos obtenidos
+        } else {
+            null
+        }
+    }*/
 }

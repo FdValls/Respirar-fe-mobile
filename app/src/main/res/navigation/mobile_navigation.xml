@@ -31,7 +31,11 @@
         android:id="@+id/nav_administration"
         android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"
         android:label="Administration"
-        tools:layout="@layout/fragment_administration" />
+        tools:layout="@layout/fragment_administration" >
+        <action
+            android:id="@+id/action_nav_administration_to_nav_organization"
+            app:destination="@id/nav_organization" />
+    </fragment>
     <fragment
         android:id="@+id/nav_users"
         android:name="com.example.projectFinal.activities.ui.users.UsersFragment"

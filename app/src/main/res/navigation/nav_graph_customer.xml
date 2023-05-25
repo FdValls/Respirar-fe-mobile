@@ -8,7 +8,11 @@
         android:id="@+id/fragment_customer"
         android:name="com.example.projectFinal.fragments.Fragment_customer"
         android:label="fragment_customer"
-        tools:layout="@layout/fragment_customer" />
+        tools:layout="@layout/fragment_customer" >
+        <action
+            android:id="@+id/action_fragment_customer_to_listExpensas"
+            app:destination="@id/listExpensas" />
+    </fragment>
     <fragment
         android:id="@+id/listExpensas"
         android:name="com.example.projectFinal.recycleview.ListExpensas"
@@ -22,7 +26,11 @@
         android:id="@+id/expensasDetailFragment"
         android:name="com.example.projectFinal.fragments.ExpensasDetailFragment"
         android:label="fragment_expensas_detail"
-        tools:layout="@layout/fragment_expensas_detail" />
+        tools:layout="@layout/fragment_expensas_detail" >
+        <action
+            android:id="@+id/action_expensasDetailFragment_to_fragment_logout_customer"
+            app:destination="@id/fragment_logout_customer" />
+    </fragment>
     <fragment
         android:id="@+id/fragment_logout_customer"
         android:name="com.example.projectFinal.fragments.Fragment_logout_customer"
