@@ -8,6 +8,6 @@ import retrofit2.http.*
 
 interface UserInterfaceInformationToken {
     @Headers("Content-Type: application/json")
-    @GET("URL_NUEVO_ENDPOINT")
+    @GET("v1/auth/tokens")
     suspend fun sendRequestWithToken(@HeaderMap headers: Map<String, String>): Response<ResponseBody>
 }

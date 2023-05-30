@@ -1,7 +1,6 @@
 package com.example.projectFinal.utils
 
-import android.content.Context
-import com.example.projectFinal.entities.GlobalVariables
+import com.example.projectFinal.data.GlobalVariables
 
 class TokenClass {
     companion object {

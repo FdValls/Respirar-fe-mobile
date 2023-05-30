@@ -55,10 +55,13 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_test_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/app_bar_nav.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/content_nav.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_admin.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/fragment_customer.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
-        <entry key="app/src/main/res/xml/root_preference_admin.xml" value="0.18177083333333333" />
+        <entry key="app/src/main/res/layout/nav_header_nav.xml" value="0.35625" />
+        <entry key="app/src/main/res/xml/root_preference_admin.xml" value="0.35625" />
       </map>
     </option>
   </component>
