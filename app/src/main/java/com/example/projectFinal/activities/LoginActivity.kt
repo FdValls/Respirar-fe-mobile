@@ -57,11 +57,10 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                     val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
 
-
                     RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
                     RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
-                    RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")
-                    RequestReadInfoUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
+                    println("Respuesta creando users: ${RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")}")
+                    println("Respuesta readUser:${RequestReadInfoUser.sendRequest("b3733a71-3764-442f-8985-36fa6124a517")}")
                     RequestListAllUser.sendRequest()
                     RequestUpdateUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
                     RequestDeleteUser.sendRequest("a3a948cf-cd9a-4f1d-a7ff-888e04dd16b5")
@@ -70,11 +69,16 @@ class LoginActivity : AppCompatActivity() {
                     RequestListAllOrganization.sendRequest()
                     RequestUpdateOrg.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
                     RequestDeleteOrganization.sendRequest("30a92fa1-5c7b-4d72-93bf-291ba94e0da1")
-                    RequestAdministrationUserOrg.sendRequest("1afe3995-00cd-4df1-9d77-67d000c75e49","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+                    RequestAdministrationUserOrg.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","c99ba5a3-9d0b-4959-9758-9b2dec59b0fc")
                     RequestAddUserAsAnOwnerOfAnOrganization.sendRequest("2e7d50e5-5526-412e-b577-fbfe1b14ec48","f65014e5-e7a6-4400-b938-54c8e33b83b4")
                     RequestListUsersWithinAnOrganization.sendRequest("f65014e5-e7a6-4400-b938-54c8e33b83b4")
-                    RequestReadUserRolesWithinAnOrganization.sendRequest("1afe3995-00cd-4df1-9d77-67d000c75e49","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
-                    RequestRemoveUserFromOrganization.sendRequest("1afe3995-00cd-4df1-9d77-67d000c75e49","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+                    RequestReadUserRolesWithinAnOrganization.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+                    RequestRemoveUserFromOrganization.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+
+                    val intent =
+                        Intent(applicationContext, NavActivity::class.java)
+                    startActivity(intent)
+                    finish()
 
                 } else {
                     Toast.makeText(

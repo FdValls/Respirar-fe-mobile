@@ -38,7 +38,7 @@ object RequestCreateUser {
         val apiService = retrofit.create(CreateUser::class.java)
 
         val authToken = GlobalVariables.getInstance().myXSubjectToken
-        val user = User("alice", "aszqdzxcxzc@test.com", "test")
+        val user = User("alice", "asdasdadasd@test.com", "test")
         val createUserRequest = CreateUserRequest(user)
 
         val response = apiService.postData(authToken, createUserRequest)
@@ -56,7 +56,6 @@ object RequestCreateUser {
                 val gson = Gson()
                 val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
                 val userObject = jsonObject.getAsJsonObject("user")
-                val username = userObject.get("username").asString
                 dtoUser = UserDto(
                     userObject.get("id").asString,
                     userObject.get("username").asString,

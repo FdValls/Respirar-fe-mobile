@@ -3,6 +3,7 @@ package com.example.projectFinal.endPoints.RequestUsers
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.interfaces.ReadInformationAboutUser
+import com.example.projectFinal.utils.UserDto
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
@@ -12,7 +13,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestReadInfoUser {
 
-    suspend fun sendRequest(id: String) {
+    var readUser : JsonObject? = null
+
+
+    suspend fun sendRequest(id: String):  JsonObject? {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,17 +45,23 @@ object RequestReadInfoUser {
                 println("Body RequestReadInfoUser: ${response.body()}")
                 val responseBodyString = responseBody.string()
 
+                println("****************** body ******************* $responseBodyString")
                 //Parsear a JSON para obtener los datos
                 val gson = Gson()
                 val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
+                println("****************** jsonObject ******************* $jsonObject")
                 val userObject = jsonObject.getAsJsonObject("user")
-                val username = userObject.get("username").asString
-                println("Username RequestReadInfoUser: $username")
+                readUser = userObject
+
+                println("****************** userObject ******************* $userObject")
             } else {
                 println("Empty response body")
             }
+
+
         } else {
             println("Request failed: ${response.code()}")
         }
+        return readUser
     }
 }
