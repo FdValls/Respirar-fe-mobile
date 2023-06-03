@@ -107,7 +107,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b8bc8f3ffe5e56bf22635c6584278788/transformed/jetified-kotlin-stdlib-jdk8-1.8.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/bce6a425a0172decc42a7dfdc82f8b8d/transformed/jetified-kotlin-parcelize-runtime-1.8.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/1df69d06be11cdc3f5a8ac6f67c2b11f/transformed/constraintlayout-2.1.4-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3c1d133694b188f0545e700616ed49a8/transformed/jetified-picasso-2.71828-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/c33940311b12a20a6929012eb2851e28/transformed/jetified-picasso-2.71828-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/fd5ea730e467e66af5f2f2e86f117039/transformed/jetified-kotlin-stdlib-jdk7-1.8.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/849b683808968d027e784e79c897293c/transformed/jetified-kotlin-android-extensions-runtime-1.8.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9ec106be875624fceeb4c8d65238de19/transformed/jetified-savedstate-ktx-1.2.1-api.jar</arg>
