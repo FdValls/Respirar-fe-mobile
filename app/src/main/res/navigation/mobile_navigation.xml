@@ -41,5 +41,14 @@
         android:id="@+id/nav_organization"
         android:name="com.example.projectFinal.activities.ui.organization.OrganizationFragment"
         android:label="Organization"
-        tools:layout="@layout/fragment_organization" />
+        tools:layout="@layout/fragment_list_org" >
+        <action
+            android:id="@+id/action_nav_organization_to_createOrgFragment"
+            app:destination="@id/createOrgFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createOrgFragment"
+        android:name="com.example.projectFinal.activities.ui.organization.CreateOrgFragment"
+        android:label="fragment_create_org"
+        tools:layout="@layout/fragment_create_org" />
 </navigation>

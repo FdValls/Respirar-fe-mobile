@@ -4,6 +4,8 @@ import com.example.projectFinal.endPoints.RequestToken.RequestCreateTokenWithPas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -28,8 +30,6 @@ import kotlinx.coroutines.launch
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var buttonRegister: Button
-    private lateinit var userName: EditText
-    private lateinit var password: EditText
     private val requestCreateTokenWithPasswd = RequestCreateTokenWithPasswd()
     private var code : String = ""
 
@@ -40,52 +40,74 @@ class LoginActivity : AppCompatActivity() {
 
         val buttonLogin = binding.loginButton
         buttonRegister = binding.loginRegister
-        userName = binding.username
-        password = binding.password
+//        val userName = findViewById<EditText>(R.id.username).text;
+        val userName = "admin@test.com";
+        val password = "1234";
+//        val password = findViewById<EditText>(R.id.password).text;
+        var userToken = "";
+
+        fun hasNotEmptyFields(): Boolean {
+            var canPass = false;
+            if(userName.isNotEmpty() && password.isNotEmpty()){
+                canPass = true;
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Los campos deben estar llenos" + userName + password,
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Los campos deben estar llenos",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            return canPass
+        }
 
         buttonLogin.setOnClickListener {
-            lifecycleScope.launch {
-                code = requestCreateTokenWithPasswd.sendRequest(
-                    "admin@test.com",
-                    "1234"
-                )
-                if (code == "201"){
-                    Toast.makeText(
-                        this@LoginActivity,
-                        code,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
-
-                    RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
-                    RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
-                    println("Respuesta creando users: ${RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")}")
-                    println("Respuesta readUser:${RequestReadInfoUser.sendRequest("b3733a71-3764-442f-8985-36fa6124a517")}")
-                    RequestListAllUser.sendRequest()
-                    RequestUpdateUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
-                    RequestDeleteUser.sendRequest("a3a948cf-cd9a-4f1d-a7ff-888e04dd16b5")
-                    RequestCreateOrganization.sendRequest("", "", "")
-                    RequestReadOrganizationDetails.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
-                    RequestListAllOrganization.sendRequest()
-                    RequestUpdateOrg.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
-                    RequestDeleteOrganization.sendRequest("30a92fa1-5c7b-4d72-93bf-291ba94e0da1")
-                    RequestAdministrationUserOrg.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","c99ba5a3-9d0b-4959-9758-9b2dec59b0fc")
-                    RequestAddUserAsAnOwnerOfAnOrganization.sendRequest("2e7d50e5-5526-412e-b577-fbfe1b14ec48","f65014e5-e7a6-4400-b938-54c8e33b83b4")
-                    RequestListUsersWithinAnOrganization.sendRequest("f65014e5-e7a6-4400-b938-54c8e33b83b4")
-                    RequestReadUserRolesWithinAnOrganization.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
-                    RequestRemoveUserFromOrganization.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
-
-                    val intent =
-                        Intent(applicationContext, NavActivity::class.java)
-                    startActivity(intent)
-                    finish()
-
-                } else {
-                    Toast.makeText(
-                        this@LoginActivity,
-                        code,
-                        Toast.LENGTH_SHORT
-                    ).show()
+            if(hasNotEmptyFields()) {
+                lifecycleScope.launch {
+                    code = requestCreateTokenWithPasswd.sendRequest(
+                        userName,
+                        password
+                    )
+                    if (code == "201"){
+                        RequestListAllOrganization.sendRequest()
+                        RequestListAllUser.sendRequest()
+                        Toast.makeText(
+                            this@LoginActivity,
+                            code,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
+                        userToken = myXSubjectToken;
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "The user token is: " + userToken,
+                            Toast.LENGTH_SHORT
+                        ).show()
+//                       RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
+//                        RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
+//                        println("Respuesta creando users: ${RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")}")
+//                        println("Respuesta readUser:${RequestReadInfoUser.sendRequest("b3733a71-3764-442f-8985-36fa6124a517")}")
+//                        RequestListAllUser.sendRequest()
+                        RequestUpdateUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
+//                        RequestDeleteUser.sendRequest("a3a948cf-cd9a-4f1d-a7ff-888e04dd16b5")
+//                        RequestCreateOrganization.sendRequest("", "", "")
+//                        RequestReadOrganizationDetails.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
+//                        RequestListAllOrganization.sendRequest()
+//                        RequestUpdate91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+                        val intent =
+                            Intent(applicationContext, NavActivity::class.java)
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            code,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
         }
@@ -104,16 +126,27 @@ class LoginActivity : AppCompatActivity() {
         var executor = ContextCompat.getMainExecutor(this!!)
         var canAuthenticate = false
 
-        fun moveToEditCustomerFragment() {
-            val intent =
-                Intent(applicationContext, NavActivity::class.java)
-            startActivity(intent)
-            finish()
-            Toast.makeText(
-                this,
-                "Login succeeded with finger print",
-                Toast.LENGTH_SHORT
-            ).show()
+        fun moveToEditCustomerFragment(): Boolean {
+            if(userToken.isNotEmpty()) {
+                val intent =
+                    Intent(applicationContext, NavActivity::class.java)
+                startActivity(intent)
+                finish()
+                Toast.makeText(
+                    this,
+                    "Login succeeded with finger print",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Please login with username for the first time",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return false
+            }
+            return true
+
         }
 
         var biometricPrompt = androidx.biometric.BiometricPrompt(

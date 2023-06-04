@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.projectFinal.databinding.FragmentHomeBinding
+import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
@@ -31,6 +34,14 @@ private var _binding: FragmentHomeBinding? = null
     homeViewModel.text.observe(viewLifecycleOwner) {
       textView.text = it
     }
+
+      lifecycleScope.launch {
+          RequestListUsersWithinAnOrganization.sendRequest("7483d89f-3c28-4f1f-aabf-42d7c36f4735")
+      }
+
+
+
+
     return root
   }
 

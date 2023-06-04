@@ -6,7 +6,7 @@ import com.example.projectFinal.utils.*
 class GlobalVariables : Application() {
 
     var myXSubjectToken: String = ""
-    var url = "http://ip172-18-0-9-chshq48gftqg00c3ljtg-3005.direct.labs.play-with-docker.com/"
+    var url = "http://ip172-19-0-31-chufj68gftqg00akm2i0-3005.direct.labs.play-with-docker.com/"
     var listUsers = mutableListOf<UserDto>()
     var listOrganizationsForUpdate = mutableListOf<Organization>()
 

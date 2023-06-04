@@ -52,7 +52,6 @@ object RequestUpdateUser {
 
         val updateUser = userBody?.let { UpdateUser(it) }
 
-
         if (user != null) {
             val response = apiService.postData(authToken, id, updateUser)
             val responseBody = response.body()
