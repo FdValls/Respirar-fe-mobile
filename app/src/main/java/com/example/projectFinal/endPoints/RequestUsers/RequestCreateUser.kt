@@ -16,6 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RequestCreateUser {
 
     var dtoUser : UserDto? = null
+    var code: String = ""
 
     suspend fun sendRequest(username: String, email: String, passwd: String): UserDto? {
 
@@ -38,7 +39,9 @@ object RequestCreateUser {
         val apiService = retrofit.create(CreateUser::class.java)
 
         val authToken = GlobalVariables.getInstance().myXSubjectToken
-        val user = User("alice", "asdasdadasd@test.com", "test")
+        println("+++++++++++++++++++++++++++++ authToken: $authToken")
+
+        val user = User(username, email, passwd)
         val createUserRequest = CreateUserRequest(user)
 
         val response = apiService.postData(authToken, createUserRequest)
@@ -51,7 +54,7 @@ object RequestCreateUser {
                 println("Code Creating User: ${response.code()}")
                 val responseBodyString = responseBody.string()
                 println("RESPONSE Creating User: ${response.body()}")
-
+                code = response.code().toString()
                 //Parsear a JSON para obtener los datos
                 val gson = Gson()
                 val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
@@ -73,5 +76,9 @@ object RequestCreateUser {
             println("Request failed: ${response.code()}")
         }
         return dtoUser
+    }
+
+    fun retunCodeCreateUser():String{
+        return code
     }
 }
