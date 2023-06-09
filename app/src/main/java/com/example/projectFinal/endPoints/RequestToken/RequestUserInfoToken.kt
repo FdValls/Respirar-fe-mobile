@@ -7,7 +7,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 object RequestUserInfoToken {
 
     suspend fun sendRequest(authToken: String, subjectToken: String): Boolean {
@@ -50,7 +49,6 @@ object RequestUserInfoToken {
 //        } else {
 //            println("Request failed: ${response.code()}")
 //        }
-
         return response.isSuccessful
     }
 }

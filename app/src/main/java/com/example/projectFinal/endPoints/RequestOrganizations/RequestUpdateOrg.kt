@@ -36,13 +36,16 @@ object RequestUpdateOrg {
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
         val findOrg = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == id }
+        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ORGANIZACION $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $findOrg")
 
         val organizationJson = findOrg?.let {
-            val organization = Organization(
-                name = "FIWARE Security1",
-                description = "The FI1WARE Foundation is the legal independent body promoting, augmenting open-source FIWARE technologies",
-                website = "https://fiw1are.org"
-            )
+            val organization = findOrg.website?.let { it1 ->
+                Organization(
+                    name = findOrg.name,
+                    description = findOrg.description,
+                    website = it1
+                )
+            }
             Gson().toJson(mapOf("organization" to organization))
         }
 
@@ -67,7 +70,10 @@ object RequestUpdateOrg {
         } else {
             println("Usuario no encontrado")
         }
+    }
 
+    fun retunCodeUpdateOrg():String{
+        return RequestCreateOrganization.code
     }
 
     data class Organization(

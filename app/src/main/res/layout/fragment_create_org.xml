@@ -7,7 +7,7 @@
     tools:context=".activities.ui.organization.OrganizationFragment">
 
     <TextView
-        android:id="@+id/titleTextView"
+        android:id="@+id/titleTextViewUpdateOrg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -28,12 +28,12 @@
         android:text="Nombre"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNameOrg"
-        app:layout_constraintStart_toStartOf="@+id/editTextNameOrg"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextNameUpdateOrg"
+        app:layout_constraintStart_toStartOf="@+id/editTextNameUpdateOrg"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextViewUpdateOrg" />
 
     <EditText
-        android:id="@+id/editTextNameOrg"
+        android:id="@+id/editTextNameUpdateOrg"
         android:layout_width="379dp"
         android:layout_height="79dp"
         android:layout_margin="16dp"
@@ -53,26 +53,26 @@
         android:text="Descripción"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/editTextDescriptionOrg"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDescriptionCreateOrg"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/editTextDescriptionOrg"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameOrg" />
+        app:layout_constraintStart_toStartOf="@+id/editTextDescriptionCreateOrg"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameUpdateOrg" />
 
     <EditText
-        android:id="@+id/editTextDescriptionOrg"
+        android:id="@+id/editTextDescriptionCreateOrg"
         android:layout_width="376dp"
         android:layout_height="278dp"
         android:layout_margin="16dp"
         android:background="@drawable/txt_background"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/id_CreateBtnOrg"
+        app:layout_constraintBottom_toTopOf="@+id/id_UpdateOkBtnOrg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView2"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/id_CreateBtnOrg"
+        android:id="@+id/id_UpdateOkBtnOrg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"

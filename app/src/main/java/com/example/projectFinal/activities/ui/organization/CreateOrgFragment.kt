@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestCreateOrganization
 import kotlinx.coroutines.launch
@@ -33,9 +34,9 @@ class CreateOrgFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        nameOrgText = view.findViewById(R.id.editTextNameOrg)
-        descriptionOrgText = view.findViewById(R.id.editTextDescriptionOrg)
-        btnCreate = view.findViewById(R.id.id_CreateBtnOrg)
+        nameOrgText = view.findViewById(R.id.editTextNameUpdateOrg)
+        descriptionOrgText = view.findViewById(R.id.editTextDescriptionCreateOrg)
+        btnCreate = view.findViewById(R.id.id_UpdateOkBtnOrg)
 
         btnCreate.setOnClickListener {
             if (!nameOrgText.text.toString().isEmpty() && !descriptionOrgText.text.toString().isEmpty()) {
@@ -49,7 +50,9 @@ class CreateOrgFragment : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+                    findNavController().popBackStack()
                 }
+
             }else{
                 Toast.makeText(
                     requireActivity(),
@@ -57,6 +60,7 @@ class CreateOrgFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
         }
     }
 }

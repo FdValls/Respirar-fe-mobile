@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
@@ -27,6 +28,8 @@ class GalleryFragment : Fragment() {
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
+        println("Lista usuarios DESDE GALLERY: ${ GlobalVariables.getInstance().listUsers}")
 
         val textView: TextView = binding.textGallery
         galleryViewModel.text.observe(viewLifecycleOwner) {

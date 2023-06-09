@@ -33,7 +33,6 @@
         <activity
             android:name=".activities.NavActivity"
             android:exported="false"
-            android:label="@string/title_activity_nav"
             android:theme="@style/Theme.ProjectFinal.NoActionBar.NoActionBar" />
         <activity
             android:name=".activities.SplashActivity"

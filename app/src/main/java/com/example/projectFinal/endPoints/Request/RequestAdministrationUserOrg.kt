@@ -38,6 +38,8 @@ object RequestAdministrationUserOrg {
 
 
         println("Method PUT RequestAdministrationUserOrg")
+
+        code = response.code().toString()
         if (response.isSuccessful) {
             val responseBody = response.body()
             code = response.code().toString()
@@ -52,5 +54,9 @@ object RequestAdministrationUserOrg {
                 println("Request failed: ${response.code()}")
             }
         }
+    }
+
+    fun returnCode(): String{
+        return code
     }
 }

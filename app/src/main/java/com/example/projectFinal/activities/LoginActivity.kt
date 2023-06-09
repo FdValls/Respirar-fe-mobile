@@ -4,10 +4,7 @@ import com.example.projectFinal.endPoints.RequestToken.RequestCreateTokenWithPas
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.util.Log
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -15,12 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.projectFinal.R
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.databinding.ActivityMainBinding
-import com.example.projectFinal.endPoints.Request.RequestAddUserAsAnOwnerOfAnOrganization
 import com.example.projectFinal.endPoints.Request.RequestAdministrationUserOrg
 import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
-import com.example.projectFinal.endPoints.Request.RequestRemoveUserFromOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.*
-import com.example.projectFinal.endPoints.RequestToken.RequestRefreshToken
 import com.example.projectFinal.endPoints.RequestToken.RequestUserInfoToken
 import com.example.projectFinal.endPoints.RequestUsers.*
 import kotlinx.coroutines.launch
@@ -75,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     if (code == "201"){
                         RequestListAllOrganization.sendRequest()
                         RequestListAllUser.sendRequest()
+                        RequestListUsersWithinAnOrganization.sendRequest("2a29bbd2-2518-421c-85f4-e77d813d2347")
                         Toast.makeText(
                             this@LoginActivity,
                             code,
@@ -87,17 +82,17 @@ class LoginActivity : AppCompatActivity() {
                             "The user token is: " + userToken,
                             Toast.LENGTH_SHORT
                         ).show()
-//                       RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
+                       RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
 //                        RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
 //                        println("Respuesta creando users: ${RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")}")
 //                        println("Respuesta readUser:${RequestReadInfoUser.sendRequest("b3733a71-3764-442f-8985-36fa6124a517")}")
-//                        RequestListAllUser.sendRequest()
-                        RequestUpdateUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
+//                        RequestUpdateUser.sendRequest("1ca75fc4-543f-4c55-bec8-fbec53e67a13")
 //                        RequestDeleteUser.sendRequest("a3a948cf-cd9a-4f1d-a7ff-888e04dd16b5")
 //                        RequestCreateOrganization.sendRequest("", "", "")
-//                        RequestReadOrganizationDetails.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
-//                        RequestListAllOrganization.sendRequest()
+//                        RequestReadOrganizationDetails.sendRequest("509eb660-b8cd-47f8-8abb-171a2b4f8884")
 //                        RequestUpdate91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
+//                        RequestAdministrationUserOrg.sendRequest("admin","509eb660-b8cd-47f8-8abb-171a2b4f8884");
+//                        RequestListUsersWithinAnOrganization.sendRequest("509eb660-b8cd-47f8-8abb-171a2b4f8884")
                         val intent =
                             Intent(applicationContext, NavActivity::class.java)
                         startActivity(intent)

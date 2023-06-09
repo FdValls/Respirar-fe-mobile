@@ -39,9 +39,6 @@ private var _binding: FragmentHomeBinding? = null
           RequestListUsersWithinAnOrganization.sendRequest("7483d89f-3c28-4f1f-aabf-42d7c36f4735")
       }
 
-
-
-
     return root
   }
 

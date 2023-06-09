@@ -51,4 +51,8 @@ object RequestAddUserAsAnOwnerOfAnOrganization {
             }
         }
     }
+
+    fun returnCode(): String{
+        return code
+    }
 }
