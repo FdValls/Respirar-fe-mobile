@@ -6,27 +6,27 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_baseline_home_24"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+<!--        <item-->
+<!--            android:id="@+id/nav_gallery"-->
+<!--            android:icon="@drawable/ic_menu_gallery"-->
+<!--            android:title="Gallery" />-->
+<!--        <item-->
+<!--            android:id="@+id/nav_slideshow"-->
+<!--            android:icon="@drawable/ic_menu_slideshow"-->
+<!--            android:title="Slideshow" />-->
         <item
             android:id="@+id/nav_organization"
-            android:icon="@drawable/icons_org"
+            android:icon="@drawable/baseline_groups_24"
             android:title="Organization" />
-        <item
-            android:id="@+id/nav_notification"
-            android:icon="@drawable/icons_notification"
-            android:title="Notification" />
+<!--        <item-->
+<!--            android:id="@+id/nav_notification"-->
+<!--            android:icon="@drawable/icons_notification"-->
+<!--            android:title="Notification" />-->
         <item
             android:id="@+id/nav_administration"
-            android:icon="@drawable/icons_reparar"
+            android:icon="@drawable/ic_baseline_settings_24"
             android:title="Administration" />
         <item
             android:id="@+id/nav_users"

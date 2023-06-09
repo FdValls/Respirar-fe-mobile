@@ -22,7 +22,7 @@ import androidx.lifecycle.whenStarted
 import androidx.preference.Preference
 import com.example.projectFinal.R
 import com.example.projectFinal.data.GlobalVariables
-import com.example.projectFinal.dataStore.DataStoreManager
+//import com.example.projectFinal.dataStore.DataStoreManager
 import com.example.projectFinal.databinding.ActivityMainBinding
 import com.example.projectFinal.endPoints.Request.RequestAddUserAsAnOwnerOfAnOrganization
 import com.example.projectFinal.endPoints.Request.RequestAdministrationUserOrg
@@ -100,15 +100,16 @@ class LoginActivity : AppCompatActivity() {
                         password.toString()
                     )
                     if (code == "201"){
-                        Toast.makeText(
-                            this@LoginActivity,
-                            code,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        RequestListAllOrganization.sendRequest()
+//                        Toast.makeText(
+//                            this@LoginActivity,
+//                            code,
+//                            Toast.LENGTH_SHORT
+//                        ).show()
                         val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
                         saveUserToken(myXSubjectToken);
 
-//                      RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
+                        RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
 //                      RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
 //                      println("Respuesta creando users: ${RequestCreateUser.sendRequest("alice", "alice3@test.com", "test")}")
 //                      println("Respuesta readUser:${RequestReadInfoUser.sendRequest("b3733a71-3764-442f-8985-36fa6124a517")}")
@@ -117,7 +118,7 @@ class LoginActivity : AppCompatActivity() {
 //                      RequestDeleteUser.sendRequest("a3a948cf-cd9a-4f1d-a7ff-888e04dd16b5")
 //                      RequestCreateOrganization.sendRequest("", "", "")
 //                      RequestReadOrganizationDetails.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
-//                      RequestListAllOrganization.sendRequest()
+
 //                      RequestUpdateOrg.sendRequest("f070b810-a8cb-4455-b30c-4b7f538046c8")
 //                      RequestDeleteOrganization.sendRequest("30a92fa1-5c7b-4d72-93bf-291ba94e0da1")
 //                      RequestAdministrationUserOrg.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","c99ba5a3-9d0b-4959-9758-9b2dec59b0fc")
@@ -127,11 +128,7 @@ class LoginActivity : AppCompatActivity() {
 //                      RequestRemoveUserFromOrganization.sendRequest("4d0ce57-58c8-4004-91cc-34702e7f4604","bfc37fb9-4ccc-4fcd-b74b-87fd2b557169")
                         startIntent()
                     } else {
-                        Toast.makeText(
-                            this@LoginActivity,
-                            code,
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Snackbar.make(findViewById(R.id.fragmentLogin_id),"Username o Password incorrectos! ",Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -155,16 +152,20 @@ class LoginActivity : AppCompatActivity() {
         fun moveToEditCustomerFragment() {
             lifecycleScope.launch(Dispatchers.IO) {
                 val userTokenFromStore = getTokenFromDataStoreManager();
-                    if(userTokenFromStore != "" && userTokenFromStore != null) {
-                        val request = RequestUserInfoToken.sendRequest(userTokenFromStore, userTokenFromStore)
-                        if (request) {
-                            startIntent()
-                        }
-                    } else {
-                        Snackbar.make(findViewById(R.id.fragmentLogin_id),"Token deprecado",Snackbar.LENGTH_SHORT).show();
+                val request = RequestUserInfoToken.sendRequest(userTokenFromStore, userTokenFromStore)
+                if(userTokenFromStore != "" && userTokenFromStore != null) {
+                    if (request) {
+                        RequestListAllOrganization.sendRequest()
+                        startIntent()
                     }
+                } else if(userTokenFromStore != "" && userTokenFromStore != null && RequestUserInfoToken.returnCode() === "401" ) {
+                    Snackbar.make(findViewById(R.id.fragmentLogin_id),"Sesion expirada. Ingrese con Username y Password!",Snackbar.LENGTH_SHORT).show();
+                }
+                else {
+                    Snackbar.make(findViewById(R.id.fragmentLogin_id),"Primer login ingresar con Username y Password!",Snackbar.LENGTH_SHORT).show();
                 }
             }
+        }
 
 
         var biometricPrompt = androidx.biometric.BiometricPrompt(
