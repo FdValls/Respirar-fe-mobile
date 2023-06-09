@@ -4,6 +4,11 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
+        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
+        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
+        <afterSyncTasks>
+          <task>generateDebugSources</task>
+        </afterSyncTasks>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -92,7 +97,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/3025f76b5dd99d28eeda8f0c127ef09c/transformed/jetified-kotlinx-coroutines-android-1.6.4.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/b8bc8f3ffe5e56bf22635c6584278788/transformed/jetified-kotlin-stdlib-jdk8-1.8.21.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/bce6a425a0172decc42a7dfdc82f8b8d/transformed/jetified-kotlin-parcelize-runtime-1.8.21.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/770725b41de4789ad71dd5b413e77383/transformed/jetified-picasso-2.71828-api.jar</arg>
+                <arg>$USER_HOME$/.gradle/caches/transforms-3/2c268af608bac6fdf18cc1381aab9ca4/transformed/jetified-picasso-2.71828-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/362c6584dd73f99b78ed25fd9000361e/transformed/cursoradapter-1.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9ec106be875624fceeb4c8d65238de19/transformed/jetified-savedstate-ktx-1.2.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ec27d907489ad2758a0b64762d268098/transformed/jetified-savedstate-1.2.1-api.jar</arg>
@@ -125,8 +130,8 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/e44e0dd848041d9beb803ec3d5c1038c/transformed/jetified-annotations-4.14.2.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ef81f5a92cafd4996e7b8c135dacbadd/transformed/exifinterface-1.3.3-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/161b289b51e7587133540f42405ee9fe/transformed/jetified-gson-2.9.0.jar</arg>
-                <arg>$USER_HOME$/Library/Android/sdk/platforms/android-33/android.jar</arg>
-                <arg>$USER_HOME$/Library/Android/sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
+                <arg>$USER_HOME$/Android/Sdk/platforms/android-33/android.jar</arg>
+                <arg>$USER_HOME$/Android/Sdk/build-tools/30.0.3/core-lambda-stubs.jar</arg>
               </args>
             </stringArg>
             <stringArg name="destination" arg="$MODULE_DIR$/../../../app/build/tmp/kotlin-classes/debug" />
@@ -136,7 +141,6 @@
             <stringArg name="languageVersion" arg="1.8" />
           </stringArguments>
           <arrayArguments>
-            <arrayArg name="friendPaths" />
             <arrayArg name="pluginClasspaths">
               <args>
                 <arg>$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-parcelize-compiler/1.8.21/3edb1e70c1e1543d5c02dc9b1d2d950ad132824f/kotlin-parcelize-compiler-1.8.21.jar</arg>
@@ -157,12 +161,11 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/debug/classes" />
-    <output-test url="file://$MODULE_DIR$/../../../app/build/intermediates/javac/debugUnitTest/classes" />
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/aidl_source_output_dir/debug/out" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out">
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/ap_generated_sources/debug/out" isTestSource="false" generated="true" />
@@ -178,6 +181,7 @@
     </content>
     <content url="file://$MODULE_DIR$/../../../app/build/generated/res/rs/debug" />
     <content url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug">
+      <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../../app/build/generated/source/buildConfig/debug" isTestSource="false" generated="true" />
