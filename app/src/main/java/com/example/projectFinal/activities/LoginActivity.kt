@@ -101,6 +101,7 @@ class LoginActivity : AppCompatActivity() {
                     )
                     if (code == "201"){
                         RequestListAllOrganization.sendRequest()
+                        RequestListAllUser.sendRequest()
 //                        Toast.makeText(
 //                            this@LoginActivity,
 //                            code,
