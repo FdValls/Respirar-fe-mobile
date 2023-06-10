@@ -116,7 +116,7 @@ class OrganizationFragment : Fragment() {
         }
 
         btnUpdate.setOnClickListener{
-            val action = OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(myOrgId)
+            val action = OrganizationFragmentDirections.actionNavOrganizationToCreateOrgFragment()
             v.findNavController().navigate(action)
         }
 

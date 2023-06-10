@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_nav_home_to_createOrgFragment"
             app:destination="@id/createOrgFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_organization"
+            app:destination="@id/nav_organization" />
     </fragment>
 
     <fragment
