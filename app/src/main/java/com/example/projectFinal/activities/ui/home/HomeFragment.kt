@@ -17,7 +17,7 @@ import com.example.projectFinal.R
 import com.example.projectFinal.activities.ui.organization.OrganizationFragmentDirections
 import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
-import com.example.projectFinal.databinding.FragmentHomeBinding
+//import com.example.projectFinal.databinding.FragmentHomeBinding
 import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
 import kotlinx.coroutines.launch
@@ -26,40 +26,40 @@ import org.json.JSONObject
 class HomeFragment : Fragment() {
 
     lateinit var v: View
-    private var _binding: FragmentHomeBinding? = null
-  // This property is only valid between onCreateView and
-  // onDestroyView.
-    private val binding get() = _binding!!
+//        private var _binding: FragmentHomeBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+//    private val binding get() = _binding!!
     private lateinit var btnCreate: Button
     private lateinit var btnViews: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
 
-  override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
-  ): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
 
-      v = inflater.inflate(R.layout.fragment_home, container, false)
+        v = inflater.inflate(R.layout.fragment_home, container, false)
 
-      btnCreate = v.findViewById(R.id.buttonAgregar)
-      btnViews = v.findViewById(R.id.buttonVerTodas)
+        btnCreate = v.findViewById(R.id.buttonAgregar)
+        btnViews = v.findViewById(R.id.buttonVerTodas)
 
-      // Obtener referencia del RecyclerView
-      recyclerView = v.findViewById(R.id.recyclerView)
+        // Obtener referencia del RecyclerView
+        recyclerView = v.findViewById(R.id.recyclerView)
 
-      // Configurar el RecyclerView con un LinearLayoutManager
-      recyclerView.layoutManager = LinearLayoutManager(context)
+        // Configurar el RecyclerView con un LinearLayoutManager
+        recyclerView.layoutManager = LinearLayoutManager(context)
 
-      // Crear y establecer el adaptador del RecyclerView
-      adapter = ItemAdapter(getItems())
-      recyclerView.adapter = adapter
+        // Crear y establecer el adaptador del RecyclerView
+        adapter = ItemAdapter(getItems())
+        recyclerView.adapter = adapter
 
-      return v
-  }
+        return v
+    }
 
-    override fun onStart() {
+    override fun onStart() {btnViews
         super.onStart()
 
 //        var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
@@ -72,7 +72,7 @@ class HomeFragment : Fragment() {
         }
 
         btnViews.setOnClickListener {
-            val action3 = HomeFragmentDirections.actionNavHomeToNavOrganization2()
+            val action3 = HomeFragmentDirections.actionNavHomeToNavOrganization()
             v.findNavController().navigate(action3)
         }
     }
@@ -85,7 +85,7 @@ class HomeFragment : Fragment() {
         println("PRUEBA DE ORGANIZACIONES" + orgs)
 
         orgs.forEach { elemento ->
-                items.add(Item(R.drawable.group_icon, "Nombre: " + elemento.name.toString(), "Descripcion: " + elemento.description.toString()))
+            items.add(Item(R.drawable.group_icon, "Nombre: " + elemento.name.toString(), "Descripcion: " + elemento.description.toString()))
         }
 
         return items
@@ -122,8 +122,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+//    override fun onDestroyView() {
+//        super.onDestroyView()
+//        _binding = null
+//    }
 }

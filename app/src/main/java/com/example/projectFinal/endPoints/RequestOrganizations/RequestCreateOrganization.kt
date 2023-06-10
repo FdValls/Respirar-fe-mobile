@@ -83,7 +83,7 @@ object RequestCreateOrganization {
     }
 
     fun retunCodeCreateOrg():String{
-        return RequestCreateUser.code
+        return code
     }
 
 

@@ -135,11 +135,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         buttonRegister.setOnClickListener {
-            Toast.makeText(
-                this,
-                "Probando boton REGISTER!",
-                Toast.LENGTH_SHORT
-            ).show()
+            val intent =
+                Intent(applicationContext, RegisterActivity::class.java)
+            startActivity(intent)
         }
 
         val fingerPrint = findViewById<TextView>(R.id.loginBiometricButton);

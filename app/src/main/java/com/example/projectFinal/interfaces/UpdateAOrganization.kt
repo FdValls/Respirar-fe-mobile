@@ -10,7 +10,7 @@ interface UpdateAOrganization {
     @PATCH("v1/organizations/{org_id}")
     suspend fun postData(
         @Header("X-Auth-Token") authToken: String,
-        @Path("org_id") userId: String,
+        @Path("org_id") orgId: String,
         @Body requestBody:
         JsonObject
     ): Response<ResponseBody>

@@ -35,7 +35,7 @@ class UsersFragment : Fragment() {
 
         v =  inflater.inflate(R.layout.fragment_user_list, container, false)
 
-        userContactos = v.findViewById(R.id.org_contactos)
+        userContactos = v.findViewById(R.id.id_user_contactos)
         btnEdit = v.findViewById(R.id.id_btnEditar)
 
         return v
@@ -54,7 +54,7 @@ class UsersFragment : Fragment() {
         println("lista de organizaciones ++++++++++++++++++++" + orgs)
 
         argListAdapter = OrgListAdapter(orgs){ x ->
-            OnItemClickListener(x)
+            onItemClick(x)
         }
 
         userContactos.adapter = argListAdapter
@@ -65,11 +65,8 @@ class UsersFragment : Fragment() {
         }
     }
 
-    fun OnItemClickListener (position : Int ) : Boolean{
-        println("%%%%%%%%%%%%%%%%%%%%%%%%%%%$position")
-        val myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-        Snackbar.make(v,myOrg.toString(), Snackbar.LENGTH_SHORT).show()
-
+    fun onItemClick ( position : Int ) : Boolean{
+        Snackbar.make(v,position.toString(),Snackbar.LENGTH_SHORT).show()
         return true
     }
 }
