@@ -11,9 +11,12 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projectFinal.R
-import com.example.projectFinal.utils.UserSession
+import com.example.projectFinal.adapter.UserEditAdapter
+import com.google.firebase.firestore.auth.User
+
 
 class  Fragment_edit_customer : Fragment() {
 
@@ -26,6 +29,11 @@ class  Fragment_edit_customer : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         v = inflater.inflate(R.layout.fragment_edit_customer, container, false)
+
+      val recycleViewUser = v.findViewById<RecyclerView>(R.id.recycle_user)
+      //  recycleViewUser.adapter = UserEditAdapter(User) // lista de usuarios
+
+                //cual es el manejador?????
 
         return v
     }
@@ -46,7 +54,7 @@ class  Fragment_edit_customer : Fragment() {
         website_text.paintFlags = website_text.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         email_text.paintFlags = email_text.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
-        nameText.text = UserSession.userName
+                // nameText.text = UserSession.userName
 
       //  val usuario = obtenerUsuarioActual()   //obtener el usuario por el token o similar
 
