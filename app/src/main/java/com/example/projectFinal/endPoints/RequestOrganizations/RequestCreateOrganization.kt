@@ -2,6 +2,7 @@ package com.example.projectFinal.endPoints.RequestOrganizations
 
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.RequestUsers.RequestCreateUser
 import com.example.projectFinal.interfaces.CreateOrganization
 import com.example.projectFinal.utils.CreateOrganizationRequest
 import com.example.projectFinal.utils.Organization
@@ -19,7 +20,7 @@ object RequestCreateOrganization {
     var succesfull: Boolean = false
     var value = ""
 
-    suspend fun sendRequest(username: String, email: String, passwd: String): Boolean {
+    suspend fun sendRequest(name: String, descripcion: String): Boolean {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -43,7 +44,7 @@ object RequestCreateOrganization {
 
         val authToken = header
         val organizationData =
-            OrganizationData("Seg ARG", "This group is for the store detectives 1234123123")
+            OrganizationData(name, descripcion)
         val createOrgRequest = CreateOrganizationRequest(organizationData)
 
         val response = apiService.postData(authToken, createOrgRequest)
@@ -80,4 +81,10 @@ object RequestCreateOrganization {
         }
         return succesfull
     }
+
+    fun retunCodeCreateOrg():String{
+        return code
+    }
+
+
 }

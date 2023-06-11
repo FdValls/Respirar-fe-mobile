@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.projectFinal.R
 import com.example.projectFinal.adapter.UserEditAdapter
+import com.example.projectFinal.utils.UserFull
 import com.google.firebase.firestore.auth.User
 
 
@@ -31,7 +32,7 @@ class  Fragment_edit_customer : Fragment() {
         v = inflater.inflate(R.layout.fragment_edit_customer, container, false)
 
       val recycleViewUser = v.findViewById<RecyclerView>(R.id.recycle_user)
-      //  recycleViewUser.adapter = UserEditAdapter(User) // lista de usuarios
+       recycleViewUser.adapter = UserEditAdapter(UserFull) // lista de usuarios
 
                 //cual es el manejador?????
 

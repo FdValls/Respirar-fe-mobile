@@ -9,6 +9,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestUserInfoToken {
+    var code : String = ""
 
     suspend fun sendRequest(authToken: String, subjectToken: String): Boolean {
         val interceptor = HttpLoggingInterceptor().apply {
@@ -36,21 +37,29 @@ object RequestUserInfoToken {
 
         val response = apiService.sendRequestWithToken(headers)
 
-//        val code = response.code().toString()
-//        println("Code: $code")
-//
-//        if (response.isSuccessful) {
-//            val responseBody = response.body()
-//            if (responseBody != null) {
-//                val responseBodyString = responseBody.string()
-//                println("Response Body RequestUserInfoToken: $responseBodyString")
-//            } else {
-//                println("Empty response body")
-//            }
-//        } else {
-//            println("Request failed: ${response.code()}")
-//        }
+         var code = response.code().toString()
+         println("Code: $code")
+
+         if (response.isSuccessful) {
+            val responseBody = response.body()
+            if (responseBody != null) {
+                code = response.code().toString()
+                val responseBodyString = responseBody.string()
+                GlobalVariables.getInstance().userData = responseBodyString
+                println("Response Body RequestUserInfoToken: $responseBodyString")
+            } else {
+                println("Empty response body from RequestUserInfoToken")
+            }
+        } else {
+            println("RequestUserInfoToken failed: ${response.code()}")
+        }
+
+
 
         return response.isSuccessful
+    }
+
+    fun returnCode(): String{
+        return code
     }
 }

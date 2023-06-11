@@ -3,6 +3,7 @@ package com.example.projectFinal.endPoints.RequestOrganizations
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.interfaces.DeteleOrganization
+import com.example.projectFinal.utils.Organization
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -13,6 +14,7 @@ object RequestDeleteOrganization {
     var code: String = ""
     var value = ""
     var org: JsonObject? = null
+    var findOrg: Organization? = null
 
     suspend fun sendRequest(id: String) {
 
@@ -35,17 +37,27 @@ object RequestDeleteOrganization {
         val apiService = retrofit.create(DeteleOrganization::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-        val findOrg = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == id }
+        findOrg = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == id }
 
+        val response = apiService.postData(authToken, id)
+        code = response.code().toString()
         println("Method DELETE")
         if (findOrg != null) {
-            println("Usuario a BORRAR: $findOrg")
-            val response = apiService.postData(authToken, id)
-            code = response.code().toString()
+            println("Organizacion a BORRAR: $findOrg")
             println("Code RequestDeleteOrganization: $code")
             println("RESPONSE RequestDeleteOrganization: $response")
         } else {
             println("Request failed: $code")
         }
     }
+
+    fun codeDelete(): String{
+        return code
+    }
+
+    fun orgABorrar (): Organization?{
+        return findOrg
+    }
+
+
 }

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.ui.organization.OrganizationFragment">
+
+    <TextView
+        android:id="@+id/titleTextViewUpdateOrg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Actualizar Organizacion"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <TextView
+        android:id="@+id/nameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Nombre"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNameUpdateOrg"
+        app:layout_constraintHorizontal_bias="0.01"
+        app:layout_constraintStart_toStartOf="@+id/editTextNameUpdateOrg"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextViewUpdateOrg" />
+
+    <EditText
+        android:id="@+id/editTextNameUpdateOrg"
+        android:layout_width="379dp"
+        android:layout_height="79dp"
+        android:layout_margin="16dp"
+        android:layout_marginTop="80dp"
+        android:background="@drawable/txt_background"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+
+    <EditText
+        android:id="@+id/editTextDescriptionUpdateOrg"
+        android:layout_width="382dp"
+        android:layout_height="75dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/txt_background"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/id_UpdateOkBtnOrg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView2"
+        app:layout_constraintVertical_bias="0.035" />
+
+    <EditText
+        android:id="@+id/editTextWebSiteUpdateOrg"
+        android:layout_width="382dp"
+        android:layout_height="75dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/txt_background"
+        android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/id_UpdateOkBtnOrg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView2"
+        app:layout_constraintVertical_bias="0.925" />
+
+    <TextView
+        android:id="@+id/nameTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Descripción"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDescriptionUpdateOrg"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="@+id/editTextDescriptionUpdateOrg"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameUpdateOrg" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="288dp"
+        android:layout_marginBottom="20dp"
+        android:text="WebSite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextWebSiteUpdateOrg"
+        app:layout_constraintEnd_toEndOf="@+id/editTextDescriptionUpdateOrg" />
+
+    <Button
+        android:id="@+id/id_UpdateOkBtnOrg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Actualizar"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
