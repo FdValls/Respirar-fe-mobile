@@ -60,6 +60,7 @@ class LoginActivity : AppCompatActivity() {
         buttonRegister = binding.loginRegister
         val userName = findViewById<EditText>(R.id.username).text;
         val password = findViewById<EditText>(R.id.password).text;
+        val fingerPrint = findViewById<TextView>(R.id.loginBiometricButton);
 
         fun hasNotEmptyFields(): Boolean {
             var canPass = false;
@@ -141,7 +142,6 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val fingerPrint = findViewById<TextView>(R.id.loginBiometricButton);
         fun getTokenFromDataStoreManager(): String {
             val sharedPref = this@LoginActivity.getPreferences(Context.MODE_PRIVATE)
             assignValueToGlobalVariable(sharedPref.getString("userToken", "")!!)
@@ -152,16 +152,11 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch(Dispatchers.IO) {
                 val userTokenFromStore = getTokenFromDataStoreManager();
                 val request = RequestUserInfoToken.sendRequest(userTokenFromStore, userTokenFromStore)
-                if(userTokenFromStore != "" && userTokenFromStore != null) {
-                    if (request) {
-                        RequestListAllOrganization.sendRequest()
-                        startIntent()
-                    }
-                } else if(userTokenFromStore != "" && userTokenFromStore != null && RequestUserInfoToken.returnCode() === "401" ) {
+                if (request) {
+                    RequestListAllOrganization.sendRequest()
+                    startIntent()
+                } else if(RequestUserInfoToken.returnCode() == "401" ) {
                     Snackbar.make(findViewById(R.id.fragmentLogin_id),"Sesion expirada. Ingrese con Username y Password!",Snackbar.LENGTH_SHORT).show();
-                }
-                else {
-                    Snackbar.make(findViewById(R.id.fragmentLogin_id),"Primer login ingresar con Username y Password!",Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -184,7 +179,11 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         fingerPrint.setOnClickListener {
-            biometricPrompt.authenticate(promptInfo)
+            val userTokenFromStore = getTokenFromDataStoreManager();
+            if(userTokenFromStore != "" && userTokenFromStore != null)
+                biometricPrompt.authenticate(promptInfo)
+            else
+                Snackbar.make(findViewById(R.id.fragmentLogin_id),"Primer login ingresar con Username y Password!",Snackbar.LENGTH_SHORT).show();
         }
     }
 
