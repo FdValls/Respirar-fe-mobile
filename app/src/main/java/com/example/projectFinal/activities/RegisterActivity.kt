@@ -18,10 +18,8 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var nameEditText: EditText
     private lateinit var emailEditText: EditText
-    private lateinit var gravatarCheckBox: CheckBox
     private lateinit var passwordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
-    private lateinit var termsCheckBox: CheckBox
     private lateinit var registerBtn: Button
     private var checkEmail by Delegates.notNull<Boolean>()
 
@@ -32,29 +30,23 @@ class RegisterActivity : AppCompatActivity() {
         nameEditText = findViewById(R.id.nameUserText)
         emailEditText = findViewById(R.id.emailEditText)
         emailEditText = findViewById(R.id.emailEditText)
-        gravatarCheckBox = findViewById(R.id.gravatarCheckBox)
         passwordEditText = findViewById(R.id.passwordEditText)
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText)
-        termsCheckBox = findViewById(R.id.termsCheckBox)
         registerBtn = findViewById(R.id.id_registerBtn)
 
         registerBtn.setOnClickListener {
             val username = nameEditText.text.toString()
             val email = emailEditText.text.toString()
-            val isGravatarEnabled = gravatarCheckBox.isChecked
             val password = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString()
-            val areTermsAccepted = termsCheckBox.isChecked
 
             Log.d("Registro", "Username: $username")
             Log.d("Registro", "Email: $email")
-            Log.d("Registro", "Gravatar habilitado: $isGravatarEnabled")
             Log.d("Registro", "Contraseña: $password")
             Log.d("Registro", "Confirmar contraseña: $confirmPassword")
-            Log.d("Registro", "Términos aceptados: $areTermsAccepted")
 
             if (password == confirmPassword) {
-                if (!username.isEmpty() && !email.isEmpty() && areTermsAccepted) {
+                if (!username.isEmpty() && !email.isEmpty()) {
 
                     lifecycleScope.launch {
                         RequestCreateUser.sendRequest(username, email, confirmPassword)
@@ -75,7 +67,7 @@ class RegisterActivity : AppCompatActivity() {
                 }else{
                     Toast.makeText(
                         this@RegisterActivity,
-                        "Verifique los campos username, email y acepte los terminos y condiciones",
+                        "Verifique los campos username y email",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

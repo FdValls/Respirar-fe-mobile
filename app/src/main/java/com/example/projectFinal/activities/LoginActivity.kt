@@ -24,7 +24,6 @@ import kotlinx.coroutines.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var buttonRegister: Button
     private lateinit var buttonLogin: Button
     private val requestCreateTokenWithPasswd = RequestCreateTokenWithPasswd()
     private var code : String = ""
@@ -35,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         buttonLogin = binding.loginButton
-        buttonRegister = binding.loginRegister
         val userName = findViewById<EditText>(R.id.username).text;
         val password = findViewById<EditText>(R.id.password).text;
         val fingerPrint = findViewById<TextView>(R.id.loginBiometricButton);
@@ -91,12 +89,6 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
-
-        buttonRegister.setOnClickListener {
-            val intent =
-                Intent(applicationContext, RegisterActivity::class.java)
-            startActivity(intent)
         }
 
         fun getTokenFromDataStoreManager(): String {

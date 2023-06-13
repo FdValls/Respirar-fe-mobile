@@ -69,4 +69,12 @@
     <string name="menu_notification">Notification</string>
     <string name="menu_administration">Administration</string>
     <string name="menu_users">Users</string>
+    <string name="btn_create">Create</string>
+    <string name="acept_fireware_terms">Accept FIWARE Lab Terms and Conditions</string>
+    <string name="gravatar"> I have Gravatar and I want to use it for my profile picture.</string>
+    <string name="confirm_pass">Confirm password</string>
+    <string name="email">Email</string>
+
+
+
 </resources>

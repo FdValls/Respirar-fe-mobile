@@ -65,28 +65,19 @@
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="150dp"
                 android:backgroundTint="@color/purple"
                 android:text="@string/login"
                 android:textSize="18sp"
                 app:cornerRadius="20dp" />
 
-            <Button
-                android:id="@+id/loginRegister"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginTop="30dp"
-                android:backgroundTint="@color/purple"
-                android:text="@string/register"
-                android:textSize="18sp"
-                app:cornerRadius="20dp" />
 
             <TextView
                 android:id="@+id/loginBiometricText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="65dp"
-                android:layout_marginBottom="5dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginBottom="0dp"
                 android:text="@string/finger_print_text"
                 android:textAlignment="center"
                 android:textColor="@color/black"
@@ -96,7 +87,7 @@
                 android:id="@+id/loginBiometricButton"
                 android:layout_width="80dp"
                 android:layout_height="65dp"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="@color/purple"
                 android:paddingTop="2dp"
                 android:textSize="18sp"
