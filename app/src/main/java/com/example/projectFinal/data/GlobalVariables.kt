@@ -6,10 +6,11 @@ import com.example.projectFinal.utils.*
 class GlobalVariables : Application() {
 
     var myXSubjectToken: String = ""
-    var url = "http://ip172-19-0-23-ci1rce8gftqg009dj09g-3000.direct.labs.play-with-docker.com/"
+    var url = "http://ip172-19-0-24-ci3sr20gftqg00clt1d0-3005.direct.labs.play-with-docker.com/"
     var listUsers = mutableListOf<UserDto>()
     var listOrganizationsForUpdate = mutableListOf<Organization>()
     var userData: String = ""
+    var listUsersFull = mutableListOf<UserFull>()
 
     companion object {
         private lateinit var instance: GlobalVariables

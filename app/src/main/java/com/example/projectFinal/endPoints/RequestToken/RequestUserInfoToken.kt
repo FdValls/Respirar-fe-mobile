@@ -37,13 +37,12 @@ object RequestUserInfoToken {
 
         val response = apiService.sendRequestWithToken(headers)
 
-         var code = response.code().toString()
+         code = response.code().toString()
          println("Code: $code")
 
          if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
-                code = response.code().toString()
                 val responseBodyString = responseBody.string()
                 GlobalVariables.getInstance().userData = responseBodyString
                 println("Response Body RequestUserInfoToken: $responseBodyString")

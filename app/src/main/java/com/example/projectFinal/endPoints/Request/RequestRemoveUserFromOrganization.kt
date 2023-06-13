@@ -12,7 +12,7 @@ object RequestRemoveUserFromOrganization {
     var code: String = ""
     var value = ""
 
-    suspend fun sendRequest(idUser: String, idOrg: String) {
+    suspend fun sendRequest(idUser: String, idOrg: String, role: String) {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -33,7 +33,7 @@ object RequestRemoveUserFromOrganization {
         val apiService = retrofit.create(RemoveAUserFromAnOrganization::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-        val response = apiService.postData(authToken, idUser, idOrg)
+        val response = apiService.postData(authToken, idUser, idOrg, role)
 
         println("Method DELETE RequestRemoveUserFromOrganization")
         if (response.isSuccessful) {
@@ -50,5 +50,9 @@ object RequestRemoveUserFromOrganization {
                 println("Request failed: ${response.code()}")
             }
         }
+    }
+
+    fun returnCode(): String{
+        return code
     }
 }

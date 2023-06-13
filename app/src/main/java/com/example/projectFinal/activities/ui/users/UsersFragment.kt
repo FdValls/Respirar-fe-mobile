@@ -1,17 +1,18 @@
 package com.example.projectFinal.activities.ui.users
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
-import com.example.projectFinal.activities.ui.organization.OrganizationFragmentDirections
-import com.example.projectFinal.adapter.OrgListAdapter
+import com.example.projectFinal.activities.NavActivity
+import com.example.projectFinal.activities.RegisterActivity
+import com.example.projectFinal.adapter.ConctactUserDtoListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.google.android.material.snackbar.Snackbar
 
@@ -20,9 +21,10 @@ class UsersFragment : Fragment() {
     lateinit var v: View
     lateinit var userContactos : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var argListAdapter: OrgListAdapter
+    private lateinit var argListAdapter: ConctactUserDtoListAdapter
     private lateinit var btnCreate: Button
-    private lateinit var btnEdit: Button
+    var listAux : MutableSet<String> = mutableSetOf()
+    private lateinit var myUserId: String
 
     companion object {
         fun newInstance() = UsersFragment()
@@ -33,10 +35,16 @@ class UsersFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        v =  inflater.inflate(R.layout.fragment_user_list, container, false)
+        v =  inflater.inflate(R.layout.item_user, container, false)
 
-        userContactos = v.findViewById(R.id.org_contactos)
-        btnEdit = v.findViewById(R.id.id_btnEditar)
+        userContactos = v.findViewById(R.id.id_user_contactos)
+        btnCreate = v.findViewById(R.id.id_btnUserCreate)
+
+        btnCreate.setOnClickListener {
+            val intent =
+                Intent(requireContext(), RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         return v
     }
@@ -44,32 +52,28 @@ class UsersFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
+        var users = GlobalVariables.getInstance().listUsers
 
         userContactos.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
 
         userContactos.layoutManager = linearLayoutManager
 
-        println("lista de organizaciones ++++++++++++++++++++" + orgs)
 
-        argListAdapter = OrgListAdapter(orgs){ x ->
-            OnItemClickListener(x)
+        argListAdapter = ConctactUserDtoListAdapter(users){ x ->
+            onItemClick(x)
         }
 
         userContactos.adapter = argListAdapter
 
-        btnCreate.setOnClickListener {
-            val action2 = OrganizationFragmentDirections.actionNavOrganizationToCreateOrgFragment()
-            v.findNavController().navigate(action2)
-        }
+        argListAdapter.notifyDataSetChanged()
+
     }
 
-    fun OnItemClickListener (position : Int ) : Boolean{
-        println("%%%%%%%%%%%%%%%%%%%%%%%%%%%$position")
-        val myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-        Snackbar.make(v,myOrg.toString(), Snackbar.LENGTH_SHORT).show()
-
+    fun onItemClick ( position : Int ) : Boolean{
+        myUserId = GlobalVariables.getInstance().listUsers[position].id
+        listAux.add(myUserId)
+        Snackbar.make(v , "Clickeo en el card???", Snackbar.LENGTH_SHORT).show()
         return true
     }
 }

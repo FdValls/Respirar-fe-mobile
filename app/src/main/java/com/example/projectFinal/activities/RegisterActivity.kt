@@ -9,8 +9,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.example.projectFinal.R
+import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestCreateUser
 import kotlinx.coroutines.launch
+import kotlin.properties.Delegates
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -21,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var confirmPasswordEditText: EditText
     private lateinit var termsCheckBox: CheckBox
     private lateinit var registerBtn: Button
+    private var checkEmail by Delegates.notNull<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +57,6 @@ class RegisterActivity : AppCompatActivity() {
                 if (!username.isEmpty() && !email.isEmpty() && areTermsAccepted) {
 
                     lifecycleScope.launch {
-
                         RequestCreateUser.sendRequest(username, email, confirmPassword)
                         if (RequestCreateUser.sendRequest(
                                 username,
@@ -64,16 +66,10 @@ class RegisterActivity : AppCompatActivity() {
                         ) {
                             Toast.makeText(
                                 this@RegisterActivity,
-                                RequestCreateUser.retunCodeCreateUser(),
+                                "Creado con éxito",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
-                        Toast.makeText(
-                            this@RegisterActivity,
-                            "oka",
-                            Toast.LENGTH_SHORT
-                        ).show()
                     }
 
                 }else{
@@ -83,6 +79,7 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+
             }else{
                 Toast.makeText(
                     this@RegisterActivity,

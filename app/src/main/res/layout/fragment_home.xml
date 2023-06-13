@@ -30,7 +30,8 @@
             android:layout_marginLeft="60dp"
             android:padding="10dp"
             android:text="Agregar"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            app:backgroundTint="#4CAF50" />
 
     </LinearLayout>
 
@@ -64,12 +65,14 @@
             android:id="@+id/buttonVerTodas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ver todas"
-            android:textSize="10sp"
+            android:background="#3F51B5"
             android:backgroundTint="@color/white"
-            android:textColor="@color/black"
+            android:foreground="@null"
             android:outlineProvider="@null"
-            android:foreground="@null"/>
+            android:text="Ver todas"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            app:backgroundTint="#FFEB3B" />
 
     </LinearLayout>
 

@@ -10,54 +10,54 @@
 
 
     <TextView
-        android:id="@+id/titleTextView"
-        android:layout_width="152dp"
-        android:layout_height="45dp"
+        android:id="@+id/titleTextViewUpdateOrg"
+        android:layout_width="328dp"
+        android:layout_height="115dp"
         android:layout_gravity="center"
         android:layout_marginBottom="108dp"
         android:gravity="center"
         android:text="Registro"
-        android:textSize="24sp"
+        android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/nameUserText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/emailEditText"
-        android:layout_width="160dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="112dp"
-        android:background="@drawable/edittext_background"
+        android:layout_width="387dp"
+        android:layout_height="41dp"
+        android:layout_marginBottom="94dp"
+        android:background="@color/purple_200"
         android:hint="Email"
-        android:required="true"
         android:inputType="textEmailAddress"
         android:padding="8dp"
+        android:required="true"
         app:layout_constraintBottom_toBottomOf="@+id/gravatarCheckBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.988" />
 
     <EditText
         android:id="@+id/nameUserText"
-        android:layout_width="161dp"
-        android:layout_height="42dp"
+        android:layout_width="390dp"
+        android:layout_height="45dp"
         android:layout_marginBottom="94dp"
-        android:background="@drawable/edittext_background"
+        android:background="@color/purple_200"
         android:hint="Username"
-        android:required="true"
         android:inputType="textEmailAddress"
         android:padding="8dp"
+        android:required="true"
         app:layout_constraintBottom_toBottomOf="@+id/emailEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.993" />
 
     <CheckBox
         android:id="@+id/gravatarCheckBox"
@@ -90,7 +90,7 @@
         android:id="@+id/confirmPasswordEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="81dp"
         android:hint="Contraseña (otra vez)"
         android:inputType="textPassword"
         android:padding="8dp"
@@ -104,7 +104,7 @@
         android:id="@+id/termsCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="88dp"
+        android:layout_marginBottom="81dp"
         android:text="I accept FIWARE Lab Terms and Conditions"
         app:layout_constraintBottom_toBottomOf="@+id/id_registerBtn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +120,7 @@
         app:backgroundTint="#020101"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent" />
 
 

@@ -4,10 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class Organization(
     val id: String,
-    val name: String,
-    val description: String,
+    var name: String,
+    var description: String,
     val image: String,
-    val website: String?
+    var website: String?
 )
 
 data class OrganizationItem(
@@ -19,3 +19,5 @@ data class OrganizationItem(
 data class OrganizationList(
     val organizations: List<OrganizationItem>
 )
+
+

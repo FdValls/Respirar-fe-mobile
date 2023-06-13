@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_card_package_item_user"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.ui.users.UsersFragment">
+    android:layout_height="170dp"
+    android:layout_margin="8dp"
+    android:backgroundTintMode="add"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="8dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/txtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:text="Email:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.026" />
+
+        <TextView
+            android:id="@+id/id_txtEmailOrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="email"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/txt_name_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.127"
+            app:layout_constraintStart_toEndOf="@+id/txtEmail"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.111" />
+
+        <TextView
+            android:id="@+id/txt_name_item"
+            android:layout_width="72dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="55dp"
+            android:text="contactos"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.372" />
+
+        <TextView
+            android:id="@+id/txt_rol"
+            android:layout_width="72dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="55dp"
+            android:text="rol"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.668" />
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:text="Nombre:"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_name_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
+            app:layout_constraintVertical_bias="0.259" />
+
+        <TextView
+            android:id="@+id/txtRole"
+            android:layout_width="25dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="23dp"
+            android:text="Rol: "
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txt_name_item"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/gravatarId"
+            android:layout_width="113dp"
+            android:layout_height="119dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.014"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.509"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

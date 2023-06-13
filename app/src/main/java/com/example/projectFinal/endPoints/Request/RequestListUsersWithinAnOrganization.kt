@@ -3,6 +3,10 @@ package com.example.projectFinal.endPoints.Request
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.interfaces.ListUsersWithinAnOrganization
+import com.example.projectFinal.utils.UserUpdate
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -12,6 +16,7 @@ object RequestListUsersWithinAnOrganization {
 
     var code: String = ""
     var value = ""
+    var array: JsonArray = JsonArray()
 
     suspend fun sendRequest(idOrg: String) {
 
@@ -41,8 +46,11 @@ object RequestListUsersWithinAnOrganization {
             val responseBody = response.body()
             code = response.code().toString()
             val jsonBody = responseBody?.string()
-            println("Body RequestListUsersWithinAnOrganization: $jsonBody")
-
+            //Parsear a JSON para obtener los datos
+            val gson = Gson()
+            val jsonObject = gson.fromJson(jsonBody, JsonObject::class.java)
+            array = jsonObject.getAsJsonArray("organization_users")
+            println("Body RequestListUsersWithinAnOrganization: $array")
             println("RESPONSE RequestListUsersWithinAnOrganization: $response")
 
             if (responseBody != null) {
@@ -51,5 +59,13 @@ object RequestListUsersWithinAnOrganization {
                 println("Request failed: ${response.code()}")
             }
         }
+    }
+
+    fun returnCode(): String{
+        return code
+    }
+
+    fun returnListUserFiltered(): JsonArray {
+        return array
     }
 }

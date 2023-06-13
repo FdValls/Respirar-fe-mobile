@@ -3,7 +3,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_package_item"
+    android:id="@+id/id_card_package_item_users"
     android:layout_width="match_parent"
     android:layout_height="170dp"
     android:layout_margin="8dp"
@@ -28,24 +28,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.006" />
 
-        <Button
-            android:id="@+id/id_btnEditar"
-            android:layout_width="141dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="10dp"
-            android:background="@color/colorBlack"
-            android:drawableLeft="@drawable/icons_editar"
-            android:text="Editar"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/gravatarId"
-            app:layout_constraintTop_toBottomOf="@+id/txtName"
-            app:layout_constraintVertical_bias="0.152" />
-
         <TextView
-            android:id="@+id/txt_email_item"
+            android:id="@+id/id_txtEmailOrg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -110,8 +94,61 @@
             app:layout_constraintHorizontal_bias="0.014"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:drawableLeft="@drawable/icons_editar"
+            android:text="Editar"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
             app:layout_constraintVertical_bias="0.509"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/id_btnDelete"
+            android:layout_width="125dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="6dp"
+            android:drawableStart="@drawable/icons_editar"
+            android:text="Delete"
+            android:textSize="12sp"
+            app:backgroundTint="#E91E63"
+            app:layout_constraintBottom_toTopOf="@+id/isHabilitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/id_btnEditar"
+            app:layout_constraintTop_toBottomOf="@+id/txt_name_item"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/id_btnEditar"
+            android:layout_width="121dp"
+            android:layout_height="43dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/colorBlack"
+            android:drawableLeft="@drawable/icons_editar"
+            android:text="Edit"
+            android:textColor="@color/colorWhite"
+            android:textSize="12sp"
+            app:backgroundTint="#2196F3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/gravatarId"
+            app:layout_constraintTop_toBottomOf="@+id/txtName"
+            app:layout_constraintVertical_bias="0.152" />
+
+        <CheckBox
+            android:id="@+id/id_checkBoxUser"
+            android:layout_width="82dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginBottom="16dp"
+            android:text="Select"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.035"
+            app:layout_constraintStart_toEndOf="@+id/isHabilitado" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

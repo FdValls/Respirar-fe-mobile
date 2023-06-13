@@ -20,6 +20,30 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="fragment_customer2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-494" />
+                            <option name="y" value="-24" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_edit_customer3">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="781" />
+                            <option name="y" value="347" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_administration">
                     <value>
                       <LayoutPositions>
@@ -60,7 +84,7 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="action_nav_home_to_nav_organization2">
+                            <entry key="action_nav_home_to_nav_organization">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -98,6 +122,21 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_nav_organization_to_organizationListUsersFragment2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_organization_to_switchOwnerMemberFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_organization_to_updateFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                           </map>
                         </option>
                       </LayoutPositions>
@@ -122,6 +161,42 @@
                           <Point>
                             <option name="x" value="491" />
                             <option name="y" value="13" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="organizationListUsersFragment2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-7" />
+                            <option name="y" value="690" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="switchOwnerMemberFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="706" />
+                            <option name="y" value="17" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="updateFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-438" />
+                            <option name="y" value="367" />
                           </Point>
                         </option>
                       </LayoutPositions>
