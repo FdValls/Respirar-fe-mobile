@@ -6,73 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".activities.ui.organization.OrganizationFragment">
 
-    <View
-        android:id="@+id/divider"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/org_contactos"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_marginBottom="12dp"
-        android:background="@color/purple_200"
-        app:layout_constraintBottom_toTopOf="@id/id_UpdateBtnOrg"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/id_UpdateOkBtnOrg"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/id_UpdateBtnOrg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="56dp"
+        android:layout_marginBottom="40dp"
         android:text="Update"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="#2196F3"
-        app:layout_constraintBottom_toBottomOf="@+id/id_UpdateOkBtnOrg"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/org_contactos"
-        app:layout_constraintVertical_bias="0.9" />
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/id_UpdateOkBtnOrg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
+        android:layout_marginBottom="40dp"
         android:text="Create"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/id_DeleteBtnOrg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="40dp"
         android:text="Delete"
         android:textSize="20sp"
         android:textStyle="bold"
         app:backgroundTint="#F10606"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.946"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_UpdateOkBtnOrg"
-        app:layout_constraintVertical_bias="0.472" />
+        app:layout_constraintVertical_bias="0.666" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/org_contactos"
-        android:layout_width="404dp"
-        android:layout_height="496dp"
-        android:layout_marginBottom="101dp"
-        app:layout_constraintBottom_toBottomOf="@+id/id_UpdateOkBtnOrg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
