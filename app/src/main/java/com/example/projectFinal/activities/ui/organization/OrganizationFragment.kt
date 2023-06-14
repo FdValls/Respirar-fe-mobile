@@ -49,9 +49,6 @@ class OrganizationFragment : Fragment() {
         CoroutineScope(Dispatchers.Main).launch {
             RequestListAllOrganization.sendRequest()
         }
-
-        println("RESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORG")
-
     }
 
     override fun onCreateView(

@@ -9,10 +9,11 @@ import retrofit2.http.Path
 
 interface AddUserAsAnOwnerOfAnOrganization {
     @Headers("Content-Type: application/json")
-    @PUT("v1/organizations/{organization_id}/users/{user_id}/organization_roles/owner")
+    @PUT("v1/organizations/{organization_id}/users/{user_id}/organization_roles/{role}")
     suspend fun postData(
         @Header("X-Auth-token") authToken: String,
         @Path("user_id") userId: String,
-        @Path("organization_id") orderId: String
+        @Path("organization_id") orderId: String,
+        @Path("role") role: String
     ): Response<ResponseBody>
 }

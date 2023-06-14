@@ -28,24 +28,16 @@ class ContactOrgUsersSwitchHolder(v: View) : RecyclerView.ViewHolder(v)  {
         txt.text = email
     }
 
-    fun setCheckBox(checked: Boolean){
-        checkBox = view.findViewById(R.id.id_checkBoxAddUserOrg)
-        checkBox.isChecked = checked
-    }
-
     fun getCheckBox(): CheckBox {
         checkBox = view.findViewById(R.id.id_checkBoxAddUserOrg)
         return checkBox
     }
 
-    fun setSwitch(switchValue: Boolean) {
-        switchView = view.findViewById<Switch>(R.id.id_switchOrg)
-        switchView.isChecked = switchValue
-    }
     fun getSwitch(): Switch {
         switchView = view.findViewById<Switch>(R.id.id_switchOrg)
         return switchView
     }
+
 
     fun getCardLayout(): CardView {
         return view.findViewById(R.id.id_card_package_item_switchList)

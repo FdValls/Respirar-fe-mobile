@@ -10,10 +10,12 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
 import com.example.projectFinal.activities.ui.organization.Ids
+import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.Request.RequestAddUserAsAnOwnerOfAnOrganization
 import com.example.projectFinal.endPoints.Request.RequestAdministrationUserOrg
 import com.example.projectFinal.endPoints.Request.RequestRemoveUserFromOrganization
 import com.example.projectFinal.endPoints.Request.RequestReadUserRolesWithinAnOrganization
+import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
 import com.example.projectFinal.holders.ContactOrgUsersSwitchHolder
 import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
@@ -50,6 +52,8 @@ class ContactListOrgUsersSwitchAdapter(
         contactsList[position].username.let { holder.setName(it) }
         contactsList[position].email.let { holder.setEmail(it) }
 
+        //Me traigo ese user de la org y pregunto que rol tiene, luego pongo el switch segun corresponda
+
         holder.getSwitch().isEnabled = false
         holder.getSwitch().setTextColor(Color.GRAY)
 
@@ -59,23 +63,26 @@ class ContactListOrgUsersSwitchAdapter(
                     doc = onItemClick(position)
                     RequestAdministrationUserOrg.sendRequest(doc.id_user, doc.id_org)
                     if (RequestAdministrationUserOrg.returnCode() == "201") {
+                        println("ENTRE ACAENTRE ACAENTRE ACAENTRE ACAENTRE ACA")
+                        RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,"member")
                         Snackbar.make(view, "TEST MEMBER", Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                println("Switch activado")
             } else {
                 CoroutineScope(Dispatchers.Main).launch {
                     doc = onItemClick(position)
-                    RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org)
+                    RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,"owner")
                     if (RequestAddUserAsAnOwnerOfAnOrganization.returnCode() == "201") {
                         Snackbar.make(view, "TEST OWNER", Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                println("Switch desactivado")
             }
         }
 
         holder.getCardLayout().setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+            }
+
             val checkBox = holder.getCheckBox()
             switch = holder.getSwitch()
 
