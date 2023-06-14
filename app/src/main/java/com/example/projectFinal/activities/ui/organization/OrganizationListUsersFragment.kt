@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
-import com.example.projectFinal.adapter.ContactListAdapter
+import com.example.projectFinal.adapter.ContactUserFullListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
 import com.example.projectFinal.endPoints.RequestUsers.RequestReadInfoUser
@@ -26,12 +26,12 @@ class OrganizationListUsersFragment : Fragment() {
     lateinit var v: View
     lateinit var userContactos : RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
-    private lateinit var usersListAdapter: ContactListAdapter
+    private lateinit var usersListAdapter: ContactUserFullListAdapter
     private lateinit var myUser: UserDto
     private lateinit var orgId: String
     private lateinit var myUserId: String
     private lateinit var array: JsonArray
-    private var userList: MutableList<UserFull> = ArrayList()
+    private var userList: MutableSet<UserFull> = mutableSetOf()
     private lateinit var image: String
 
     var listAux : MutableSet<String> = mutableSetOf()
@@ -48,6 +48,8 @@ class OrganizationListUsersFragment : Fragment() {
         val args: UpdateFragmentArgs by navArgs()
         orgId = args.idOrg.toString()
         //Con este ID me traigo todos los usuarios que tiene ESA ORG!
+        println("RECIBO ID???????????????????????????????"+orgId)
+
 
         v =  inflater.inflate(R.layout.fragment_organization_list_users, container, false)
 
@@ -75,34 +77,30 @@ class OrganizationListUsersFragment : Fragment() {
 //        var users = GlobalVariables.getInstance().listUsers
         lifecycleScope.launch {
             RequestListUsersWithinAnOrganization.sendRequest(orgId)
+
             array = RequestListUsersWithinAnOrganization.returnListUserFiltered()
             val gson = Gson()
             val jsonArray = gson.fromJson(array, JsonArray::class.java)
             for (jsonElement in jsonArray) {
                 val jsonObject = jsonElement.asJsonObject
-                println("QUE TIENE objetJson???????+ ${jsonObject}")
                 val userId = jsonObject.get("user_id").asString
                 val email = RequestReadInfoUser.sendRequest(userId)?.get("email")?.asString
                 image = RequestReadInfoUser.sendRequest(userId)?.get("image")?.asString.toString()
-                println("QUE TIENE email???????+ ${email}")
-                println("QUE TIENE image???????+ ${image}")
                 val role = jsonObject.get("role").asString
-                image = retornarTest(image)
-                val user = UserFull(userId, email,role)
-                GlobalVariables.getInstance().test1.add(user)
-                println("userListuserListuserListuserListuserListuserList+ ${ GlobalVariables.getInstance().test1}")
+                val myName: UserDto? = GlobalVariables.getInstance().listUsers.find { it.id == userId }
+
+                val user = myName?.let { UserFull(userId, email, role, it.username) }
+                if (user != null) {
+                    userList.add(user)
+                }
 
             }
             userContactos.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
 
-            println("test1test1???????????????????????????? ${GlobalVariables.getInstance().test1}")
-            println("imageimageimageimageimageimageimageimage +$image")
-
-
             userContactos.layoutManager = linearLayoutManager
 
-            usersListAdapter = ContactListAdapter(GlobalVariables.getInstance().test1){ x ->
+            usersListAdapter = ContactUserFullListAdapter(userList.toMutableList()){ x ->
                 OnItemClickListener(x)
             }
 
@@ -113,7 +111,6 @@ class OrganizationListUsersFragment : Fragment() {
 
     fun OnItemClickListener (position : Int ) : Boolean{
         myUser = GlobalVariables.getInstance().listUsers[position]
-        println("ID ORG???????????????????????????? ${myUser.id}")
         myUserId = myUser.id
 
         Snackbar.make(v,myUserId, Snackbar.LENGTH_SHORT).show()
@@ -121,8 +118,6 @@ class OrganizationListUsersFragment : Fragment() {
         return true
     }
 
-    fun retornarTest(valor: String): String{
-        println("valorvalorvalorvalorvalorvalorvalorvalor $valor")
-        return  valor
-    }
+
+
 }

@@ -34,20 +34,20 @@
         android:name="com.example.projectFinal.activities.ui.notification.NotificationFragment"
         android:label="Notification"
         tools:layout="@layout/fragment_notification" />
-    <fragment
-        android:id="@+id/nav_administration"
-        android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"
-        android:label="Administration"
-        tools:layout="@layout/fragment_administration" >
-        <action
-            android:id="@+id/action_nav_administration_to_nav_organization"
-            app:destination="@id/nav_organization" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/nav_administration"-->
+<!--        android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"-->
+<!--        android:label="Administration"-->
+<!--        tools:layout="@layout/item_user" />-->
     <fragment
         android:id="@+id/nav_users"
         android:name="com.example.projectFinal.activities.ui.users.UsersFragment"
         android:label="Users"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_nav_users_to_fragment_edit_customer3"
+            app:destination="@id/fragment_edit_customer3" />
+    </fragment>
     <fragment
         android:id="@+id/nav_organization"
         android:name="com.example.projectFinal.activities.ui.organization.OrganizationFragment"
@@ -83,7 +83,7 @@
     <fragment
         android:id="@+id/switchOwnerMemberFragment"
         android:name="com.example.projectFinal.activities.ui.organization.SwitchOwnerMemberFragment"
-        android:label="fragment_switch_owner_member"
+        android:label="Asignar usuarios/roles"
         tools:layout="@layout/fragment_switch_list" >
         <argument
             android:name="idOrg"
@@ -93,10 +93,20 @@
     <fragment
         android:id="@+id/organizationListUsersFragment2"
         android:name="com.example.projectFinal.activities.ui.organization.OrganizationListUsersFragment"
-        android:label="fragment_organization_list_users"
+        android:label="List user ORG"
         tools:layout="@layout/fragment_organization_list_users" >
         <argument
             android:name="idOrg"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_edit_customer3"
+        android:name="com.example.projectFinal.activities.ui.users.Fragment_edit_user"
+        android:label="Edit user"
+        tools:layout="@layout/fragment_edit_user" >
+        <argument
+            android:name="idUser"
             app:argType="string"
             app:nullable="true" />
     </fragment>

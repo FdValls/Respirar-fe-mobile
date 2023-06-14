@@ -7,6 +7,7 @@ import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -17,8 +18,12 @@ import com.example.projectFinal.R
 import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestDeleteOrganization
+import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
+import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.example.projectFinal.utils.Organization
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class OrganizationFragment : Fragment() {
@@ -36,6 +41,17 @@ class OrganizationFragment : Fragment() {
 
     companion object {
         fun newInstance() = OrganizationFragment()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
+
+        println("RESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORG")
+
     }
 
     override fun onCreateView(
@@ -67,6 +83,10 @@ class OrganizationFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
 
         var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
 
@@ -116,19 +136,20 @@ class OrganizationFragment : Fragment() {
         }
 
         btnUpdate.setOnClickListener{
-            val action = OrganizationFragmentDirections.actionNavOrganizationToCreateOrgFragment()
+            val action = OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(myOrgId)
             v.findNavController().navigate(action)
         }
 
     }
 
-    fun OnItemClickListener (position : Int ) : Boolean{
+    fun OnItemClickListener (position : Int ) : Organization{
         myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
         println("ID ORG???????????????????????????? ${myOrg.id}")
         myOrgId = myOrg.id
 
         Snackbar.make(v,myOrgId,Snackbar.LENGTH_SHORT).show()
         listAux.add(myOrg.id)
-        return true
+        println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? ${listAux}")
+        return myOrg
     }
 }

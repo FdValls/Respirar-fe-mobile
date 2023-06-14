@@ -1,23 +1,20 @@
 package com.example.projectFinal.activities.ui.organization
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.example.projectFinal.R
 import com.example.projectFinal.adapter.ContactListOrgUsersSwitchAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.utils.UserDto
-import com.google.android.material.snackbar.Snackbar
+
 
 class SwitchOwnerMemberFragment : Fragment() {
 

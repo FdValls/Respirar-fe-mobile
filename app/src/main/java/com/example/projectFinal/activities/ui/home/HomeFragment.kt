@@ -20,6 +20,8 @@ import com.example.projectFinal.data.GlobalVariables
 //import com.example.projectFinal.databinding.FragmentHomeBinding
 import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.json.JSONObject
 
@@ -34,6 +36,15 @@ class HomeFragment : Fragment() {
     private lateinit var btnViews: Button
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: ItemAdapter
+
+    override fun onResume() {
+        super.onResume()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,9 +73,9 @@ class HomeFragment : Fragment() {
     override fun onStart() {btnViews
         super.onStart()
 
-//        var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
-
-//        println("PRUEBA DE ORGANIZACIONES" + orgs)
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
 
         btnCreate.setOnClickListener {
             val action2 = HomeFragmentDirections.actionNavHomeToCreateOrgFragment()
@@ -80,6 +91,10 @@ class HomeFragment : Fragment() {
     private fun getItems(): List<Item> {
 
         val items = mutableListOf<Item>()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
 
         var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
         println("PRUEBA DE ORGANIZACIONES" + orgs)

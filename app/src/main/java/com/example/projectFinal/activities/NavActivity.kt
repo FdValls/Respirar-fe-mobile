@@ -63,6 +63,7 @@ class NavActivity : AppCompatActivity() {
             ), drawerLayout
         )
 
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
@@ -71,8 +72,8 @@ class NavActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         val menu = navigationView.menu
 
-        val navAdministration = menu.findItem(R.id.nav_administration)
-        navAdministration.isVisible = false
+//        val navAdministration = menu.findItem(R.id.nav_administration)
+//        navAdministration.isVisible = false
 
         val navUsers = menu.findItem(R.id.nav_users)
         navUsers.isVisible = false

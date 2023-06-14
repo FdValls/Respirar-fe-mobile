@@ -10,9 +10,25 @@
         android:id="@+id/id_user_contactos"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/id_btnUserCreate"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/btn_create"
+        android:textSize="24sp"
+        app:cornerRadius="20dp"
+        android:backgroundTint="@color/purple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_user_contactos"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

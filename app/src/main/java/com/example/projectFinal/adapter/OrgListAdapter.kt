@@ -1,50 +1,45 @@
 package com.example.projectFinal.adapter
 
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
 import com.example.projectFinal.activities.ui.organization.OrganizationFragmentDirections
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.example.projectFinal.holders.OrgHolder
 import com.example.projectFinal.utils.Organization
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class OrgListAdapter (
     private var orgList: MutableList<Organization>,
-    val onItemClickListener: (Int) -> Boolean
+    val onItemClickListener: (Int) -> Organization
 ) : RecyclerView.Adapter<OrgHolder>() {
 
-    private lateinit var checkBox: CheckBox
+    private lateinit var view: View
     private lateinit var btnGestionar: Button
     private lateinit var btnVer: Button
     private lateinit var myOrg: Organization
+    private var isCardCheck : Boolean = false
+    var listAux : MutableSet<String> = mutableSetOf()
+
 
     override fun getItemCount(): Int {
         return orgList.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrgHolder {
-        val view =  LayoutInflater.from(parent.context).inflate(R.layout.item_org,parent,false)
+        view =  LayoutInflater.from(parent.context).inflate(R.layout.item_org,parent,false)
 
-        checkBox = view.findViewById(R.id.id_selectOrganization)
         btnGestionar = view.findViewById(R.id.id_btnGestionarOrg)
         btnVer = view.findViewById(R.id.id_btnVerOrg)
-
-        btnGestionar.setOnClickListener {
-            val action2 = OrganizationFragmentDirections.actionNavOrganizationToSwitchOwnerMemberFragment(myOrg.id)
-            println("ID CUANDO MANDO AL FRAGMENT???????????????????????????? ${myOrg.id}")
-            view.findNavController().navigate(action2)
-        }
-
-        btnVer.setOnClickListener {
-            val action3= OrganizationFragmentDirections.actionNavOrganizationToOrganizationListUsersFragment2(myOrg.id)
-            view.findNavController().navigate(action3)
-            Snackbar.make(view, "Muestro todos los users de esa ORG", Snackbar.LENGTH_SHORT).show();
-        }
 
         return (OrgHolder(view))
     }
@@ -60,9 +55,42 @@ class OrgListAdapter (
         }
 
         holder.getCardLayout().setOnClickListener{
-            myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-            holder.setCheckBox(!holder.getCheckBox().isChecked)
-            onItemClickListener(position)
+            val checkBox = holder.getCheckBox()
+            myOrg = onItemClickListener(position)
+            checkBox.isChecked = !checkBox.isChecked
+
+
+            if (checkBox.isChecked) {
+//                Snackbar.make(view,"activado",Snackbar.LENGTH_SHORT).show()
+                isCardCheck = true
+                listAux.add(myOrg.id)
+                holder.getCheckBox().isEnabled = true
+                holder.getCheckBox().setTextColor(Color.BLACK)
+
+            } else {
+                listAux.remove(myOrg.id)
+                holder.getCheckBox().setTextColor(Color.GRAY)
+            }
+        }
+
+        holder.getCardButtonGestionarLayout().setOnClickListener {
+            myOrg = onItemClickListener(position)
+            CoroutineScope(Dispatchers.Main).launch {
+                RequestListAllUser.sendRequest()
+            }
+            notifyItemChanged(position)
+            notifyDataSetChanged()
+            val action2 = OrganizationFragmentDirections.actionNavOrganizationToSwitchOwnerMemberFragment(myOrg.id)
+            view.findNavController().navigate(action2)
+
+        }
+
+        holder.getCardButtonVerLayout().setOnClickListener {
+            myOrg = onItemClickListener(position)
+
+            val action3= OrganizationFragmentDirections.actionNavOrganizationToOrganizationListUsersFragment2(myOrg.id)
+            view.findNavController().navigate(action3)
         }
     }
+
 }

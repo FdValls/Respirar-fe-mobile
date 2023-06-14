@@ -20,6 +20,30 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="fragment_customer2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-494" />
+                            <option name="y" value="-24" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="fragment_edit_customer3">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="781" />
+                            <option name="y" value="347" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="nav_administration">
                     <value>
                       <LayoutPositions>
@@ -56,6 +80,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_nav_home_to_createOrgFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_nav_home_to_nav_organization">
                               <value>
                                 <LayoutPositions />
                               </value>

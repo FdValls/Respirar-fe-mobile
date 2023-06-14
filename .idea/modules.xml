@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.projectFinal.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/projectFinal.iml" filepath="$PROJECT_DIR$/.idea/modules/projectFinal.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/projectFinal.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/projectFinal.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/projectFinal.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/projectFinal.app.androidTest.iml" />

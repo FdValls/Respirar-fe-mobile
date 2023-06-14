@@ -1,6 +1,8 @@
 package com.example.projectFinal.holders
 
 import android.view.View
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -8,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
 import com.squareup.picasso.Picasso
 
-class ContactHolder(v: View) : RecyclerView.ViewHolder(v)  {
+class ContactUserDtoHolder(v: View) : RecyclerView.ViewHolder(v)  {
 
     private var view: View
 
@@ -26,11 +28,6 @@ class ContactHolder(v: View) : RecyclerView.ViewHolder(v)  {
         txt.text = email
     }
 
-    fun setRol(rol: String) {
-        val txt: TextView = view.findViewById(R.id.txt_rol)
-        txt.text = rol
-    }
-
     fun setGravatar(gravatar: String) {
         val imageView = view.findViewById<ImageView>(R.id.gravatarId)
         val imageUrl = gravatar // Reemplaza con la URL de la imagen que deseas mostrar
@@ -39,7 +36,11 @@ class ContactHolder(v: View) : RecyclerView.ViewHolder(v)  {
             .into(imageView)
     }
 
-    fun getCardLayout(): CardView {
-        return view.findViewById(R.id.id_card_package_item_user)
+    fun getCardButtonEditLayout(): Button {
+        return view.findViewById(R.id.id_btnEditar)
+    }
+
+    fun getCardButtonDeleteLayout(): Button {
+        return view.findViewById(R.id.id_btnDelete)
     }
 }
