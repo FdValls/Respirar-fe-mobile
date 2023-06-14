@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -31,6 +28,8 @@ class  Fragment_edit_user : Fragment() {
     private lateinit var email: EditText
     private lateinit var description: EditText
     private lateinit var website: EditText
+    private lateinit var isEnable: CheckBox
+    private var isEnableEdit: Boolean = false
     private lateinit var userId: String
     private lateinit var myUser: UserDto
     lateinit var v: View
@@ -57,6 +56,7 @@ class  Fragment_edit_user : Fragment() {
         description = view.findViewById(R.id.editTextDescriptionPerson)
         website = view.findViewById(R.id.editTextWebSitePerson)
         btnSave = view.findViewById(R.id.save_button)
+        isEnable = view.findViewById(R.id.id_checkIsEnable)
 
         Glide.with(this)
             .load("https://www.w3schools.com/howto/img_avatar.png")
@@ -64,8 +64,21 @@ class  Fragment_edit_user : Fragment() {
             .into(avatarImage)
 
         if(!userId.isEmpty() || !userId.isBlank()){
-            println("userIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserId $userId")
             myUser = GlobalVariables.getInstance().listUsers.find { it.id == userId }!!
+            isEnable.isChecked = myUser.enabled
+
+            isEnable.setOnCheckedChangeListener { buttonView, isChecked ->
+                if (isChecked) {
+                    Snackbar.make(buttonView, "HABILITO", Snackbar.LENGTH_SHORT).show()
+//                    myUser.enabled = true
+                    isEnableEdit = true
+                } else {
+                    Snackbar.make(buttonView, "NO HABILITO", Snackbar.LENGTH_SHORT).show()
+//                    myUser.enabled = false
+                    isEnableEdit = false
+                }
+            }
+
             username.setText(myUser.username)
             email.setText(myUser.email)
             description.setText(myUser.description)
@@ -78,7 +91,8 @@ class  Fragment_edit_user : Fragment() {
 
         btnSave.setOnClickListener {
             lifecycleScope.launch {
-                RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), myUser.enabled,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
+                println("isEnableEditisEnableEditisEnableEditisEnableEdit" + isEnableEdit)
+                RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
                 if(RequestUpdateUser.retunCodeUpdateOUser() == "200" || RequestUpdateUser.retunCodeUpdateOUser() == "201"){
                     Toast.makeText(
                         requireActivity(),

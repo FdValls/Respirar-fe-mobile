@@ -74,7 +74,6 @@ class OrganizationListUsersFragment : Fragment() {
     override fun onStart(){
         super.onStart()
 
-//        var users = GlobalVariables.getInstance().listUsers
         lifecycleScope.launch {
             RequestListUsersWithinAnOrganization.sendRequest(orgId)
 
