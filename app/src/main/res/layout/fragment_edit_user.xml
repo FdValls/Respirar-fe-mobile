@@ -120,12 +120,14 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="42dp"
+                android:layout_marginBottom="200dp"
                 android:text="Descripcion"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.675"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintVertical_bias="0.0"
                 tools:layout_editor_absoluteX="8dp" />
 
             <TextView
@@ -150,23 +152,36 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.867"
-                tools:layout_editor_absoluteX="57dp"
+                app:layout_constraintVertical_bias="0.767"
+                tools:layout_editor_absoluteX="8dp"
                 tools:text="Introduzca descripcion" />
 
             <EditText
                 android:id="@+id/editTextWebSitePerson"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
                 android:layout_marginTop="10dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.489"
-                tools:layout_editor_absoluteX="99dp"
                 tools:text="Introduzca website" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Habilitar"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextDescriptionPerson"
+                app:layout_constraintVertical_bias="0.403" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
