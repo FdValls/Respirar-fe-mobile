@@ -14,6 +14,7 @@ object RequestListAllUser {
     var code : String = ""
     var succesfull : Boolean = false
     var value = ""
+    private lateinit var userList : UserList
 
     suspend fun sendRequest(): Boolean {
 
@@ -46,10 +47,11 @@ object RequestListAllUser {
             succesfull = response.isSuccessful
             val responseBody = response.body()
             if (responseBody != null) {
+                GlobalVariables.getInstance().listUsers.clear()
                 println("Code RequestListAllUser: $code")
                 val jsonString = responseBody.string()
                 val gson = Gson()
-                val userList = gson.fromJson(jsonString, UserList::class.java)
+                userList = gson.fromJson(jsonString, UserList::class.java)
                 println("Lista usuarios userList: $userList")
                 for (user in userList.users) {
                     GlobalVariables.getInstance().listUsers.add(user)
@@ -65,4 +67,6 @@ object RequestListAllUser {
         }
         return succesfull
     }
+    
+
 }

@@ -57,7 +57,6 @@ class ContactListOrgUsersSwitchAdapter(
             if (isChecked) {
                 CoroutineScope(Dispatchers.Main).launch {
                     doc = onItemClick(position)
-                    println("QUE TENGO EN DOC PARA MANDAR COMO MEMBER???? ${doc} ")
                     RequestAdministrationUserOrg.sendRequest(doc.id_user, doc.id_org)
                     if (RequestAdministrationUserOrg.returnCode() == "201") {
                         Snackbar.make(view, "TEST MEMBER", Snackbar.LENGTH_SHORT).show();

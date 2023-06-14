@@ -18,8 +18,12 @@ import com.example.projectFinal.R
 import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestDeleteOrganization
+import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
+import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.example.projectFinal.utils.Organization
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class OrganizationFragment : Fragment() {
@@ -33,11 +37,21 @@ class OrganizationFragment : Fragment() {
     private lateinit var btnUpdate: Button
     private lateinit var myOrg: Organization
     private lateinit var myOrgId: String
-    private lateinit var checkBox: CheckBox
     var listAux : MutableSet<String> = mutableSetOf()
 
     companion object {
         fun newInstance() = OrganizationFragment()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
+
+        println("RESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORGRESUME ORG")
+
     }
 
     override fun onCreateView(
@@ -69,6 +83,10 @@ class OrganizationFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllOrganization.sendRequest()
+        }
 
         var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
 
@@ -124,7 +142,7 @@ class OrganizationFragment : Fragment() {
 
     }
 
-    fun OnItemClickListener (position : Int ) : Boolean{
+    fun OnItemClickListener (position : Int ) : Organization{
         myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
         println("ID ORG???????????????????????????? ${myOrg.id}")
         myOrgId = myOrg.id
@@ -132,6 +150,6 @@ class OrganizationFragment : Fragment() {
         Snackbar.make(v,myOrgId,Snackbar.LENGTH_SHORT).show()
         listAux.add(myOrg.id)
         println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? ${listAux}")
-        return true
+        return myOrg
     }
 }

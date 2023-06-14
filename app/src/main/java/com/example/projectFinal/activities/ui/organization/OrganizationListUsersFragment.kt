@@ -48,6 +48,8 @@ class OrganizationListUsersFragment : Fragment() {
         val args: UpdateFragmentArgs by navArgs()
         orgId = args.idOrg.toString()
         //Con este ID me traigo todos los usuarios que tiene ESA ORG!
+        println("RECIBO ID???????????????????????????????"+orgId)
+
 
         v =  inflater.inflate(R.layout.fragment_organization_list_users, container, false)
 
@@ -75,6 +77,7 @@ class OrganizationListUsersFragment : Fragment() {
 //        var users = GlobalVariables.getInstance().listUsers
         lifecycleScope.launch {
             RequestListUsersWithinAnOrganization.sendRequest(orgId)
+
             array = RequestListUsersWithinAnOrganization.returnListUserFiltered()
             val gson = Gson()
             val jsonArray = gson.fromJson(array, JsonArray::class.java)
@@ -95,8 +98,6 @@ class OrganizationListUsersFragment : Fragment() {
             userContactos.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
 
-            println("test1test1???????????????????????????? ${GlobalVariables.getInstance().listUsersFull}")
-
             userContactos.layoutManager = linearLayoutManager
 
             usersListAdapter = ContactUserFullListAdapter(userList.toMutableList()){ x ->
@@ -110,7 +111,6 @@ class OrganizationListUsersFragment : Fragment() {
 
     fun OnItemClickListener (position : Int ) : Boolean{
         myUser = GlobalVariables.getInstance().listUsers[position]
-        println("ID ORG???????????????????????????? ${myUser.id}")
         myUserId = myUser.id
 
         Snackbar.make(v,myUserId, Snackbar.LENGTH_SHORT).show()

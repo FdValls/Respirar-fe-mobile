@@ -2,6 +2,7 @@ package com.example.projectFinal.endPoints.RequestUsers
 
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.RequestOrganizations.RequestUpdateOrg
 import com.example.projectFinal.interfaces.UpdateAUser
 import com.example.projectFinal.utils.UpdateUser
 import com.example.projectFinal.utils.UserUpdate
@@ -38,19 +39,8 @@ object RequestUpdateUser {
         val user = GlobalVariables.getInstance().listUsers.find { it.id == id }
         println("Usuario buscado en la lista global: $user")
 
-//        val userBody = user?.let {
-//            UserUpdate(
-//                "Hola mundo",
-//                "holaMundotdasest1@test.com",
-//                it.enabled,
-//                it.gravatar,
-//                it.date_password,
-//                it.description,
-//                it.website
-//            )
-//        }
         val userBody = UserUpdate(username,email,enabled,gravatar,date_password,description,website)
-
+        println("userBodyuserBodyuserBodyuserBodyuserBodyuserBodyuserBody ${userBody.toString()}")
         val updateUser = userBody?.let { UpdateUser(it) }
 
         if (user != null) {
@@ -70,6 +60,10 @@ object RequestUpdateUser {
         } else {
             println("Usuario no encontrado")
         }
+    }
+
+    fun retunCodeUpdateOUser():String{
+        return code
     }
 
 }

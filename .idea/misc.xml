@@ -96,6 +96,9 @@
         <entry key="app/src/main/res/layout/item_user.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/nav_header_nav.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/activity_main_drawer.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/menu_admin.xml" value="0.3507692307692308" />
+        <entry key="app/src/main/res/menu/menu_customer.xml" value="0.3507692307692308" />
+        <entry key="app/src/main/res/menu/nav.xml" value="0.3507692307692308" />
         <entry key="app/src/main/res/xml/root_preference_admin.xml" value="0.35625" />
       </map>
     </option>

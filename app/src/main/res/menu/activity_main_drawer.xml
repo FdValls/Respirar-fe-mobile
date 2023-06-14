@@ -24,10 +24,10 @@
 <!--            android:id="@+id/nav_notification"-->
 <!--            android:icon="@drawable/icons_notification"-->
 <!--            android:title="Notification" />-->
-        <item
-            android:id="@+id/nav_administration"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="Administration" />
+<!--        <item-->
+<!--            android:id="@+id/nav_administration"-->
+<!--            android:icon="@drawable/ic_baseline_settings_24"-->
+<!--            android:title="Administration" />-->
         <item
             android:id="@+id/nav_users"
             android:icon="@drawable/ic_baseline_person_24"

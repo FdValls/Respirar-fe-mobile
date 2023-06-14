@@ -69,7 +69,7 @@ class  Fragment_edit_user : Fragment() {
             username.setText(myUser.username)
             email.setText(myUser.email)
             description.setText(myUser.description)
-            website.setText(myUser.website)
+            website.setText("google.com")
         }
 
         btnSave = view.findViewById(R.id.save_button)
@@ -78,8 +78,8 @@ class  Fragment_edit_user : Fragment() {
 
         btnSave.setOnClickListener {
             lifecycleScope.launch {
-                RequestUpdateUser.sendRequest(userId, username.toString(),email.toString(), myUser.enabled,myUser.gravatar,myUser.date_password,description.toString(), website.toString())
-                if(RequestUpdateOrg.retunCodeUpdateOrg() == "201"){
+                RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), myUser.enabled,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
+                if(RequestUpdateUser.retunCodeUpdateOUser() == "200" || RequestUpdateUser.retunCodeUpdateOUser() == "201"){
                     Toast.makeText(
                         requireActivity(),
                         "Update con exito",

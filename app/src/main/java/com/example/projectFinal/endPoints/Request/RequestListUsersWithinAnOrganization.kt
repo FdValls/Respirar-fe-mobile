@@ -1,9 +1,12 @@
 package com.example.projectFinal.endPoints.Request
 
+import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.interfaces.ListUsersWithinAnOrganization
 import com.example.projectFinal.utils.UserUpdate
+import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -42,6 +45,7 @@ object RequestListUsersWithinAnOrganization {
         val response = apiService.postData(authToken,idOrg)
 
         println("Method PUT RequestListUsersWithinAnOrganization")
+        println("responseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponse"+response)
         if (response.isSuccessful) {
             val responseBody = response.body()
             code = response.code().toString()
@@ -58,6 +62,8 @@ object RequestListUsersWithinAnOrganization {
             } else {
                 println("Request failed: ${response.code()}")
             }
+        }else{
+            println("Request failed: ${response.code()}")
         }
     }
 

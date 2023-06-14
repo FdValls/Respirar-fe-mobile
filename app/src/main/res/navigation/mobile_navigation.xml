@@ -34,11 +34,11 @@
         android:name="com.example.projectFinal.activities.ui.notification.NotificationFragment"
         android:label="Notification"
         tools:layout="@layout/fragment_notification" />
-    <fragment
-        android:id="@+id/nav_administration"
-        android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"
-        android:label="Administration"
-        tools:layout="@layout/item_user" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_administration"-->
+<!--        android:name="com.example.projectFinal.activities.ui.administration.AdministrationFragment"-->
+<!--        android:label="Administration"-->
+<!--        tools:layout="@layout/item_user" />-->
     <fragment
         android:id="@+id/nav_users"
         android:name="com.example.projectFinal.activities.ui.users.UsersFragment"

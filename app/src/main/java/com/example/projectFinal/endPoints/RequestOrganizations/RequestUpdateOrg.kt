@@ -36,7 +36,6 @@ object RequestUpdateOrg {
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
         val findOrg = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == id }
-        println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ UPDATE ORGANIZACION $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ $findOrg")
 
         val organizationJson = findOrg?.let {
             val organization = findOrg.website?.let { it1 ->
@@ -73,7 +72,7 @@ object RequestUpdateOrg {
     }
 
     fun retunCodeUpdateOrg():String{
-        return RequestCreateOrganization.code
+        return code
     }
 
     data class Organization(

@@ -14,7 +14,11 @@ import com.example.projectFinal.activities.NavActivity
 import com.example.projectFinal.activities.RegisterActivity
 import com.example.projectFinal.adapter.ConctactUserDtoListAdapter
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class UsersFragment : Fragment() {
 
@@ -28,6 +32,15 @@ class UsersFragment : Fragment() {
 
     companion object {
         fun newInstance() = UsersFragment()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllUser.sendRequest()
+        }
+
     }
 
     override fun onCreateView(
@@ -52,13 +65,16 @@ class UsersFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
+        CoroutineScope(Dispatchers.Main).launch {
+            RequestListAllUser.sendRequest()
+        }
+
         var users = GlobalVariables.getInstance().listUsers
 
         userContactos.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
 
         userContactos.layoutManager = linearLayoutManager
-
 
         argListAdapter = ConctactUserDtoListAdapter(users){ x ->
             onItemClick(x)
@@ -73,7 +89,6 @@ class UsersFragment : Fragment() {
     fun onItemClick ( position : Int ) : String{
         myUserId = GlobalVariables.getInstance().listUsers[position].id
         listAux.add(myUserId)
-        println("myUserIdmyUserIdmyUserIdmyUserIdmyUserIdmyUserIdmyUserId" + myUserId )
 
         Snackbar.make(v ,myUserId, Snackbar.LENGTH_SHORT).show()
         return myUserId

@@ -2,6 +2,7 @@ package com.example.projectFinal.holders
 
 import android.net.Uri
 import android.view.View
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
@@ -56,5 +57,13 @@ class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     fun getCardLayout(): CardView {
         return view.findViewById(R.id.id_cardListOrg)
+    }
+
+    fun getCardButtonGestionarLayout(): Button {
+        return view.findViewById(R.id.id_btnGestionarOrg)
+    }
+
+    fun getCardButtonVerLayout(): Button {
+        return view.findViewById(R.id.id_btnVerOrg)
     }
 }

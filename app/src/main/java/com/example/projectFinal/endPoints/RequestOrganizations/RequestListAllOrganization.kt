@@ -43,6 +43,7 @@ object RequestListAllOrganization {
         if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
+                GlobalVariables.getInstance().listOrganizationsForUpdate.clear()
                 println("Code RequestListAllOrganization: $code")
                 val jsonString = responseBody.string()
                 println("BODY RequestListAllOrganization: $jsonString")

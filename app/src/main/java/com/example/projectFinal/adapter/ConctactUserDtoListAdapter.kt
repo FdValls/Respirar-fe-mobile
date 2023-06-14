@@ -35,7 +35,6 @@ class ConctactUserDtoListAdapter (
     override fun getItemCount(): Int {
         return contactsList.size
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactUserDtoHolder {
         view =  LayoutInflater.from(parent.context).inflate(R.layout.fragment_user_list,parent,false)
 
