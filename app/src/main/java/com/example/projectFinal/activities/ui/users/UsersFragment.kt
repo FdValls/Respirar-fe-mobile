@@ -70,10 +70,12 @@ class UsersFragment : Fragment() {
 
     }
 
-    fun onItemClick ( position : Int ) : Boolean{
+    fun onItemClick ( position : Int ) : String{
         myUserId = GlobalVariables.getInstance().listUsers[position].id
         listAux.add(myUserId)
-        Snackbar.make(v , "Clickeo en el card???", Snackbar.LENGTH_SHORT).show()
-        return true
+        println("myUserIdmyUserIdmyUserIdmyUserIdmyUserIdmyUserIdmyUserId" + myUserId )
+
+        Snackbar.make(v ,myUserId, Snackbar.LENGTH_SHORT).show()
+        return myUserId
     }
 }

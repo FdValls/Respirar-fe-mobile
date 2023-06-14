@@ -1,15 +1,15 @@
 package com.example.projectFinal.adapter
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
+import com.example.projectFinal.activities.ui.organization.OrganizationFragment
 import com.example.projectFinal.activities.ui.users.UsersFragmentDirections
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestDeleteUser
@@ -22,12 +22,13 @@ import kotlinx.coroutines.launch
 
 class ConctactUserDtoListAdapter (
     private var contactsList: MutableList<UserDto>,
-    val onItemClick: (Int) -> Boolean
+    val onItemClick: (Int) -> String
 ) : RecyclerView.Adapter<ContactUserDtoHolder>() {
 
     private lateinit var view: View
     private lateinit var btnEdit: Button
     private lateinit var btnDelete: Button
+    private lateinit var isCheck: Button
     private var idUser: String = ""
     var listAux : MutableSet<String> = mutableSetOf()
 
@@ -41,14 +42,6 @@ class ConctactUserDtoListAdapter (
         btnEdit = view.findViewById(R.id.id_btnEditar)
         btnDelete = view.findViewById(R.id.id_btnDelete)
 
-        btnEdit.setOnClickListener {
-            Snackbar.make(view, "Primero seleccione el card", Snackbar.LENGTH_SHORT).show();
-        }
-
-        btnDelete.setOnClickListener {
-            Snackbar.make(view, "Primero seleccione el card", Snackbar.LENGTH_SHORT).show();
-        }
-
         return (ContactUserDtoHolder(view))
     }
 
@@ -59,44 +52,24 @@ class ConctactUserDtoListAdapter (
 
         holder.setGravatar("https://es.gravatar.com/userimage/235287149/a4e1bd9ae68b452bd24598975407f6e3?size=original")
 
-        holder.getCardLayout().setOnClickListener{
-            val checkBox = holder.getCheckBox()
-            idUser = GlobalVariables.getInstance().listUsers[position].id
+        holder.getCardButtonEditLayout().setOnClickListener{
+            idUser = onItemClick(position)
+            val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(idUser)
+            view.findNavController().navigate(action)
 
-            checkBox.isChecked = !checkBox.isChecked
-            onItemClick(position)
+        }
 
-            if (checkBox.isChecked) {
-                Snackbar.make(view,"activado",Snackbar.LENGTH_SHORT).show()
-
-                listAux.add(idUser)
-                holder.getCheckBox().isEnabled = true
-                holder.getCheckBox().setTextColor(Color.BLACK)
-                btnEdit.setOnClickListener {
-                    val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(idUser)
-                    view.findNavController().navigate(action)
-                    Snackbar.make(view, "Navegar....", Snackbar.LENGTH_SHORT).show();
-                }
-
-                btnDelete.setOnClickListener {
-                    CoroutineScope(Dispatchers.Main).launch {
-                        listAux.forEach { item ->
-                            val userDelete = GlobalVariables.getInstance().listUsers.find { it.id == item }
-                            while (GlobalVariables.getInstance().listUsers.contains(userDelete)) {
-                                GlobalVariables.getInstance().listUsers.remove(userDelete)
-                                if (userDelete != null) {
-                                    RequestDeleteUser.sendRequest(userDelete.id)
-                                }
-                            }
-                        }
-                    }
-                }
-            } else {
-                Snackbar.make(view,"desactivado",Snackbar.LENGTH_SHORT).show()
-                listAux.remove(idUser)
-                holder.getCheckBox().setTextColor(Color.GRAY)
+        holder.getCardButtonDeleteLayout().setOnClickListener{
+            idUser = onItemClick(position)
+            CoroutineScope(Dispatchers.Main).launch {
+                Snackbar.make(view, "Borraste el usuario ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
+                val userDelete = GlobalVariables.getInstance().listUsers[position]
+                GlobalVariables.getInstance().listUsers.remove(userDelete)
+                RequestDeleteUser.sendRequest(idUser)
+                notifyItemRemoved(position)
             }
         }
+
     }
 
 }

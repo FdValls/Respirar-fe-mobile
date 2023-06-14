@@ -19,6 +19,7 @@ import com.example.projectFinal.activities.ui.organization.UpdateFragmentArgs
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestUpdateOrg
 import com.example.projectFinal.endPoints.RequestUsers.RequestUpdateUser
+import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 
@@ -31,7 +32,9 @@ class  Fragment_edit_user : Fragment() {
     private lateinit var description: EditText
     private lateinit var website: EditText
     private lateinit var userId: String
+    private lateinit var myUser: UserDto
     lateinit var v: View
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,12 +63,15 @@ class  Fragment_edit_user : Fragment() {
             .circleCrop()
             .into(avatarImage)
 
-        val myUser = GlobalVariables.getInstance().listUsers.find { it.id == userId }!!
+        if(!userId.isEmpty() || !userId.isBlank()){
+            println("userIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserIduserId $userId")
+            myUser = GlobalVariables.getInstance().listUsers.find { it.id == userId }!!
+            username.setText(myUser.username)
+            email.setText(myUser.email)
+            description.setText(myUser.description)
+            website.setText(myUser.website)
+        }
 
-        username.setText(myUser.username)
-        email.setText(myUser.email)
-        description.setText(myUser.description)
-        website.setText(myUser.website)
         btnSave = view.findViewById(R.id.save_button)
 
         btnSave.setBackgroundColor(Color.BLACK)

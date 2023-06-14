@@ -93,7 +93,7 @@
     <fragment
         android:id="@+id/organizationListUsersFragment2"
         android:name="com.example.projectFinal.activities.ui.organization.OrganizationListUsersFragment"
-        android:label="fragment_organization_list_users"
+        android:label="List user ORG"
         tools:layout="@layout/fragment_organization_list_users" >
         <argument
             android:name="idOrg"
@@ -103,7 +103,7 @@
     <fragment
         android:id="@+id/fragment_edit_customer3"
         android:name="com.example.projectFinal.activities.ui.users.Fragment_edit_user"
-        android:label="Editar usuario"
+        android:label="Edit user"
         tools:layout="@layout/fragment_edit_user" >
         <argument
             android:name="idUser"
