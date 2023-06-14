@@ -16,7 +16,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:text="@string/register"
-        android:textColor="@color/purple"
+        android:textColor="@color/black"
         android:textSize="46sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/nameUserText"
@@ -40,7 +40,6 @@
         android:layout_marginHorizontal="20dp"
         android:paddingLeft="20dp"
         android:required="true"
-        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -61,7 +60,6 @@
         android:layout_marginHorizontal="20dp"
         android:paddingLeft="20dp"
         android:required="true"
-        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -82,7 +80,6 @@
         android:layout_marginHorizontal="20dp"
         android:paddingLeft="20dp"
         android:required="true"
-        android:textColorHint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.476"
@@ -102,7 +99,6 @@
         android:layout_marginHorizontal="20dp"
         android:paddingLeft="20dp"
         android:required="true"
-        android:textColorHint="@color/black"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -110,30 +106,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.596" />
-
-    <!--CheckBox
-        android:id="@+id/gravatarCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/gravatar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.773" /-->
-
-    <!--CheckBox
-        android:id="@+id/termsCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/acept_fireware_terms"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.130"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863" /-->
 
     <Button
         android:id="@+id/id_registerBtn"
