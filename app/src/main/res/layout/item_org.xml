@@ -16,11 +16,11 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/nameAtri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:text="Nombre:"
+            android:text="@string/name_atri"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/id_selectOrganization"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,31 +28,28 @@
 
         <TextView
             android:id="@+id/id_nameListOrg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="33dp"
-            android:layout_marginEnd="88dp"
+            android:layout_width="141dp"
+            android:layout_height="21dp"
+            android:layout_marginEnd="36dp"
             android:text="Nombre"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintHorizontal_bias="0.194"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.105" />
+            app:layout_constraintVertical_bias="0.107" />
 
         <TextView
             android:id="@+id/id_descListOrg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_width="127dp"
+            android:layout_height="19dp"
             android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"
             android:text="Descripcion"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/id_btnGestionarOrg"
-            app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toEndOf="@+id/descriAtri"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.257" />
 
         <ImageView
             android:id="@+id/id_imgListOrg"
@@ -67,16 +64,16 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/descriAtri"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="68dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="96dp"
-            android:text="Descripcion:"
+            android:text="@string/descri_atri"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/id_imgListOrg"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/nameAtri" />
 
         <CheckBox
             android:id="@+id/id_selectOrganization"
@@ -85,7 +82,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="29dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintBottom_toBottomOf="@+id/descriAtri"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/id_imgListOrg"
@@ -98,10 +95,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="5dp"
-            android:text="Gestionar"
-            app:backgroundTint="#0C0808"
+            android:text="@string/btn_manage"
+            app:backgroundTint="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/descriAtri"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/id_imgListOrg"
@@ -112,8 +109,8 @@
             android:layout_width="132dp"
             android:layout_height="45dp"
             android:layout_marginStart="104dp"
-            android:text="Ver"
-            app:backgroundTint="#0C0808"
+            android:text="@string/btn_inspect"
+            app:backgroundTint="@color/purple"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
