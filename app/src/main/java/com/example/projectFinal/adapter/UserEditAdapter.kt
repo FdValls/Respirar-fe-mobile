@@ -14,7 +14,7 @@ class UserEditAdapter(
 ) : RecyclerView.Adapter<UserEditHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserEditHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_edit_customer, parent, false)
+       val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_home, parent, false)
         return UserEditHolder(view)
     }
 

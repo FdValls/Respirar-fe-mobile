@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingTop="2dp"
         tools:ignore="MissingConstraints">
 
         <TextView
@@ -30,12 +31,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:layout_marginRight="10dp"
             android:padding="10dp"
             android:text="@string/add_org"
-            android:textSize="18sp"
-            app:backgroundTint="@color/colorGreen"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            app:backgroundTint="@color/purple"
             app:cornerRadius="20dp" />
 
     </LinearLayout>
@@ -43,8 +45,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="381dp"
-        android:layout_height="597dp"
+        android:layout_width="386dp"
+        android:layout_height="548dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="30dp"
