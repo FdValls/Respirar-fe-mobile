@@ -67,15 +67,6 @@ class OrganizationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Crea un objeto DividerItemDecoration
-        val itemDecoration = DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL)
-
-        // Establece el estilo del separador
-        itemDecoration.setDrawable(resources.getDrawable(R.drawable.divider))
-        // Agrega el separador al RecyclerView
-        orgContactos.addItemDecoration(itemDecoration)
-        itemDecoration.setDrawable(resources.getDrawable(R.drawable.divider))
     }
 
     override fun onStart() {
