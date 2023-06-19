@@ -40,6 +40,9 @@ class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     fun setRole(role: String) {
         val editText: TextView = view.findViewById(R.id.idRoleOrg)
+        if(role.isEmpty()){
+            editText.text = "asd"
+        }
         editText.text = role
     }
 

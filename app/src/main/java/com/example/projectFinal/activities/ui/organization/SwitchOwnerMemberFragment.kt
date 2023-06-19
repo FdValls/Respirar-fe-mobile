@@ -80,6 +80,7 @@ class SwitchOwnerMemberFragment : Fragment() {
         usersOrg.layoutManager = linearLayoutManager
 
         if (!::usersOrgListAdapter.isInitialized) {
+            //REVISAR CON EL EQUIPO!
 //            CoroutineScope(Dispatchers.Main).launch {
 //                users.forEach { element ->
 //                    RequestReadUserRolesWithinAnOrganization.sendRequest(element.id,orgId)

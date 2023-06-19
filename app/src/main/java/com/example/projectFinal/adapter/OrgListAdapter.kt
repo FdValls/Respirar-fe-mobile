@@ -39,8 +39,6 @@ class OrgListAdapter (
     private var onlyButton: Boolean = true
     private lateinit var checkCard: CheckBox
     private lateinit var myMap: MutableMap<String, String>
-    var listAux: MutableSet<String> = mutableSetOf()
-
 
     override fun getItemCount(): Int {
         return orgList.size
@@ -64,6 +62,7 @@ class OrgListAdapter (
             myOrg = onItemClickListener(position)
 
             myMap = RequestListAllOrganization.returnListOnlyRoleIdOrg()
+
             holder.setRole(myMap[myOrg.id_org].toString())
 
             orgList[position].name.let { holder.setName(it) }
@@ -75,9 +74,6 @@ class OrgListAdapter (
             } else {
                 orgList[position].image.let { holder.setGravatar(it) }
             }
-
-//            val checkBox = holder.getCheckBox()
-//            checkBox.isChecked = true
 
             holder.getCardLayout().setOnClickListener {
                 onlyButton = false
@@ -104,36 +100,45 @@ class OrgListAdapter (
 
             // implementar gestionar, si es miembro no permite la asignacion de roles a los miembros
             holder.getCardButtonGestionarLayout().setOnClickListener {
-                onlyButton = true
-                myOrg = onItemClickListener(position)
-                if(onlyButton && myMap[myOrg.id_org].toString() == "owner"){
-                    val action2 =
-                        OrganizationFragmentDirections.actionNavOrganizationToSwitchOwnerMemberFragment(
-                            myOrg.id_org)
-                    view.findNavController().navigate(action2)
-                }else{
-                    Snackbar.make(view, "No tienes permiso, solo administradores", Snackbar.LENGTH_SHORT).show();
-                }
-                notifyItemChanged(position)
-                notifyDataSetChanged()
-            }
-
-            holder.getCardButtonVerLayout().setOnClickListener {
-                onlyButton = true
-                if(onlyButton) {
+                CoroutineScope(Dispatchers.Main).launch {
+                    onlyButton = true
                     myOrg = onItemClickListener(position)
-                    if (myMap[myOrg.id_org].toString() == "owner") {
-                        val action3 =
-                            OrganizationFragmentDirections.actionNavOrganizationToOrganizationListUsersFragment2(
+                    if (RequestListAllUser.sendRequest() && (onlyButton && myMap[myOrg.id_org].toString() == "owner")) {
+                        val action2 =
+                            OrganizationFragmentDirections.actionNavOrganizationToSwitchOwnerMemberFragment(
                                 myOrg.id_org
                             )
-                        view.findNavController().navigate(action3)
+                        view.findNavController().navigate(action2)
                     } else {
                         Snackbar.make(
                             view,
-                            "No tenes autorización para ver los miembros",
+                            "No tienes permiso, solo administradores",
                             Snackbar.LENGTH_SHORT
-                        ).show()
+                        ).show();
+                    }
+                    notifyItemChanged(position)
+                    notifyDataSetChanged()
+                }
+            }
+
+            holder.getCardButtonVerLayout().setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    onlyButton = true
+                    if (onlyButton && RequestListAllUser.sendRequest()) {
+                        myOrg = onItemClickListener(position)
+                        if (myMap[myOrg.id_org].toString() == "owner") {
+                            val action3 =
+                                OrganizationFragmentDirections.actionNavOrganizationToOrganizationListUsersFragment2(
+                                    myOrg.id_org
+                                )
+                            view.findNavController().navigate(action3)
+                        } else {
+                            Snackbar.make(
+                                view,
+                                "No tenes autorización para ver los miembros",
+                                Snackbar.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }

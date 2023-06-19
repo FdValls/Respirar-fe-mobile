@@ -62,8 +62,10 @@
         <entry key="app/src/main/res/layout/activity_admin.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/activity_create.xml" value="0.14814814814814814" />
         <entry key="app/src/main/res/layout/activity_customer.xml" value="0.14814814814814814" />
+        <entry key="app/src/main/res/layout/activity_edit.xml" value="0.14270833333333333" />
         <entry key="app/src/main/res/layout/activity_google_sign_in.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_logout.xml" value="0.253125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.67" />
         <entry key="app/src/main/res/layout/activity_nav.xml" value="0.19166666666666668" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.33" />

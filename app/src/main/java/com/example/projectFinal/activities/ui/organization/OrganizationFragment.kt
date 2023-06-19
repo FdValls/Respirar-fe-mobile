@@ -11,6 +11,8 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -101,15 +103,6 @@ class OrganizationFragment : Fragment() {
 
         btnDelete.setOnClickListener{
             lifecycleScope.launch {
-//                GlobalVariables.getInstance().listOrgDelete.forEach { item ->
-//                    val orgDelete = GlobalVariables.getInstance().listOrgDelete.find { it == item }
-//                    while (GlobalVariables.getInstance().listOrganizationsForUpdate.contains(orgDelete)) {
-//                        GlobalVariables.getInstance().listOrganizationsForUpdate.remove(orgDelete)
-//                        if (orgDelete != null) {
-//                            RequestDeleteOrganization.sendRequest(orgDelete.id)
-//                        }
-//                    }
-//                }
                 GlobalVariables.getInstance().listOrgDelete.forEach { element ->
                     RequestDeleteOrganization.sendRequest(element)
                 }
@@ -119,9 +112,10 @@ class OrganizationFragment : Fragment() {
                 if(codeDelete.codeDelete() == "204"){
                     Toast.makeText(
                         requireContext(),
-                        "Delete: ${myOrg.name}",
+                        "Se borraron las organizaciones con éxito",
                         Toast.LENGTH_SHORT
                     ).show()
+                    findNavController().popBackStack()
                 }else{
                     Toast.makeText(
                         requireContext(),
@@ -140,26 +134,24 @@ class OrganizationFragment : Fragment() {
     }
 
     fun OnItemClickListener (position : Int ) : IdOrgUser{
-        myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-        myUser = users[position]
-        myOrgId = myOrg.id
 
-        println("ID ORG???????????????????????????? ${myOrg.id}")
-        println("arranca vacia???? $listAux")
+        if(users.size > 0){
+            myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
+            myUser = users[position]
+            myOrgId = myOrg.id
 
-
-        if (listAux.contains(myOrgId)) {
-            listAux.remove(myOrgId)
-        } else {
-            listAux.add(myOrgId)
+            if (listAux.contains(myOrgId)) {
+                listAux.remove(myOrgId)
+            } else {
+                listAux.add(myOrgId)
+            }
+            ids = IdOrgUser(myOrgId, listAux)
+        }else{
+            myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
+            myOrgId = myOrg.id
+            ids = IdOrgUser(myOrgId, listAux)
         }
-
-        println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? $listAux")
-
-        ids = IdOrgUser(myOrgId, listAuxDelete)
-
         listAux.clear()
-
         return ids
     }
 }
