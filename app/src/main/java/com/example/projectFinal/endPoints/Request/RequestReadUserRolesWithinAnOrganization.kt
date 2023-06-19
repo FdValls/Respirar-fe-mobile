@@ -16,7 +16,7 @@ object RequestReadUserRolesWithinAnOrganization {
     var role: String = ""
     var value = ""
 
-    suspend fun sendRequest(idUser: String, idOrg: String) {
+    suspend fun sendRequest(idUser: String, idOrg: String): String {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -64,7 +64,10 @@ object RequestReadUserRolesWithinAnOrganization {
             } else {
                 println("Request failed: ${response.code()}")
             }
+        }else{
+            println("Request failed: ${response.code()}")
         }
+        return role
     }
 
     fun returnCode(): String{

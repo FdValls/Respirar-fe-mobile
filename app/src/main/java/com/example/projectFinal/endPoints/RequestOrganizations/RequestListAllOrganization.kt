@@ -2,6 +2,7 @@ package com.example.projectFinal.endPoints.RequestOrganizations
 
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
 import com.example.projectFinal.interfaces.ListAllOrganization
 import com.example.projectFinal.utils.OrganizationList
 import com.google.gson.Gson
@@ -11,7 +12,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RequestListAllOrganization {
+
     var code: String = ""
+    private var map: MutableMap<String, String> = HashMap<String, String>()
+
 
     suspend fun sendRequest() {
 
@@ -49,9 +53,9 @@ object RequestListAllOrganization {
                 println("BODY RequestListAllOrganization: $jsonString")
                 val gson = Gson()
                 val orgList = gson.fromJson(jsonString, OrganizationList::class.java)
-                println("QUE HAY???? $orgList")
                 for (orgItem in orgList.organizations) {
                     GlobalVariables.getInstance().listOrganizationsForUpdate.add(orgItem.organization)
+                    map[orgItem.organization.id] = orgItem.role
                 }
                 println("Lista de organizaciones1: ${GlobalVariables.getInstance().listOrganizationsForUpdate}")
                 println("Lista de organizaciones2: ${jsonString}")
@@ -62,6 +66,10 @@ object RequestListAllOrganization {
         } else {
             println("Request failed: ${response.code()}")
         }
+    }
+
+    fun returnListOnlyRoleIdOrg(): MutableMap<String, String> {
+        return map
     }
 
 }

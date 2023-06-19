@@ -21,10 +21,12 @@ import com.example.projectFinal.endPoints.RequestOrganizations.RequestDeleteOrga
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
 import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.example.projectFinal.utils.Organization
+import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.internal.notifyAll
 
 class OrganizationFragment : Fragment() {
 
@@ -36,8 +38,12 @@ class OrganizationFragment : Fragment() {
     private lateinit var btnDelete: Button
     private lateinit var btnUpdate: Button
     private lateinit var myOrg: Organization
+    private lateinit var users: MutableList<UserDto>
+    private lateinit var myUser: UserDto
     private lateinit var myOrgId: String
+    private lateinit var ids: IdOrgUser
     var listAux : MutableSet<String> = mutableSetOf()
+    var listAuxDelete : MutableSet<String> = mutableSetOf()
 
     companion object {
         fun newInstance() = OrganizationFragment()
@@ -65,10 +71,6 @@ class OrganizationFragment : Fragment() {
         return v
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onStart() {
         super.onStart()
 
@@ -77,6 +79,9 @@ class OrganizationFragment : Fragment() {
         }
 
         var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
+
+        users = GlobalVariables.getInstance().listUsers
+
 
         orgContactos.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
@@ -96,15 +101,19 @@ class OrganizationFragment : Fragment() {
 
         btnDelete.setOnClickListener{
             lifecycleScope.launch {
-                listAux.forEach { item ->
-                    val orgDelete = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == item }
-                    while (GlobalVariables.getInstance().listOrganizationsForUpdate.contains(orgDelete)) {
-                        GlobalVariables.getInstance().listOrganizationsForUpdate.remove(orgDelete)
-                        if (orgDelete != null) {
-                            RequestDeleteOrganization.sendRequest(orgDelete.id)
-                        }
-                    }
+//                GlobalVariables.getInstance().listOrgDelete.forEach { item ->
+//                    val orgDelete = GlobalVariables.getInstance().listOrgDelete.find { it == item }
+//                    while (GlobalVariables.getInstance().listOrganizationsForUpdate.contains(orgDelete)) {
+//                        GlobalVariables.getInstance().listOrganizationsForUpdate.remove(orgDelete)
+//                        if (orgDelete != null) {
+//                            RequestDeleteOrganization.sendRequest(orgDelete.id)
+//                        }
+//                    }
+//                }
+                GlobalVariables.getInstance().listOrgDelete.forEach { element ->
+                    RequestDeleteOrganization.sendRequest(element)
                 }
+                println("listAuxDeletelistAuxDelete??????? ${GlobalVariables.getInstance().listOrgDelete}")
                 orgListAdapter.notifyDataSetChanged()
                 val codeDelete = RequestDeleteOrganization
                 if(codeDelete.codeDelete() == "204"){
@@ -130,14 +139,32 @@ class OrganizationFragment : Fragment() {
 
     }
 
-    fun OnItemClickListener (position : Int ) : Organization{
+    fun OnItemClickListener (position : Int ) : IdOrgUser{
         myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-        println("ID ORG???????????????????????????? ${myOrg.id}")
+        myUser = users[position]
         myOrgId = myOrg.id
 
-        Snackbar.make(v,myOrgId,Snackbar.LENGTH_SHORT).show()
-        listAux.add(myOrg.id)
-        println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? ${listAux}")
-        return myOrg
+        println("ID ORG???????????????????????????? ${myOrg.id}")
+        println("arranca vacia???? $listAux")
+
+
+        if (listAux.contains(myOrgId)) {
+            listAux.remove(myOrgId)
+        } else {
+            listAux.add(myOrgId)
+        }
+
+        println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? $listAux")
+
+        ids = IdOrgUser(myOrgId, listAuxDelete)
+
+        listAux.clear()
+
+        return ids
     }
 }
+
+//data class IdOrgUser(val id_org: String, val id_user: String, val position: Int)
+data class IdOrgUser(val id_org: String, val listAuxDelete: MutableSet<String>)
+
+

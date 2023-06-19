@@ -2,10 +2,7 @@ package com.example.projectFinal.holders
 
 import android.net.Uri
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
@@ -15,7 +12,7 @@ import com.squareup.picasso.Picasso
 class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     private var view: View
-    private lateinit var  checkBox: CheckBox
+    private lateinit var checkBox: CheckBox
 
     init {
         this.view = v
@@ -39,6 +36,11 @@ class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
     fun getCheckBox(): CheckBox {
         checkBox = view.findViewById(R.id.id_selectOrganization)
         return checkBox
+    }
+
+    fun setRole(role: String) {
+        val editText: TextView = view.findViewById(R.id.idRoleOrg)
+        editText.text = role
     }
 
     fun setGravatar(gravatar: String) {

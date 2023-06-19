@@ -37,6 +37,7 @@ object RequestListAllUser {
         val apiService = retrofit.create(ListAllUsers::class.java)
 
         val authToken = GlobalVariables.getInstance().myXSubjectToken
+        println("authTokenauthTokenauthTokenauthTokenauthToken: $authToken")
 
         val response = apiService.getAllUsers(authToken)
 

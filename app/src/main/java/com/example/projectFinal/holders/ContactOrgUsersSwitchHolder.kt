@@ -1,5 +1,7 @@
 package com.example.projectFinal.holders
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.view.View
 import android.widget.CheckBox
 import android.widget.Switch
@@ -12,6 +14,7 @@ class ContactOrgUsersSwitchHolder(v: View) : RecyclerView.ViewHolder(v)  {
 
     private var view: View
     private lateinit var  switchView: Switch
+    private lateinit var  role: String
     private lateinit var  checkBox: CheckBox
 
     init {
@@ -33,8 +36,17 @@ class ContactOrgUsersSwitchHolder(v: View) : RecyclerView.ViewHolder(v)  {
         return checkBox
     }
 
+    fun setSwitch(role: String) {
+        switchView = view.findViewById(R.id.id_switchOrg)
+    }
+
+    fun setRole(role: String) {
+        val idrole: TextView = view.findViewById(R.id.id_role)
+        idrole.text = role
+    }
+
     fun getSwitch(): Switch {
-        switchView = view.findViewById<Switch>(R.id.id_switchOrg)
+        switchView = view.findViewById(R.id.id_switchOrg)
         return switchView
     }
 
