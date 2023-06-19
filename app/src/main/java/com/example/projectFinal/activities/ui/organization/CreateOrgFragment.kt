@@ -13,8 +13,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestCreateOrganization
 import kotlinx.coroutines.launch
+import values.objStrings
 
-class CreateOrgFragment : Fragment() {
+class  CreateOrgFragment : Fragment() {
 
     private lateinit var nameOrgText: EditText
     private lateinit var descriptionOrgText: EditText
@@ -46,7 +47,7 @@ class CreateOrgFragment : Fragment() {
                     if(RequestCreateOrganization.retunCodeCreateOrg() == "201"){
                         Toast.makeText(
                             requireActivity(),
-                            "Creada con exito",
+                            objStrings.created_successfully,
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -55,8 +56,7 @@ class CreateOrgFragment : Fragment() {
 
             }else{
                 Toast.makeText(
-                    requireActivity(),
-                    "Ambos campos son obligatorios",
+                    requireActivity(), objStrings.fields_required,
                     Toast.LENGTH_SHORT
                 ).show()
             }

@@ -25,6 +25,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import values.objStrings
 
 class OrganizationFragment : Fragment() {
 
@@ -116,7 +117,7 @@ class OrganizationFragment : Fragment() {
                 }else{
                     Toast.makeText(
                         requireContext(),
-                        "Error, no se pudo borrar la organizacion",
+                        objStrings.delete_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RequestUpdateOrg {
     var code: String = ""
     var value = ""
+    var apiResponseMessage = ""
 
     suspend fun sendRequest(id: String) {
 
@@ -54,6 +55,7 @@ object RequestUpdateOrg {
             val jsonElement = JsonParser.parseString(unescapedJsonString)
             val jsonObject = jsonElement.asJsonObject
             val response = apiService.postData(authToken, id, jsonObject)
+            apiResponseMessage = response.message().toString();
             val responseBody = response.body()
             code = response.code().toString()
             val jsonBody = responseBody?.string()
@@ -73,6 +75,10 @@ object RequestUpdateOrg {
 
     fun retunCodeUpdateOrg():String{
         return code
+    }
+
+    fun returnApiResponseMessage(): String {
+        return apiResponseMessage;
     }
 
     data class Organization(
