@@ -21,6 +21,7 @@ import com.example.projectFinal.endPoints.RequestUsers.*
 import com.example.projectFinal.utils.TokenClass.Companion.assignValueToGlobalVariable
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
+import values.objStrings
 
 
 class LoginActivity : AppCompatActivity() {
@@ -46,7 +47,7 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(
                     this@LoginActivity,
-                    "Los campos deben estar llenos",
+                    objStrings.fields_must_be_filled,
                     Toast.LENGTH_SHORT
                 ).show()
             }
@@ -91,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
                         RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
                         startIntent()
                     } else {
-                        Snackbar.make(findViewById(R.id.fragmentLogin_id),"Username o Password incorrectos! ",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(findViewById(R.id.fragmentLogin_id),objStrings.wrong_fields,Snackbar.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -111,7 +112,7 @@ class LoginActivity : AppCompatActivity() {
                     RequestListAllOrganization.sendRequest()
                     startIntent()
                 } else if(RequestUserInfoToken.returnCode() == "401" ) {
-                    Snackbar.make(findViewById(R.id.fragmentLogin_id),"Sesion expirada. Ingrese con Username y Password!",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(findViewById(R.id.fragmentLogin_id),objStrings.session_expired,Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -128,8 +129,8 @@ class LoginActivity : AppCompatActivity() {
             })
 
         var promptInfo = androidx.biometric.BiometricPrompt.PromptInfo.Builder()
-            .setTitle("Biometric Authentication")
-            .setSubtitle("Login using your finger print")
+            .setTitle(objStrings.bio_log_title)
+            .setSubtitle(objStrings.log_finger_print)
             .setNegativeButtonText("Cancel")
             .build()
 
@@ -138,7 +139,7 @@ class LoginActivity : AppCompatActivity() {
             if(userTokenFromStore != "" && userTokenFromStore != null)
                 biometricPrompt.authenticate(promptInfo)
             else
-                Snackbar.make(findViewById(R.id.fragmentLogin_id),"Primer login ingresar con Username y Password!",Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(findViewById(R.id.fragmentLogin_id),objStrings.first_loguin,Snackbar.LENGTH_SHORT).show();
         }
     }
 

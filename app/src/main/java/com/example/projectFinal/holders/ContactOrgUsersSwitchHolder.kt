@@ -43,13 +43,18 @@ class ContactOrgUsersSwitchHolder(v: View) : RecyclerView.ViewHolder(v)  {
     fun setRole(role: String) {
         val idrole: TextView = view.findViewById(R.id.id_role)
         idrole.text = role
+        if(role == "owner"){
+            idrole.setTextColor(Color.GREEN )
+        }else{
+            idrole.setTextColor(Color.BLUE )
+        }
+
     }
 
     fun getSwitch(): Switch {
         switchView = view.findViewById(R.id.id_switchOrg)
         return switchView
     }
-
 
     fun getCardLayout(): CardView {
         return view.findViewById(R.id.id_card_package_item_switchList)

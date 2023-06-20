@@ -19,6 +19,7 @@ import com.example.projectFinal.endPoints.RequestUsers.RequestUpdateUser
 import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
+import values.objStrings
 
 class  Fragment_edit_user : Fragment() {
 
@@ -69,22 +70,15 @@ class  Fragment_edit_user : Fragment() {
 
             isEnable.setOnCheckedChangeListener { buttonView, isChecked ->
                 if (isChecked) {
-                    Snackbar.make(buttonView, "HABILITO", Snackbar.LENGTH_SHORT).show()
-//                    myUser.enabled = true
                     isEnableEdit = true
-                } else {
-                    Snackbar.make(buttonView, "NO HABILITO", Snackbar.LENGTH_SHORT).show()
-//                    myUser.enabled = false
-                    isEnableEdit = false
                 }
             }
 
             username.setText(myUser.username)
             email.setText(myUser.email)
             description.setText(myUser.description)
-            website.setText("google.com")
+            website.setText(myUser.website)
         }
-
         btnSave = view.findViewById(R.id.save_button)
 
         btnSave.setBackgroundColor(Color.BLACK)
@@ -92,18 +86,29 @@ class  Fragment_edit_user : Fragment() {
         btnSave.setOnClickListener {
             lifecycleScope.launch {
                 println("isEnableEditisEnableEditisEnableEditisEnableEdit" + isEnableEdit)
-                RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
-                if(RequestUpdateUser.retunCodeUpdateOUser() == "200" || RequestUpdateUser.retunCodeUpdateOUser() == "201"){
-                    Toast.makeText(
-                        requireActivity(),
-                        "Update con exito",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }else{
-                    Snackbar.make(view, "No se pudo actualizar", Snackbar.LENGTH_SHORT).show();
+                var userDataChanged = hasUserChanged();
+                if (userDataChanged) {
+                    RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
+                    if(RequestUpdateUser.retunCodeUpdateOUser() == "200" || RequestUpdateUser.retunCodeUpdateOUser() == "201"){
+                        Toast.makeText(
+                            requireActivity(),
+                            objStrings.update_successfully,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }else{
+                        Snackbar.make(view, objStrings.cant_update, Snackbar.LENGTH_SHORT).show();
+                    }
                 }
                 findNavController().popBackStack()
             }
         }
+    }
+
+    private fun hasUserChanged(): Boolean {
+        var change = false;
+        if (username.text.toString() != myUser.username || email.text.toString() != myUser.email || description.text.toString() != myUser.description || website.text.toString() != myUser.website) {
+            change = true
+        }
+        return change;
     }
 }

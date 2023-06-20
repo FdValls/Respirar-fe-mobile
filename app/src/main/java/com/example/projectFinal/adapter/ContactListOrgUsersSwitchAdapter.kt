@@ -63,41 +63,51 @@ class ContactListOrgUsersSwitchAdapter(
             contactsList[position].username.let { holder.setName(it) }
             contactsList[position].email.let { holder.setEmail(it) }
 
-//            doc = onItemClick(position)
-//            RequestListUsersWithinAnOrganization.sendRequest(doc.id_org)
-//
-//            val test2 = RequestListUsersWithinAnOrganization.returnListJsonObject()
-//            println("test1test1test1test1test1test1"+ test2)
-//            println("getItemCount()getItemCount()"+ getItemCount())
-//
-//            val mapRoles : MutableMap<String, String> = mutableMapOf()
-//
-//            for (jsonObject in test2) {
-//                val userId = jsonObject.get("user_id").asString
-//                val role = jsonObject.get("role").asString
-//                mapRoles[userId] = role
-//            }
-//
-//            val values = mapRoles.values.toList()
-//            val keys = mapRoles.keys.toList()
-//            println("valuesvaluesvaluesvaluesvalues"+ values.size)
-//            println("mapRolesmapRolesmapRolesmapRolesmapRoles"+ mapRoles)
-//            println("contactsListcontactsListcontactsList"+ contactsList)
-//            println("valuesvaluesvaluesvaluesvaluesvaluesvalues"+ values)
-//            println("keyskeyskeyskeyskeyskeyskeyskeyskeyskeyskeys"+ keys)
-//            println("posiciones de las keys "+ keys[3])
-//
+            doc = onItemClick(position)
+            RequestListUsersWithinAnOrganization.sendRequest(doc.id_org)
+
+            val test2 = RequestListUsersWithinAnOrganization.returnListJsonObject()
+            println("test1test1test1test1test1test1"+ test2)
+            println("getItemCount()getItemCount()"+ getItemCount())
+
+            val mapRoles : MutableMap<String, String> = mutableMapOf()
+
+            for (jsonObject in test2) {
+                val userId = jsonObject.get("user_id").asString
+                val role = jsonObject.get("role").asString
+                mapRoles[userId] = role
+            }
+
+            val values = mapRoles.values.toList()
+            val keys = mapRoles.keys.toList()
+            println("valuesvaluesvaluesvaluesvalues"+ values.size)
+            println("mapRolesmapRolesmapRolesmapRolesmapRoles"+ mapRoles)
+            println("contactsListcontactsListcontactsList"+ contactsList)
+            println("valuesvaluesvaluesvaluesvaluesvaluesvalues"+ values)
+            println("keyskeyskeyskeyskeyskeyskeyskeyskeyskeyskeys"+ keys)
+            println("posiciones de las keys "+ keys[3])
+
 //            println("TENGO LOS ROLES PARA MOSTRAR EN HOLDER????"+ test1)
-//
+
+            println("adsdasdasdas"+contactsList[0])
+
+            if(keys.contains(contactsList[position].id)){
+                val myId = mapRoles[contactsList[position].id]
+                println("myIdmyIdmyIdmyIdmyIdmyIdmyIdmyIdmyId" + myId)
+                holder.setRole(myId.toString())
+            }
+
+
 //            if(position < contactsList.size-1){
-//                println("QUE ME TRAE DE KEYS?????"+ keys[position])
-//                if(contactsList.any { it.id == (keys[position]) }){
-//                    println("El key ${keys[position]} esta en la lista, asigo su rol")
-//                    holder.setRole("1")
-//                }else{
-//                    holder.setRole("2")
+//                if(position < mapRoles.size){
+//                    println("QUE ME TRAE DE KEYS?????"+ keys[position])
+//                    if(contactsList.any { it.id == (keys[position]) }){
+//                        println("El key ${keys[position]} esta en la lista, asigo su rol")
+//                        holder.setRole(values[position])
+//                    }else{
+////                    holder.setRole("2")
+//                    }
 //                }
-//
 //            }
             // ROMPE porque quiero tengo más usuarios que roles par aasignar
 
