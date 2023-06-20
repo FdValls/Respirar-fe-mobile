@@ -8,18 +8,22 @@
 
     <TextView
         android:id="@+id/titleTextViewUpdateOrg"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/create_org"
-        android:textColor="@color/black"
         android:textSize="45sp"
         android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/id_UpdateOkBtnOrg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.059"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -42,13 +46,14 @@
         android:layout_height="79dp"
         android:layout_margin="16dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/txt_background"
+        android:background="@drawable/custom_edittext"
         android:inputType="textMultiLine"
         android:paddingLeft="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+        android:hint="Enter name"/>
 
     <TextView
         android:id="@+id/nameTextView2"
@@ -69,31 +74,33 @@
         android:id="@+id/editTextDescriptionCreateOrg"
         android:layout_width="376dp"
         android:layout_height="278dp"
-        android:background="@drawable/txt_background"
         android:inputType="textMultiLine"
         android:layout_marginTop="10dp"
         android:paddingLeft="20dp"
         android:paddingBottom="200dp"
+        android:background="@drawable/custom_edittext"
         app:layout_constraintBottom_toTopOf="@+id/id_UpdateOkBtnOrg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameTextView2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:hint="Enter description"/>
 
     <Button
         android:id="@+id/id_UpdateOkBtnOrg"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/purple"
         android:text="@string/btn_create"
         android:textSize="24sp"
-        app:cornerRadius="20dp"
         android:textStyle="bold"
-        android:backgroundTint="@color/purple"
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

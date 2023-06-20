@@ -13,4 +13,5 @@ object objStrings {
     val cant_update = "Couldn't update"
     val user_not_allow = "User not allow to perform the action"
     val fields_required = "Both fields are required"
+    val delete_orgs = "Se borraron las organizaciones con éxito"
 }

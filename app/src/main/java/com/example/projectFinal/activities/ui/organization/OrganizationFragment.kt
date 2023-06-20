@@ -104,6 +104,7 @@ class OrganizationFragment : Fragment() {
 
         btnDelete.setOnClickListener{
             lifecycleScope.launch {
+                println("QUE BORRO??????? ${GlobalVariables.getInstance().listOrgDelete}")
                 GlobalVariables.getInstance().listOrgDelete.forEach { element ->
                     RequestDeleteOrganization.sendRequest(element)
                 }
@@ -113,7 +114,7 @@ class OrganizationFragment : Fragment() {
                 if(codeDelete.codeDelete() == "204"){
                     Toast.makeText(
                         requireContext(),
-                        "Se borraron las organizaciones con éxito",
+                        objStrings.delete_orgs,
                         Toast.LENGTH_SHORT
                     ).show()
                     findNavController().popBackStack()
@@ -152,6 +153,8 @@ class OrganizationFragment : Fragment() {
             myOrgId = myOrg.id
             ids = IdOrgUser(myOrgId, listAux)
         }
+        println("OBTENGO ID?????? $myOrgId")
+
         listAux.clear()
         return ids
     }
