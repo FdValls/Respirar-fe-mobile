@@ -1,6 +1,5 @@
 package com.example.projectFinal.holders
 
-import android.net.Uri
 import android.view.View
 import android.widget.*
 import androidx.cardview.widget.CardView
@@ -28,11 +27,6 @@ class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
         txt.text = desc
     }
 
-    fun setCheckBox(checked: Boolean){
-        checkBox = view.findViewById(R.id.id_selectOrganization)
-        checkBox.isChecked = checked
-    }
-
     fun getCheckBox(): CheckBox {
         checkBox = view.findViewById(R.id.id_selectOrganization)
         return checkBox
@@ -40,9 +34,6 @@ class OrgHolder (v: View) : RecyclerView.ViewHolder(v) {
 
     fun setRole(role: String) {
         val editText: TextView = view.findViewById(R.id.idRoleOrg)
-        if(role.isEmpty()){
-            editText.text = "asd"
-        }
         editText.text = role
     }
 

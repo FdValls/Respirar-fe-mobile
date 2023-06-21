@@ -7,32 +7,25 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.Switch
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
 import com.example.projectFinal.activities.ui.organization.Ids
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.Request.*
-import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
-import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
-import com.example.projectFinal.endPoints.RequestUsers.RequestReadInfoUser
 import com.example.projectFinal.holders.ContactOrgUsersSwitchHolder
-import com.example.projectFinal.holders.OrgHolder
-import com.example.projectFinal.utils.Organization
 import com.example.projectFinal.utils.UserDto
-import com.example.projectFinal.utils.UserFull
 import com.google.android.material.snackbar.Snackbar
-import com.google.gson.Gson
-import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import values.objStrings.deleteMember
+import values.objStrings.member
+import values.objStrings.owner
 
 
 class ContactListOrgUsersSwitchAdapter(
     private var contactsList: MutableList<UserDto>,
-//    private var test1: MutableList<String>,
     val onItemClick: (Int) -> Ids,
 ) : RecyclerView.Adapter<ContactOrgUsersSwitchHolder>() {
 
@@ -41,7 +34,6 @@ class ContactListOrgUsersSwitchAdapter(
     private lateinit var icon: ImageView
     private lateinit var switch: Switch
     private lateinit var role: String
-    private var userList: MutableSet<UserFull> = mutableSetOf()
     private var organizationsRoles: List<JsonObject> = listOf()
 
     override fun getItemCount(): Int {
@@ -67,9 +59,6 @@ class ContactListOrgUsersSwitchAdapter(
             RequestListUsersWithinAnOrganization.sendRequest(doc.id_org)
 
             val test2 = RequestListUsersWithinAnOrganization.returnListJsonObject()
-            println("test1test1test1test1test1test1"+ test2)
-            println("getItemCount()getItemCount()"+ getItemCount())
-
             val mapRoles : MutableMap<String, String> = mutableMapOf()
 
             for (jsonObject in test2) {
@@ -78,38 +67,12 @@ class ContactListOrgUsersSwitchAdapter(
                 mapRoles[userId] = role
             }
 
-            val values = mapRoles.values.toList()
             val keys = mapRoles.keys.toList()
-            println("valuesvaluesvaluesvaluesvalues"+ values.size)
-            println("mapRolesmapRolesmapRolesmapRolesmapRoles"+ mapRoles)
-            println("contactsListcontactsListcontactsList"+ contactsList)
-            println("valuesvaluesvaluesvaluesvaluesvaluesvalues"+ values)
-            println("keyskeyskeyskeyskeyskeyskeyskeyskeyskeyskeys"+ keys)
-            println("posiciones de las keys "+ keys[3])
-
-//            println("TENGO LOS ROLES PARA MOSTRAR EN HOLDER????"+ test1)
-
-            println("adsdasdasdas"+contactsList[0])
 
             if(keys.contains(contactsList[position].id)){
-                val myId = mapRoles[contactsList[position].id]
-                println("myIdmyIdmyIdmyIdmyIdmyIdmyIdmyIdmyId" + myId)
-                holder.setRole(myId.toString())
+                val myRole = mapRoles[contactsList[position].id]
+                holder.setRole(myRole.toString())
             }
-
-
-//            if(position < contactsList.size-1){
-//                if(position < mapRoles.size){
-//                    println("QUE ME TRAE DE KEYS?????"+ keys[position])
-//                    if(contactsList.any { it.id == (keys[position]) }){
-//                        println("El key ${keys[position]} esta en la lista, asigo su rol")
-//                        holder.setRole(values[position])
-//                    }else{
-////                    holder.setRole("2")
-//                    }
-//                }
-//            }
-            // ROMPE porque quiero tengo más usuarios que roles par aasignar
 
         }
 
@@ -125,13 +88,15 @@ class ContactListOrgUsersSwitchAdapter(
                     doc = onItemClick(position)
                     RequestAdministrationUserOrg.sendRequest(doc.id_user, doc.id_org)
                     if (RequestAdministrationUserOrg.returnCode() == "201") {
-                        RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,"member")
+                        RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,
+                            member)
                     }
                 }
             } else {
                 CoroutineScope(Dispatchers.Main).launch {
                     doc = onItemClick(position)
-                    RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,"owner")
+                    RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,
+                        owner)
                     if (RequestAddUserAsAnOwnerOfAnOrganization.returnCode() == "201") {
                     }
                 }
@@ -142,10 +107,8 @@ class ContactListOrgUsersSwitchAdapter(
             var checkBox: CheckBox
             CoroutineScope(Dispatchers.Main).launch {
                 doc = onItemClick(position)
-                println("ME TRAIGO LA ORG PARA AVERIGUAR QUE ROL TIENE EL USUARIO LOGUEADO${doc.id_org}")
                 RequestListUsersWithinAnOrganization.sendRequest(doc.id_org)
                 val test1 = GlobalVariables.getInstance().myArrayOrgJson.find { it.asJsonObject.get("user_id")?.asString == doc.id_user}
-                println("TEST1 TEST1 TEST1 TEST1 TEST1 TEST1 TEST1$test1")
 
                 checkBox = holder.getCheckBox()
                 switch = holder.getSwitch()
@@ -168,10 +131,10 @@ class ContactListOrgUsersSwitchAdapter(
                 doc = onItemClick(position)
                 RequestReadUserRolesWithinAnOrganization.sendRequest(doc.id_user, doc.id_org)
                 val role = RequestReadUserRolesWithinAnOrganization.returnRole()
-                if (role == "owner" || role == "member") {
+                if (role == owner|| role == member) {
                     RequestRemoveUserFromOrganization.sendRequest(doc.id_user, doc.id_org, role)
                     if (RequestRemoveUserFromOrganization.returnCode() == "204") {
-                        Snackbar.make(view, "Borro miembro", Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(view, deleteMember, Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 val checkBox = holder.getCheckBox()

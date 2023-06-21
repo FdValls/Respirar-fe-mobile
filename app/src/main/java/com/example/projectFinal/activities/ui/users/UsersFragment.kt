@@ -27,8 +27,6 @@ class UsersFragment : Fragment() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var argListAdapter: ConctactUserDtoListAdapter
     private lateinit var btnCreate: Button
-    var listAux : MutableSet<String> = mutableSetOf()
-    private lateinit var myUserId: String
 
     companion object {
         fun newInstance() = UsersFragment()
@@ -76,9 +74,7 @@ class UsersFragment : Fragment() {
 
         userContactos.layoutManager = linearLayoutManager
 
-        argListAdapter = ConctactUserDtoListAdapter(users){ x ->
-            onItemClick(x)
-        }
+        argListAdapter = ConctactUserDtoListAdapter(users)
 
         userContactos.adapter = argListAdapter
 
@@ -86,11 +82,4 @@ class UsersFragment : Fragment() {
 
     }
 
-    fun onItemClick ( position : Int ) : String{
-        myUserId = GlobalVariables.getInstance().listUsers[position].id
-        listAux.add(myUserId)
-
-        Snackbar.make(v ,myUserId, Snackbar.LENGTH_SHORT).show()
-        return myUserId
-    }
 }

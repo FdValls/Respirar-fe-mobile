@@ -1,6 +1,5 @@
 package com.example.projectFinal.holders
 
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.View
 import android.widget.CheckBox
@@ -34,10 +33,6 @@ class ContactOrgUsersSwitchHolder(v: View) : RecyclerView.ViewHolder(v)  {
     fun getCheckBox(): CheckBox {
         checkBox = view.findViewById(R.id.id_checkBoxAddUserOrg)
         return checkBox
-    }
-
-    fun setSwitch(role: String) {
-        switchView = view.findViewById(R.id.id_switchOrg)
     }
 
     fun setRole(role: String) {

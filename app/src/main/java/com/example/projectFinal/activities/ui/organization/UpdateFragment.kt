@@ -51,7 +51,6 @@ class UpdateFragment : Fragment() {
 
         nameOrgText.setText(myOrg.name)
         descriptionOrgText.setText(myOrg.description)
-        println("$$$$$$$$$$$ myOrg default ${myOrg.website}")
         if(myOrg.website == "default"){
             webSiteOrgText.setText("default")
         }else{

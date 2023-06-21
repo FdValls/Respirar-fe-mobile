@@ -11,7 +11,6 @@ class GlobalVariables : Application() {
     var listUsers = mutableListOf<UserDto>()
     var listOrganizationsForUpdate = mutableListOf<Organization>()
     var userData: String = ""
-    var listUsersFull = mutableListOf<UserFull>()
     var listOrgDelete = mutableSetOf<String>()
     var myArrayOrgJson : JsonArray = JsonArray()
 

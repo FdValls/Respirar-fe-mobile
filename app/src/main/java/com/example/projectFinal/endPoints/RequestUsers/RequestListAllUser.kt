@@ -37,28 +37,22 @@ object RequestListAllUser {
         val apiService = retrofit.create(ListAllUsers::class.java)
 
         val authToken = GlobalVariables.getInstance().myXSubjectToken
-        println("authTokenauthTokenauthTokenauthTokenauthToken: $authToken")
 
         val response = apiService.getAllUsers(authToken)
 
         code = response.code().toString()
-        println("RESPONSE RequestListAllUser: $response")
 
         if (response.isSuccessful) {
             succesfull = response.isSuccessful
             val responseBody = response.body()
             if (responseBody != null) {
                 GlobalVariables.getInstance().listUsers.clear()
-                println("Code RequestListAllUser: $code")
                 val jsonString = responseBody.string()
                 val gson = Gson()
                 userList = gson.fromJson(jsonString, UserList::class.java)
-                println("Lista usuarios userList: $userList")
                 for (user in userList.users) {
                     GlobalVariables.getInstance().listUsers.add(user)
                 }
-                println("Lista usuarios GLOBAL: ${ GlobalVariables.getInstance().listUsers}")
-                println("Lista usuarios jsonString: ${jsonString}")
 
             } else {
                 println("Empty response body")

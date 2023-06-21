@@ -16,7 +16,7 @@ object RequestReadUserRolesWithinAnOrganization {
     var role: String = ""
     var value = ""
 
-    suspend fun sendRequest(idUser: String, idOrg: String): String {
+    suspend fun sendRequest(idUser: String, idOrg: String) {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,38 +41,8 @@ object RequestReadUserRolesWithinAnOrganization {
 
         code = response.code().toString()
 
-        println("Method PUT RequestReadUserRolesWithinAnOrganization")
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            code = response.code().toString()
-            val jsonBody = responseBody?.string()
-
-            //Parsear a JSON para obtener los datos
-            val gson = Gson()
-            val jsonObject = gson.fromJson(jsonBody, JsonObject::class.java)
-            val orgObject = jsonObject.getAsJsonObject("organization_user")
-
-            role = orgObject.get("role").asString
-            println("ROLE organizacion: $role")
-
-            println("Body RequestReadUserRolesWithinAnOrganization: $jsonBody")
-
-            println("RESPONSE RequestReadUserRolesWithinAnOrganization: $response")
-
-            if (responseBody != null) {
-                println("Code RequestReadUserRolesWithinAnOrganization: $code")
-            } else {
-                println("Request failed: ${response.code()}")
-            }
-        }else{
-            println("Request failed: ${response.code()}")
-        }
-        return role
     }
 
-    fun returnCode(): String{
-        return code
-    }
 
     fun returnRole(): String{
         return role

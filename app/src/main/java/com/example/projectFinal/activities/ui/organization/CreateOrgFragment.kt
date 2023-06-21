@@ -26,7 +26,6 @@ class CreateOrgFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_create_org, container, false)
 
         return v

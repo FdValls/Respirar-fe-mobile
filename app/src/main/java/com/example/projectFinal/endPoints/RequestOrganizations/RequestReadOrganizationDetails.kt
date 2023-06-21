@@ -35,43 +35,7 @@ object RequestReadOrganizationDetails {
 
         val apiService = retrofit.create(ReadInfoOrganization::class.java)
 
-        val response = apiService.getOrgById(GlobalVariables.getInstance().myXSubjectToken, id)
+        apiService.getOrgById(GlobalVariables.getInstance().myXSubjectToken, id)
 
-        println("RESPONSE RequestReadOrganizationDetails: $response")
-        println("Body RequestReadOrganizationDetails: ${response.body()}")
-
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            if (responseBody != null) {
-                val responseBodyString = responseBody.string()
-
-                //Parsear a JSON para obtener los datos
-                val gson = Gson()
-                val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
-                val userObject = jsonObject.getAsJsonObject("organization")
-//                myReturn = Organization(
-//                    userObject.get("id").asString,
-//                    userObject.get("name").asString,
-//                    userObject.get("description").asString,
-//                    userObject.get("image").asString,
-//                    userObject.get("website")?.asString,
-//                )
-                println("El valor de 'userObject' es: $userObject")
-                val description = userObject?.get("description")?.asString
-                description?.let {
-                    println("El valor de 'description' es: $it")
-                }
-                val name = userObject?.get("name")?.asString
-                name?.let {
-                    println("El valor de 'name' es: $it")
-                }
-
-            } else {
-                println("Empty response body")
-            }
-        } else {
-            println("Request failed: ${response.code()}")
-        }
-//        return myReturn
     }
 }

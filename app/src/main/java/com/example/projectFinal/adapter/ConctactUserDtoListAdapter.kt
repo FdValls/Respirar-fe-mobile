@@ -19,18 +19,16 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import values.objStrings.deleteUser
 
 class ConctactUserDtoListAdapter (
     private var contactsList: MutableList<UserDto>,
-    val onItemClick: (Int) -> String
 ) : RecyclerView.Adapter<ContactUserDtoHolder>() {
 
     private lateinit var view: View
     private lateinit var btnEdit: Button
     private lateinit var btnDelete: Button
-    private lateinit var isCheck: Button
     private var idUser: String = ""
-    var listAux : MutableSet<String> = mutableSetOf()
 
     override fun getItemCount(): Int {
         return contactsList.size
@@ -52,19 +50,18 @@ class ConctactUserDtoListAdapter (
         holder.setGravatar("https://es.gravatar.com/userimage/235287149/a4e1bd9ae68b452bd24598975407f6e3?size=original")
 
         holder.getCardButtonEditLayout().setOnClickListener{
-            idUser = onItemClick(position)
-            val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(idUser)
+//            idUser = onItemClick(position)
+            val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(contactsList[position].id)
             view.findNavController().navigate(action)
 
         }
 
         holder.getCardButtonDeleteLayout().setOnClickListener{
-            idUser = onItemClick(position)
             CoroutineScope(Dispatchers.Main).launch {
-                Snackbar.make(view, "Borraste el usuario ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "$deleteUser: ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
                 val userDelete = GlobalVariables.getInstance().listUsers[position]
                 GlobalVariables.getInstance().listUsers.remove(userDelete)
-                RequestDeleteUser.sendRequest(idUser)
+                RequestDeleteUser.sendRequest(contactsList[position].id)
                 notifyItemRemoved(position)
             }
         }

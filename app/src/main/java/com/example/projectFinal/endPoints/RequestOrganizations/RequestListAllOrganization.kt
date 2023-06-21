@@ -14,7 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RequestListAllOrganization {
 
     var code: String = ""
-    private var map: MutableMap<String, String> = HashMap<String, String>()
+    private var map: MutableMap<String, String> = HashMap()
+    private lateinit var organizationList: OrganizationList
 
 
     suspend fun sendRequest() {
@@ -42,24 +43,19 @@ object RequestListAllOrganization {
         val response = apiService.getAllOrganizations(authToken)
 
         code = response.code().toString()
-        println("RESPONSE RequestListAllOrganization: $response")
 
         if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
                 GlobalVariables.getInstance().listOrganizationsForUpdate.clear()
-                println("Code RequestListAllOrganization: $code")
                 val jsonString = responseBody.string()
-                println("BODY RequestListAllOrganization: $jsonString")
                 val gson = Gson()
                 val orgList = gson.fromJson(jsonString, OrganizationList::class.java)
+                organizationList = orgList
                 for (orgItem in orgList.organizations) {
                     GlobalVariables.getInstance().listOrganizationsForUpdate.add(orgItem.organization)
                     map[orgItem.organization.id] = orgItem.role
                 }
-                println("Lista de organizaciones1: ${GlobalVariables.getInstance().listOrganizationsForUpdate}")
-                println("Lista de organizaciones2: ${jsonString}")
-
             } else {
                 println("Empty response body")
             }

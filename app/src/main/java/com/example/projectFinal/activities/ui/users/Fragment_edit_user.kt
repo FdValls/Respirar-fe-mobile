@@ -12,9 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.projectFinal.R
-import com.example.projectFinal.activities.ui.organization.UpdateFragmentArgs
 import com.example.projectFinal.data.GlobalVariables
-import com.example.projectFinal.endPoints.RequestOrganizations.RequestUpdateOrg
 import com.example.projectFinal.endPoints.RequestUsers.RequestUpdateUser
 import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
@@ -89,7 +87,7 @@ class  Fragment_edit_user : Fragment() {
                 var userDataChanged = hasUserChanged();
                 if (userDataChanged) {
                     RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
-                    if(RequestUpdateUser.retunCodeUpdateOUser() == "200" || RequestUpdateUser.retunCodeUpdateOUser() == "201"){
+                    if(RequestUpdateUser.returnCodeUpdateOUser() == "200" || RequestUpdateUser.returnCodeUpdateOUser() == "201"){
                         Toast.makeText(
                             requireActivity(),
                             objStrings.update_successfully,
