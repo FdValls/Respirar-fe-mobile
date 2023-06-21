@@ -47,8 +47,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.6.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
     //implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
     testImplementation 'junit:junit:4.13.2'
@@ -86,8 +86,6 @@ dependencies {
     //Interceptor de HTTP
     //noinspection GradleDependency
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpLoggingVersion"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

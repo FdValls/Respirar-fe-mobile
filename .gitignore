@@ -10,8 +10,8 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 local.properties
-./gradle
-./idea
+.gradle
+.idea
 
 # Package Files #
 *.jar
