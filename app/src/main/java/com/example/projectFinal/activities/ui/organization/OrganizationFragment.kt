@@ -93,9 +93,15 @@ class OrganizationFragment : Fragment() {
                 GlobalVariables.getInstance().listOrgDelete.forEach { element ->
                     RequestDeleteOrganization.sendRequest(element)
                 }
-                orgListAdapter.notifyDataSetChanged()
                 val codeDelete = RequestDeleteOrganization
-                if (codeDelete.codeDelete() == "204") {
+
+                if(GlobalVariables.getInstance().listOrgDelete.size == 0){
+                    Toast.makeText(
+                        requireContext(),
+                        no_id_selected,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else if (codeDelete.codeDelete() == "204") {
                     Toast.makeText(
                         requireContext(),
                         objStrings.delete_orgs,
@@ -109,6 +115,7 @@ class OrganizationFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+                orgListAdapter.notifyDataSetChanged()
             }
         }
 
