@@ -91,11 +91,13 @@ class OrgListAdapter (
 
                 if (checkBox.isChecked) {
                     isCardCheck = true
+                    GlobalVariables.getInstance().idGlobalForUpdate = orgList[position].id
                     GlobalVariables.getInstance().listOrgDelete.add(orgList[position].id)
                     holder.getCheckBox().isEnabled = true
                     holder.getCheckBox().setTextColor(Color.BLACK)
                 }
                 else {
+                    GlobalVariables.getInstance().idGlobalForUpdate = ""
                     GlobalVariables.getInstance().listOrgDelete.remove(orgList[position].id)
                     holder.getCheckBox().setTextColor(Color.GRAY)
                 }
@@ -143,5 +145,4 @@ class OrgListAdapter (
             }
         }
     }
-
 }

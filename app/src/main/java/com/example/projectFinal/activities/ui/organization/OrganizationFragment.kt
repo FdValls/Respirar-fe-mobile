@@ -22,6 +22,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import values.objStrings
+import values.objStrings.no_id_selected
 
 class OrganizationFragment : Fragment() {
 
@@ -112,9 +113,17 @@ class OrganizationFragment : Fragment() {
         }
 
         btnUpdate.setOnClickListener {
-            val action =
-                OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(myOrgId)
-            v.findNavController().navigate(action)
+            if(GlobalVariables.getInstance().idGlobalForUpdate.isEmpty() || GlobalVariables.getInstance().idGlobalForUpdate.isBlank()){
+                Toast.makeText(
+                    requireContext(),
+                    no_id_selected,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else{
+                val action =
+                    OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(GlobalVariables.getInstance().idGlobalForUpdate)
+                v.findNavController().navigate(action)
+            }
         }
     }
 }

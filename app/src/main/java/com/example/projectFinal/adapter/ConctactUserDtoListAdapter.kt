@@ -5,11 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
-import com.example.projectFinal.activities.ui.organization.OrganizationFragment
 import com.example.projectFinal.activities.ui.users.UsersFragmentDirections
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestDeleteUser
@@ -19,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import values.objStrings.deleteUser
+import values.objStrings.delete_user
 
 class ConctactUserDtoListAdapter (
     private var contactsList: MutableList<UserDto>,
@@ -57,7 +54,7 @@ class ConctactUserDtoListAdapter (
 
         holder.getCardButtonDeleteLayout().setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
-                Snackbar.make(view, "$deleteUser: ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "$delete_user: ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
                 val userDelete = GlobalVariables.getInstance().listUsers[position]
                 GlobalVariables.getInstance().listUsers.remove(userDelete)
                 RequestDeleteUser.sendRequest(contactsList[position].id)

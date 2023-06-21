@@ -7,6 +7,7 @@ import com.google.gson.JsonArray
 class GlobalVariables : Application() {
 
     var myXSubjectToken: String = ""
+    var idGlobalForUpdate: String = ""
     var url = "http://46.17.108.45:3000/"
     var listUsers = mutableListOf<UserDto>()
     var listOrganizationsForUpdate = mutableListOf<Organization>()

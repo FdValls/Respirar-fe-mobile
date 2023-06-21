@@ -17,6 +17,7 @@ object objStrings {
     val denied = "Not allowed, only administrator"
     val owner = "owner"
     val member = "member"
-    val deleteUser = "Deleted user "
-    val deleteMember = "Deleted member "
+    val delete_user = "Deleted user "
+    val delete_member = "Deleted member "
+    val no_id_selected = "No id selected "
 }

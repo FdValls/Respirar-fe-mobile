@@ -19,7 +19,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import values.objStrings.deleteMember
+import values.objStrings.delete_member
 import values.objStrings.member
 import values.objStrings.owner
 
@@ -134,7 +134,7 @@ class ContactListOrgUsersSwitchAdapter(
                 if (role == owner|| role == member) {
                     RequestRemoveUserFromOrganization.sendRequest(doc.id_user, doc.id_org, role)
                     if (RequestRemoveUserFromOrganization.returnCode() == "204") {
-                        Snackbar.make(view, deleteMember, Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(view, delete_member, Snackbar.LENGTH_SHORT).show();
                     }
                 }
                 val checkBox = holder.getCheckBox()
