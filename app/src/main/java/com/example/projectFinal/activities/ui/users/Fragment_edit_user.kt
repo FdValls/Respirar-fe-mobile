@@ -83,7 +83,6 @@ class  Fragment_edit_user : Fragment() {
 
         btnSave.setOnClickListener {
             lifecycleScope.launch {
-                println("isEnableEditisEnableEditisEnableEditisEnableEdit" + isEnableEdit)
                 var userDataChanged = hasUserChanged();
                 if (userDataChanged) {
                     RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())

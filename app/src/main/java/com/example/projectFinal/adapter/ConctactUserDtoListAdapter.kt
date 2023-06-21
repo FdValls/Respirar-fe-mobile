@@ -50,7 +50,6 @@ class ConctactUserDtoListAdapter (
         holder.setGravatar("https://es.gravatar.com/userimage/235287149/a4e1bd9ae68b452bd24598975407f6e3?size=original")
 
         holder.getCardButtonEditLayout().setOnClickListener{
-//            idUser = onItemClick(position)
             val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(contactsList[position].id)
             view.findNavController().navigate(action)
 
