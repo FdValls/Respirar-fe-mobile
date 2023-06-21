@@ -15,4 +15,11 @@ object objStrings {
     val fields_required = "Both fields are required"
     val email_in_use = "The email is already in use"
     val pass_not_equal = "Passwords do not match"
+    val delete_orgs = "Delete organization succesfull"
+    val denied = "Not allowed, only administrator"
+    val owner = "owner"
+    val member = "member"
+    val delete_user = "Delete user succesfull"
+    val delete_member = "Deleted member "
+    val no_id_selected = "No id selected "
 }

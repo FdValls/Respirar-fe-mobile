@@ -14,7 +14,7 @@ object RequestDeleteUser {
     var value = ""
     var user: UserDto? = null
 
-    suspend fun sendRequest(id: String): UserDto? {
+    suspend fun sendRequest(id: String) {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,14 +41,6 @@ object RequestDeleteUser {
 
         code = response.code().toString()
 
-        println("Method DELETE")
-        if (response.isSuccessful) {
-            println("Usuario a BORRAR: $user")
-            println("RESPONSE RequestDeleteUser: $response")
-        } else {
-            println("Request failed: $code")
-        }
-        return user
     }
 
 }

@@ -16,7 +16,7 @@ object RequestReadInfoUser {
     var readUser : JsonObject? = null
 
 
-    suspend fun sendRequest(id: String):  JsonObject? {
+    suspend fun sendRequest(id: String): JsonObject? {
 
         val interceptor = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
@@ -41,23 +41,14 @@ object RequestReadInfoUser {
         if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
-                println("Code RequestReadInfoUser: ${response.code()}")
-                println("Body RequestReadInfoUser: ${response.body()}")
                 val responseBodyString = responseBody.string()
-
-                println("****************** body ******************* $responseBodyString")
-                //Parsear a JSON para obtener los datos
                 val gson = Gson()
                 val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
-                println("****************** jsonObject ******************* $jsonObject")
                 val userObject = jsonObject.getAsJsonObject("user")
                 readUser = userObject
-
-                println("****************** userObject ******************* $userObject")
             } else {
                 println("Empty response body")
             }
-
 
         } else {
             println("Request failed: ${response.code()}")

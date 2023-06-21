@@ -34,26 +34,7 @@ object RequestAdministrationUserOrg {
         val apiService = retrofit.create(AdministratingUsersWithinAnOrganization::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-        val response = apiService.postData(authToken, idUser, idOrg)
-
-
-        println("Method PUT RequestAdministrationUserOrg")
-
-        code = response.code().toString()
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            code = response.code().toString()
-            val jsonBody = responseBody?.string()
-            println("Body RequestAdministrationUserOrg: $jsonBody")
-
-            println("RESPONSE RequestAdministrationUserOrg: $response")
-
-            if (responseBody != null) {
-                println("Code RequestAdministrationUserOrg: $code")
-            } else {
-                println("Request failed: ${response.code()}")
-            }
-        }
+         apiService.postData(authToken, idUser, idOrg)
     }
 
     fun returnCode(): String{

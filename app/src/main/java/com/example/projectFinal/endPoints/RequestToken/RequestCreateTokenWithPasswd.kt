@@ -68,7 +68,6 @@ class RequestCreateTokenWithPasswd {
 
         println("End Method POST RequestCreateTokenWithPasswd")
 
-
         return code
     }
 

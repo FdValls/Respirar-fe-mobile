@@ -15,6 +15,7 @@ import com.example.projectFinal.R
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.databinding.ActivityMainBinding
 import com.example.projectFinal.endPoints.RequestOrganizations.*
+import com.example.projectFinal.endPoints.RequestToken.RequestRefreshToken
 import com.example.projectFinal.endPoints.RequestToken.RequestUserInfoToken
 import com.example.projectFinal.endPoints.RequestUsers.*
 import com.example.projectFinal.utils.TokenClass.Companion.assignValueToGlobalVariable
@@ -78,10 +79,15 @@ class LoginActivity : AppCompatActivity() {
                         password.toString()
                     )
                     if (code == "201"){
+                        val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
+
+                        RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
+                        RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
+                        saveUserToken(myXSubjectToken)
+
                         RequestListAllOrganization.sendRequest()
                         RequestListAllUser.sendRequest()
-                        val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
-                        saveUserToken(myXSubjectToken);
+                        println("myXSubjectTokenmyXSubjectTokenmyXSubjectToken" + myXSubjectToken)
 
                         RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
                         startIntent()

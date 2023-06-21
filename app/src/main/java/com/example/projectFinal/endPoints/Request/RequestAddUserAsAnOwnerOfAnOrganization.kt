@@ -35,27 +35,8 @@ object RequestAddUserAsAnOwnerOfAnOrganization {
         val apiService = retrofit.create(AddUserAsAnOwnerOfAnOrganization::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-        val response = apiService.postData(authToken, idUser, idOrg, endPointRole)
+        apiService.postData(authToken, idUser, idOrg, endPointRole)
 
-        println("Method PUT RequestAddUserAsAnOwnerOfAnOrganization")
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-
-            code = response.code().toString()
-            val gson = Gson()
-
-            val jsonBody = responseBody?.string()
-            println("Body RequestAddUserAsAnOwnerOfAnOrganization: $jsonBody")
-            val jsonObject = gson.fromJson(jsonBody, JsonObject::class.java)
-            val orgObject = jsonObject.getAsJsonObject("user_organization_assignments")
-
-            println("RESPONSE RequestAddUserAsAnOwnerOfAnOrganization: $response ROLE!!! ${orgObject.get("role")}" )
-            if (responseBody != null) {
-                println("Code RequestAddUserAsAnOwnerOfAnOrganization: $code")
-            } else {
-                println("Request failed: ${response.code()}")
-            }
-        }
     }
 
     fun returnCode(): String{

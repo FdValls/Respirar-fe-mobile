@@ -20,12 +20,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        lifecycleScope.launch {
-            val myXSubjectToken = GlobalVariables.getInstance().myXSubjectToken
-            RequestUserInfoToken.sendRequest(myXSubjectToken, myXSubjectToken)
-            RequestRefreshToken.sendRequest(GlobalVariables.getInstance().myXSubjectToken)
-        }
-
         Handler().postDelayed({
             startActivity(Intent(this, LoginActivity::class.java))
             finish()

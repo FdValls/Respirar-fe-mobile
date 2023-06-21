@@ -1,7 +1,9 @@
 package com.example.projectFinal.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
@@ -36,10 +38,10 @@ class NavActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarNav.toolbar)
 
-       // binding.appBarNav.fab.setOnClickListener { view ->
-          //  Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            //    .setAction("Action", null).show()
-      //  }
+//        binding.appBarNav.fab.setOnClickListener { view ->
+//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+//        }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_nav)
@@ -146,6 +148,18 @@ class NavActivity : AppCompatActivity() {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.nav, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_logout -> {
+                // Aquí puedes iniciar la nueva actividad que deseas abrir al hacer clic en el elemento del menú
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

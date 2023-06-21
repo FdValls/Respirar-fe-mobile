@@ -1,12 +1,8 @@
 package com.example.projectFinal.endPoints.Request
 
-import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import ar.edu.ort.requestexamples.data.TrustAllCerts
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.interfaces.ListUsersWithinAnOrganization
-import com.example.projectFinal.utils.UserUpdate
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -20,6 +16,7 @@ object RequestListUsersWithinAnOrganization {
     var code: String = ""
     var value = ""
     var array: JsonArray = JsonArray()
+    private var userArray: List<JsonObject> = listOf()
 
     suspend fun sendRequest(idOrg: String) {
 
@@ -44,8 +41,8 @@ object RequestListUsersWithinAnOrganization {
 
         val response = apiService.postData(authToken,idOrg)
 
-        println("Method PUT RequestListUsersWithinAnOrganization")
-        println("responseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponseresponse"+response)
+        code = response.code().toString()
+
         if (response.isSuccessful) {
             val responseBody = response.body()
             code = response.code().toString()
@@ -53,9 +50,12 @@ object RequestListUsersWithinAnOrganization {
             //Parsear a JSON para obtener los datos
             val gson = Gson()
             val jsonObject = gson.fromJson(jsonBody, JsonObject::class.java)
+
+            val jsonArray = jsonObject.getAsJsonArray("organization_users")
+            userArray = jsonArray.map { it.asJsonObject }
+
             array = jsonObject.getAsJsonArray("organization_users")
-            println("Body RequestListUsersWithinAnOrganization: $array")
-            println("RESPONSE RequestListUsersWithinAnOrganization: $response")
+            GlobalVariables.getInstance().myArrayOrgJson = array
 
             if (responseBody != null) {
                 println("Code RequestListUsersWithinAnOrganization: $code")
@@ -67,11 +67,11 @@ object RequestListUsersWithinAnOrganization {
         }
     }
 
-    fun returnCode(): String{
-        return code
-    }
-
     fun returnListUserFiltered(): JsonArray {
         return array
+    }
+
+    fun returnListJsonObject(): List<JsonObject> {
+        return userArray
     }
 }

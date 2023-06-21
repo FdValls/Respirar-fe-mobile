@@ -36,33 +36,15 @@ object RequestUpdateUser {
         val apiService = retrofit.create(UpdateAUser::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-//        val user = GlobalVariables.getInstance().listUsers.find { it.id == id }
-//        println("Usuario buscado en la lista global: $user")
-
         val userBody = UserUpdate(username,email,enabled,gravatar,date_password,description,website)
-        println("userBodyuserBodyuserBodyuserBodyuserBodyuserBodyuserBody ${userBody.toString()}")
         val updateUser = userBody?.let { UpdateUser(it) }
 
-        if (updateUser != null) {
-            val response = apiService.postData(authToken, id, updateUser)
-            val responseBody = response.body()
-            code = response.code().toString()
-            val jsonBody = responseBody?.string()
-            println("Body despues de actualizarlo: $jsonBody")
+        val response = apiService.postData(authToken, id, updateUser)
 
-            println("RESPONSE RequestUpdateUser: $response")
-
-            if (responseBody != null) {
-                println("Code RequestUpdateUser: $code")
-            } else {
-                println("Request failed: ${response.code()}")
-            }
-        } else {
-            println("Usuario no encontrado")
-        }
+        code = response.code().toString()
     }
 
-    fun retunCodeUpdateOUser():String{
+    fun returnCodeUpdateOUser():String{
         return code
     }
 

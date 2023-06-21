@@ -14,24 +14,20 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
-import com.example.projectFinal.activities.ui.organization.OrganizationFragmentDirections
-import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
-//import com.example.projectFinal.databinding.FragmentHomeBinding
-import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
+import com.example.projectFinal.databinding.FragmentHomeBinding
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.internal.notifyAll
 import org.json.JSONObject
 
 class HomeFragment : Fragment() {
 
     lateinit var v: View
-//        private var _binding: FragmentHomeBinding? = null
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-//    private val binding get() = _binding!!
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private lateinit var btnCreate: Button
     private lateinit var btnViews: Button
     private lateinit var recyclerView: RecyclerView
@@ -137,8 +133,8 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        _binding = null
-//    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
