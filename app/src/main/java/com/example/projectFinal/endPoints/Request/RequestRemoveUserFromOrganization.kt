@@ -33,23 +33,8 @@ object RequestRemoveUserFromOrganization {
         val apiService = retrofit.create(RemoveAUserFromAnOrganization::class.java)
         val authToken = GlobalVariables.getInstance().myXSubjectToken
 
-        val response = apiService.postData(authToken, idUser, idOrg, role)
+        apiService.postData(authToken, idUser, idOrg, role)
 
-        println("Method DELETE RequestRemoveUserFromOrganization")
-        if (response.isSuccessful) {
-            val responseBody = response.body()
-            code = response.code().toString()
-            val jsonBody = responseBody?.string()
-            println("Body RequestRemoveUserFromOrganization: $jsonBody")
-
-            println("RESPONSE RequestRemoveUserFromOrganization: $response")
-
-            if (responseBody != null) {
-                println("Code RequestRemoveUserFromOrganization: $code")
-            } else {
-                println("Request failed: ${response.code()}")
-            }
-        }
     }
 
     fun returnCode(): String{

@@ -28,15 +28,15 @@
 
         <Button
             android:id="@+id/buttonAgregar"
-            android:layout_width="wrap_content"
+            android:layout_width="111dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="60dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="10dp"
             android:padding="10dp"
-            android:text="@string/add_org"
-            android:textSize="16sp"
+            android:text="ADD"
             android:textAlignment="center"
+            android:textSize="16sp"
             app:backgroundTint="@color/purple"
             app:cornerRadius="20dp" />
 

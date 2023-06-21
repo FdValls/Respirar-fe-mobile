@@ -78,7 +78,4 @@ object RequestCreateUser {
         return dtoUser
     }
 
-    fun retunCodeCreateUser():String{
-        return code
-    }
 }

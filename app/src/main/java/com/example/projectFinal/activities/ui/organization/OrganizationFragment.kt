@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
@@ -19,26 +17,24 @@ import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestDeleteOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
-import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
-import com.example.projectFinal.utils.Organization
-import com.google.android.material.snackbar.Snackbar
+import com.example.projectFinal.utils.UserDto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import values.objStrings
+import values.objStrings.no_id_selected
 
 class OrganizationFragment : Fragment() {
 
     lateinit var v: View
-    lateinit var orgContactos : RecyclerView
+    lateinit var orgContactos: RecyclerView
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var orgListAdapter: OrgListAdapter
     private lateinit var btnCreate: Button
     private lateinit var btnDelete: Button
     private lateinit var btnUpdate: Button
-    private lateinit var myOrg: Organization
+    private lateinit var users: MutableList<UserDto>
     private lateinit var myOrgId: String
-    var listAux : MutableSet<String> = mutableSetOf()
 
     companion object {
         fun newInstance() = OrganizationFragment()
@@ -56,7 +52,7 @@ class OrganizationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        v =  inflater.inflate(R.layout.fragment_list_org, container, false)
+        v = inflater.inflate(R.layout.fragment_list_org, container, false)
 
         orgContactos = v.findViewById(R.id.org_contactos)
         btnCreate = v.findViewById(R.id.id_UpdateOkBtnOrg)
@@ -64,10 +60,6 @@ class OrganizationFragment : Fragment() {
         btnUpdate = v.findViewById(R.id.id_UpdateBtnOrg)
 
         return v
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onStart() {
@@ -79,14 +71,15 @@ class OrganizationFragment : Fragment() {
 
         var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
 
+        users = GlobalVariables.getInstance().listUsers
+
+
         orgContactos.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
 
         orgContactos.layoutManager = linearLayoutManager
 
-        orgListAdapter = OrgListAdapter(orgs){ x ->
-            OnItemClickListener(x)
-        }
+        orgListAdapter = OrgListAdapter(orgs)
 
         orgContactos.adapter = orgListAdapter
 
@@ -95,50 +88,50 @@ class OrganizationFragment : Fragment() {
             v.findNavController().navigate(action2)
         }
 
-        btnDelete.setOnClickListener{
+        btnDelete.setOnClickListener {
             lifecycleScope.launch {
-                listAux.forEach { item ->
-                    val orgDelete = GlobalVariables.getInstance().listOrganizationsForUpdate.find { it.id == item }
-                    while (GlobalVariables.getInstance().listOrganizationsForUpdate.contains(orgDelete)) {
-                        GlobalVariables.getInstance().listOrganizationsForUpdate.remove(orgDelete)
-                        if (orgDelete != null) {
-                            RequestDeleteOrganization.sendRequest(orgDelete.id)
-                        }
-                    }
+                GlobalVariables.getInstance().listOrgDelete.forEach { element ->
+                    RequestDeleteOrganization.sendRequest(element)
                 }
-                orgListAdapter.notifyDataSetChanged()
                 val codeDelete = RequestDeleteOrganization
-                if(codeDelete.codeDelete() == "204"){
+
+                if(GlobalVariables.getInstance().listOrgDelete.size == 0){
                     Toast.makeText(
                         requireContext(),
-                        "Delete: ${myOrg.name}",
+                        no_id_selected,
                         Toast.LENGTH_SHORT
                     ).show()
-                }else{
+                } else if (codeDelete.codeDelete() == "204") {
+                    Toast.makeText(
+                        requireContext(),
+                        objStrings.delete_orgs,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    findNavController().popBackStack()
+                } else {
                     Toast.makeText(
                         requireContext(),
                         objStrings.delete_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }
+                orgListAdapter.notifyDataSetChanged()
             }
         }
 
-        btnUpdate.setOnClickListener{
-            val action = OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(myOrgId)
-            v.findNavController().navigate(action)
+        btnUpdate.setOnClickListener {
+            if(GlobalVariables.getInstance().idGlobalForUpdate.isEmpty() || GlobalVariables.getInstance().idGlobalForUpdate.isBlank()){
+                Toast.makeText(
+                    requireContext(),
+                    no_id_selected,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }else{
+                val action =
+                    OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(GlobalVariables.getInstance().idGlobalForUpdate)
+                v.findNavController().navigate(action)
+            }
         }
-
-    }
-
-    fun OnItemClickListener (position : Int ) : Organization{
-        myOrg = GlobalVariables.getInstance().listOrganizationsForUpdate[position]
-        println("ID ORG???????????????????????????? ${myOrg.id}")
-        myOrgId = myOrg.id
-
-        Snackbar.make(v,myOrgId,Snackbar.LENGTH_SHORT).show()
-        listAux.add(myOrg.id)
-        println("ID GUARDADOS ORG ID GUARDADOS ORG ID GUARDADOS ORG???????????????????????????? ${listAux}")
-        return myOrg
     }
 }
+

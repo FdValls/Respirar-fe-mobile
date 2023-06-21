@@ -13,4 +13,11 @@ object objStrings {
     val cant_update = "Couldn't update"
     val user_not_allow = "User not allow to perform the action"
     val fields_required = "Both fields are required"
+    val delete_orgs = "Delete organization succesfull"
+    val denied = "Not allowed, only administrator"
+    val owner = "owner"
+    val member = "member"
+    val delete_user = "Delete user succesfull"
+    val delete_member = "Deleted member "
+    val no_id_selected = "No id selected "
 }

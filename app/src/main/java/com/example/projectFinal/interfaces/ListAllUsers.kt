@@ -9,6 +9,6 @@ interface ListAllUsers {
     @Headers("Content-Type: application/json")
     @GET("v1/users")
     suspend fun getAllUsers(
-        @Header("X-Auth-Token") authToken: String,
+        @Header("X-Auth-token") authToken: String,
     ): Response<ResponseBody>
 }

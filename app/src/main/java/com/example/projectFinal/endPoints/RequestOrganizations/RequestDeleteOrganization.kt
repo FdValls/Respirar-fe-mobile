@@ -41,23 +41,10 @@ object RequestDeleteOrganization {
 
         val response = apiService.postData(authToken, id)
         code = response.code().toString()
-        println("Method DELETE")
-        if (findOrg != null) {
-            println("Organizacion a BORRAR: $findOrg")
-            println("Code RequestDeleteOrganization: $code")
-            println("RESPONSE RequestDeleteOrganization: $response")
-        } else {
-            println("Request failed: $code")
-        }
     }
 
     fun codeDelete(): String{
         return code
     }
-
-    fun orgABorrar (): Organization?{
-        return findOrg
-    }
-
 
 }

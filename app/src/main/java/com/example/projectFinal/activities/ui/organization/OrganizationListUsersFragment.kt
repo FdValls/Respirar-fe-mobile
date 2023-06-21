@@ -47,9 +47,6 @@ class OrganizationListUsersFragment : Fragment() {
 
         val args: UpdateFragmentArgs by navArgs()
         orgId = args.idOrg.toString()
-        //Con este ID me traigo todos los usuarios que tiene ESA ORG!
-        println("RECIBO ID???????????????????????????????"+orgId)
-
 
         v =  inflater.inflate(R.layout.fragment_organization_list_users, container, false)
 
@@ -92,7 +89,6 @@ class OrganizationListUsersFragment : Fragment() {
                 if (user != null) {
                     userList.add(user)
                 }
-
             }
             userContactos.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
