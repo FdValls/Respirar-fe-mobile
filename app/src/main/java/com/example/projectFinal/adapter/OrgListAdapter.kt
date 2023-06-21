@@ -101,6 +101,8 @@ class OrgListAdapter (
                     GlobalVariables.getInstance().listOrgDelete.remove(orgList[position].id)
                     holder.getCheckBox().setTextColor(Color.GRAY)
                 }
+
+                println("Que id para update guardo?" +  GlobalVariables.getInstance().idGlobalForUpdate)
             }
 
             holder.getCardButtonGestionarLayout().setOnClickListener {
