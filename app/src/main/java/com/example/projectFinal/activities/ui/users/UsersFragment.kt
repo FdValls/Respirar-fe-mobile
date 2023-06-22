@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
@@ -15,12 +16,14 @@ import com.example.projectFinal.activities.RegisterActivity
 import com.example.projectFinal.adapter.ConctactUserDtoListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
+import com.example.projectFinal.interfaces.OnViewItemUserListener
+import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class UsersFragment : Fragment() {
+class UsersFragment : Fragment(), OnViewItemUserListener {
 
     lateinit var v: View
     lateinit var userContactos : RecyclerView
@@ -74,7 +77,7 @@ class UsersFragment : Fragment() {
 
         userContactos.layoutManager = linearLayoutManager
 
-        argListAdapter = ConctactUserDtoListAdapter(users)
+        argListAdapter = ConctactUserDtoListAdapter(users,this)
 
         userContactos.adapter = argListAdapter
 
@@ -82,4 +85,8 @@ class UsersFragment : Fragment() {
 
     }
 
+    override fun onViewItemUserDetail(user: UserDto) {
+        val action = UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(user.id)
+        v.findNavController().navigate(action)
+    }
 }
