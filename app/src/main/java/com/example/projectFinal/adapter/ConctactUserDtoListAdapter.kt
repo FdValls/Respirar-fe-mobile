@@ -4,13 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
-import com.example.projectFinal.activities.ui.users.UsersFragmentDirections
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestDeleteUser
 import com.example.projectFinal.holders.ContactUserDtoHolder
+import com.example.projectFinal.interfaces.OnViewItemUserListener
 import com.example.projectFinal.utils.UserDto
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +19,7 @@ import values.objStrings.delete_user
 
 class ConctactUserDtoListAdapter (
     private var contactsList: MutableList<UserDto>,
+    private val onItemClick: OnViewItemUserListener
 ) : RecyclerView.Adapter<ContactUserDtoHolder>() {
 
     private lateinit var view: View
@@ -47,9 +47,7 @@ class ConctactUserDtoListAdapter (
         holder.setGravatar("https://es.gravatar.com/userimage/235287149/a4e1bd9ae68b452bd24598975407f6e3?size=original")
 
         holder.getCardButtonEditLayout().setOnClickListener{
-            val action= UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(contactsList[position].id)
-            view.findNavController().navigate(action)
-
+            onItemClick.onViewItemUserDetail(contactsList[position])
         }
 
         holder.getCardButtonDeleteLayout().setOnClickListener{
