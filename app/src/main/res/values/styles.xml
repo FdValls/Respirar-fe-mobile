@@ -2,5 +2,4 @@
     <style name="DividerItemDecoration" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:background">@android:color/darker_gray</item> <!-- Cambia el color del separador según tus necesidades -->
     </style>
-    <!-- Otros estilos -->
 </resources>

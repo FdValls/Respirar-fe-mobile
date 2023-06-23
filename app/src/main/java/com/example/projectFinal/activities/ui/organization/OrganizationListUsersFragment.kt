@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -30,15 +31,17 @@ class OrganizationListUsersFragment : Fragment() {
     private lateinit var myUser: UserDto
     private lateinit var orgId: String
     private lateinit var myUserId: String
-    private lateinit var array: JsonArray
+    private var array: JsonArray? = null
     private var userList: MutableSet<UserFull> = mutableSetOf()
     private lateinit var image: String
+    private lateinit var progressBar: ProgressBar
 
     var listAux : MutableSet<String> = mutableSetOf()
 
     companion object {
         fun newInstance() = OrganizationListUsersFragment()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,9 +53,22 @@ class OrganizationListUsersFragment : Fragment() {
 
         v =  inflater.inflate(R.layout.fragment_organization_list_users, container, false)
 
+        progressBar = v.findViewById(R.id.progressBar)
+
         userContactos = v.findViewById(R.id.id_userListOrg_contactos)
 
         return v
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val layoutParams = progressBar.layoutParams
+        layoutParams.width = 440 // Nuevo ancho en píxeles
+        layoutParams.height = 440 // Nuevo alto en píxeles
+        progressBar.layoutParams = layoutParams
+
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -90,6 +106,9 @@ class OrganizationListUsersFragment : Fragment() {
                     userList.add(user)
                 }
             }
+            if(array != null){
+                progressBar.visibility = View.GONE
+            }
             userContactos.setHasFixedSize(true)
             linearLayoutManager = LinearLayoutManager(context)
 
@@ -101,7 +120,7 @@ class OrganizationListUsersFragment : Fragment() {
 
             userContactos.adapter = usersListAdapter
         }
-
+        progressBar.visibility = View.GONE
     }
 
     fun OnItemClickListener (position : Int ) : Boolean{

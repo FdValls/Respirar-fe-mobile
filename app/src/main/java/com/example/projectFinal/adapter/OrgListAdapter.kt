@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -41,6 +42,7 @@ class OrgListAdapter (
     override fun getItemCount(): Int {
         return orgList.size
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrgHolder {
         view = LayoutInflater.from(parent.context).inflate(R.layout.item_org, parent, false)
