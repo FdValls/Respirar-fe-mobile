@@ -66,8 +66,6 @@ class UpdateFragment : Fragment() {
             }
 
             btnActualizar.setOnClickListener {
-                Log.e("sarasa",nameOrgText.text.toString().isNotEmpty().toString() + descriptionOrgText.text.toString().isNotEmpty())
-                Log.e("sarasa2",nameOrgText.text.toString() + descriptionOrgText.text.toString())
                 if (!(nameOrgText.text.toString().isEmpty() || descriptionOrgText.text.toString().isEmpty()) && myOrg != null) {
                     lifecycleScope.launch {
                         myOrg!!.name = nameOrgText.text.toString()
