@@ -14,13 +14,31 @@ Juan Manuel Campagna
 Joaquin Charovsky
 Elyelin Carrasquero 
 
-__Roles__\
-Fernando Valls (Mobile - configuracion endPoints - arquitectura de vistas - crud organizaciones / roles - logout)
-Ezequiel Cherone (Mobile - configuración nav lateral - login - crud usuarios / dockerizacion y montaje servidor)
-Moises Fuks (Mobile - login - huella biometrica - crud user)
-Juan Manuel Campagna (Mobile - crud organizaciones / roles)
-Joaquin Charovsky (Front - login - crud usuario - crud organizaciones)
-Elyelin Carrasquero (Mobile - styles - testing - docuemntacion - manuales)
+__Roles__
+- Fernando Valls: 
+
+    Mobile - configuracion endPoints - arquitectura de vistas - crud organizaciones / roles - logout
+
+- Ezequiel Cherone: 
+
+    Mobile - configuración nav lateral - login - crud usuarios / dockerizacion y montaje servidor
+
+- Moises Fuks 
+    
+    Mobile - login - huella biometrica - crud user
+
+- Juan Manuel Campagna 
+
+    Mobile - crud organizaciones / roles
+
+- Joaquin Charovsky 
+
+    Front - login - endPoints - crud usuario - crud organizaciones
+
+- Elyelin Carrasquero 
+
+    Mobile - styles - testing - docuemntacion - manuales
+
 
 __Funcionalidad__\
 (...) -> 
