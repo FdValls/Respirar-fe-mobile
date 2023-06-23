@@ -19,6 +19,8 @@ object objStrings {
     val owner = "owner"
     val member = "member"
     val delete_user = "Delete user succesfull"
-    val delete_member = "Deleted member "
-    val no_id_selected = "No id selected "
+    val delete_member = "Deleted member"
+    val no_id_selected = "No id selected"
+    val too_much_org_to_update = "Theres more than 1 organization selected"
+    val not_org_selected = "No organization selected"
 }

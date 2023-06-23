@@ -1,6 +1,7 @@
 package com.example.projectFinal.adapter
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -55,7 +56,7 @@ class OrgListAdapter (
     override fun onBindViewHolder(holder: OrgHolder, position: Int) {
         CoroutineScope(Dispatchers.Main).launch {
 
-            GlobalVariables.getInstance().listOrgDelete.clear() // limpia la lista con cada refresh
+            GlobalVariables.getInstance().listOrgToModify.clear() // limpia la lista con cada refresh
 
             // ID + ROL
             myMap = RequestListAllOrganization.returnListOnlyRoleIdOrg()
@@ -91,18 +92,16 @@ class OrgListAdapter (
 
                 if (checkBox.isChecked) {
                     isCardCheck = true
-                    GlobalVariables.getInstance().idGlobalForUpdate = orgList[position].id
-                    GlobalVariables.getInstance().listOrgDelete.add(orgList[position].id)
+                    // GlobalVariables.getInstance().idGlobalForUpdate = orgList[position].id
+                    GlobalVariables.getInstance().listOrgToModify.add(orgList[position].id)
                     holder.getCheckBox().isEnabled = true
                     holder.getCheckBox().setTextColor(Color.BLACK)
                 }
                 else {
-                    GlobalVariables.getInstance().idGlobalForUpdate = ""
-                    GlobalVariables.getInstance().listOrgDelete.remove(orgList[position].id)
+                    // GlobalVariables.getInstance().idGlobalForUpdate = ""
+                    GlobalVariables.getInstance().listOrgToModify.remove(orgList[position].id)
                     holder.getCheckBox().setTextColor(Color.GRAY)
                 }
-
-                println("Que id para update guardo?" +  GlobalVariables.getInstance().idGlobalForUpdate)
             }
 
             holder.getCardButtonGestionarLayout().setOnClickListener {

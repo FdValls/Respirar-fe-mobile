@@ -34,7 +34,6 @@ class OrganizationFragment : Fragment() {
     private lateinit var btnDelete: Button
     private lateinit var btnUpdate: Button
     private lateinit var users: MutableList<UserDto>
-    private lateinit var myOrgId: String
 
     companion object {
         fun newInstance() = OrganizationFragment()
@@ -73,7 +72,6 @@ class OrganizationFragment : Fragment() {
 
         users = GlobalVariables.getInstance().listUsers
 
-
         orgContactos.setHasFixedSize(true)
         linearLayoutManager = LinearLayoutManager(context)
 
@@ -90,12 +88,12 @@ class OrganizationFragment : Fragment() {
 
         btnDelete.setOnClickListener {
             lifecycleScope.launch {
-                GlobalVariables.getInstance().listOrgDelete.forEach { element ->
+                GlobalVariables.getInstance().listOrgToModify.forEach { element ->
                     RequestDeleteOrganization.sendRequest(element)
                 }
                 val codeDelete = RequestDeleteOrganization
 
-                if(GlobalVariables.getInstance().listOrgDelete.size == 0){
+                if(GlobalVariables.getInstance().listOrgToModify.size == 0){
                     Toast.makeText(
                         requireContext(),
                         no_id_selected,
@@ -115,20 +113,26 @@ class OrganizationFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                orgListAdapter.notifyDataSetChanged()
             }
         }
 
         btnUpdate.setOnClickListener {
-            if(GlobalVariables.getInstance().idGlobalForUpdate.isEmpty() || GlobalVariables.getInstance().idGlobalForUpdate.isBlank()){
+            val orgSelectedSize = GlobalVariables.getInstance().listOrgToModify.size
+            if (orgSelectedSize == 0){
                 Toast.makeText(
                     requireContext(),
-                    no_id_selected,
+                    objStrings.not_org_selected,
                     Toast.LENGTH_SHORT
                 ).show()
-            }else{
+            } else if(orgSelectedSize > 1) {
+                Toast.makeText(
+                    requireContext(),
+                    objStrings.too_much_org_to_update,
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
                 val action =
-                    OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(GlobalVariables.getInstance().idGlobalForUpdate)
+                    OrganizationFragmentDirections.actionNavOrganizationToUpdateFragment(GlobalVariables.getInstance().listOrgToModify.first())
                 v.findNavController().navigate(action)
             }
         }

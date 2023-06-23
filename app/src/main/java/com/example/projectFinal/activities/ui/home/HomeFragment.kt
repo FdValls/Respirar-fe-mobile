@@ -1,6 +1,7 @@
 package com.example.projectFinal.activities.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +39,12 @@ class HomeFragment : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             RequestListAllOrganization.sendRequest()
-        }
 
+            adapter = ItemAdapter(getItems())
+            recyclerView.adapter = adapter
+
+            adapter.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateView(
@@ -62,6 +67,9 @@ class HomeFragment : Fragment() {
         // Crear y establecer el adaptador del RecyclerView
         adapter = ItemAdapter(getItems())
         recyclerView.adapter = adapter
+
+        // Llamar a notifyDataSetChanged() para actualizar la vista
+        adapter.notifyDataSetChanged()
 
         return v
     }

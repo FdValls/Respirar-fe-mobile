@@ -37,8 +37,6 @@ class UpdateFragment : Fragment() {
 
         v = inflater.inflate(R.layout.fragment_update, container, false)
 
-        GlobalVariables.getInstance().idGlobalForUpdate = ""
-
         val args: UpdateFragmentArgs by navArgs()
         val orgId = args.idOrg
         myOrg = if(GlobalVariables.getInstance().listOrganizationsForUpdate.size != 0){
