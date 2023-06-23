@@ -40,7 +40,7 @@ __Roles__
     Mobile - styles - testing - docuemntacion - manuales
 
 
-__Funcionalidad__\
+__Funcionalidad__
 
 Nuesta app comienza con la pantalla de login, el cual previamente deberá haberse creado un usuario en la pagina de keyrock y debe ser habilitado por un administrador.
 Luego del login dependiendo de los permisos que tenga el usaurio verá las vistas permitidas (hay restricciones para la vista de algunos fragmentos dependiendo del rol que tenga el usuario, si es o no "admin").
