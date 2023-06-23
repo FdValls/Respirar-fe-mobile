@@ -40,6 +40,10 @@ class UsersFragment : Fragment(), OnViewItemUserListener {
 
         CoroutineScope(Dispatchers.Main).launch {
             RequestListAllUser.sendRequest()
+
+            userContactos.adapter = argListAdapter
+
+            argListAdapter.notifyDataSetChanged()
         }
 
     }

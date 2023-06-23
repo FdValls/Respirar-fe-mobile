@@ -9,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
 import com.example.projectFinal.data.GlobalVariables
@@ -51,14 +52,13 @@ class RegisterActivity : AppCompatActivity() {
                 ).show()
             }
 
-
-
             if (password == confirmPassword) {
                 if (!username.isEmpty() && !email.isEmpty()) {
                     lifecycleScope.launch {
                         RequestCreateUser.sendRequest(username, email, confirmPassword)
                         if (RequestCreateUser.returnCodeCreateUser() == "201") {
                             showMessage(objStrings.created_successfully)
+                            finish()
                         } else if (RequestCreateUser.returnCodeCreateUser() == "409") {
                             showMessage(objStrings.email_in_use);
                         }
