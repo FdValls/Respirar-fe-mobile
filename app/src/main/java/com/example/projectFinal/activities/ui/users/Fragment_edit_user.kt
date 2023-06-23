@@ -31,6 +31,8 @@ class  Fragment_edit_user : Fragment() {
     private var isEnableEdit: Boolean = false
     private lateinit var userId: String
     private lateinit var myUser: UserDto
+    private var myUserDescriStartNull: Boolean = false
+    private var myUserWebsiteStartNull: Boolean = false
     lateinit var v: View
 
 
@@ -76,6 +78,8 @@ class  Fragment_edit_user : Fragment() {
             email.setText(myUser.email)
             description.setText(myUser.description)
             website.setText(myUser.website)
+            if (myUser.description == null || myUser.description == " ") myUserDescriStartNull = true;
+            if (myUser.website == null || myUser.website == " ") myUserWebsiteStartNull = true;
         }
         btnSave = view.findViewById(R.id.save_button)
 
@@ -83,7 +87,7 @@ class  Fragment_edit_user : Fragment() {
 
         btnSave.setOnClickListener {
             lifecycleScope.launch {
-                var userDataChanged = hasUserChanged();
+                var userDataChanged = userDidntEdit();
                 if (userDataChanged) {
                     RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
                     if(RequestUpdateUser.returnCodeUpdateOUser() == "200" || RequestUpdateUser.returnCodeUpdateOUser() == "201"){
@@ -101,11 +105,63 @@ class  Fragment_edit_user : Fragment() {
         }
     }
 
-    private fun hasUserChanged(): Boolean {
-        var change = false;
-        if (username.text.toString() != myUser.username || email.text.toString() != myUser.email || description.text.toString() != myUser.description || website.text.toString() != myUser.website) {
-            change = true
+    private fun userDidntEdit(): Boolean {
+        var userDatachange = true;
+        var descriChange  = true;
+        var webChange = true
+        if (description.text.toString().isBlank()) description.setText(" ");
+        if (website.text.toString().isBlank()) website.setText(" ");
+        val userNameDontChange = username.text.toString() == myUser.username
+        val userEmailDontChange = email.text.toString() == myUser.email
+        val userDescriDontChange = myUserDescriStartNull && description.text.toString().isBlank() && description.text.toString().isEmpty()
+        val userWebDontChange = myUserWebsiteStartNull && website.text.toString().isBlank() && website.text.toString().isEmpty()
+        val userDescriDontChangeTwo = !myUserDescriStartNull && !description.text.toString().isBlank() && !description.text.toString().isEmpty()
+        val userWebDontChangeTwo = !myUserWebsiteStartNull && !website.text.toString().isBlank() && !website.text.toString().isEmpty()
+        val userDescriDontChangeThree = description.text.toString() == myUser.description
+        val userWebDontChangeThree = website.text.toString() == myUser.website
+        println("User dont change: "+(username.text.toString() == myUser.username).toString())
+        println("Email dont change: "+(email.text.toString() == myUser.email).toString())
+        println("Descri dont change: "+(myUserDescriStartNull && description.text.toString().isBlank()).toString())
+        println("Web dont change: "+(myUserWebsiteStartNull && website.text.toString().isBlank()).toString())
+        println("Descri two dont change: "+(!myUserDescriStartNull && !description.text.toString().isBlank()).toString())
+        println("Web two dont change: "+(!myUserWebsiteStartNull && !website.text.toString().isBlank()).toString())
+        println("Descri Three dont change: "+(description.text.toString() == myUser.description).toString())
+        println("Descri Three dont change: "+(website.text.toString() == myUser.website).toString())
+        if(userDescriDontChange || userDescriDontChangeTwo || userDescriDontChangeThree) {
+            descriChange = false;
         }
-        return change;
+        if(userWebDontChange || userWebDontChangeTwo || userWebDontChangeThree) {
+            webChange = false;
+        }
+        println("Descri change: "+descriChange)
+        println("Web change: "+webChange)
+        if ((userNameDontChange && userEmailDontChange) && (descriChange && webChange)) {
+            userDatachange = false
+        }
+        println("User data change: "+userDatachange)
+        return userDatachange;
     }
+
+    /*private fun String?.isNullOrBlankOrEmpty(): Boolean {
+        return this.isNullOrBlank() || this.isEmpty()
+    }
+    private fun userDidntEdit(): Boolean {
+        if (description.text.toString().isBlank()) {
+            description.setText(" ")
+        }
+        if (website.text.toString().isBlank()) {
+            website.setText(" ")
+        }
+
+        val userNameDontChange = username.text.toString() == myUser.username
+        val userEmailDontChange = email.text.toString() == myUser.email
+        val userDescriDontChange = myUserDescriStartNull && description.text.toString().isNullOrBlankOrEmpty()
+        val userWebDontChange = myUserWebsiteStartNull && website.text.toString().isNullOrBlankOrEmpty()
+        val userDescriDontChangeTwo = !myUserDescriStartNull && !description.text.toString().isNullOrBlankOrEmpty()
+        val userWebDontChangeTwo = !myUserWebsiteStartNull && !website.text.toString().isNullOrBlankOrEmpty()
+        val userDescriDontChangeThree = description.text.toString() == myUser.description
+        val userWebDontChangeThree = website.text.toString() == myUser.website
+
+        return (userNameDontChange && userEmailDontChange) && !(userDescriDontChange || userWebDontChange || userDescriDontChangeTwo || userDescriDontChangeThree || userWebDontChangeTwo || userWebDontChangeThree)
+    }*/
 }
