@@ -1,6 +1,7 @@
 package com.example.projectFinal.activities.ui.organization
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -67,17 +68,19 @@ class UpdateFragment : Fragment() {
             }
 
             btnActualizar.setOnClickListener {
-                if ((nameOrgText.text.toString().isNotEmpty() || descriptionOrgText.text.toString().isNotEmpty()) && myOrg != null) {
+                Log.e("sarasa",nameOrgText.text.toString().isNotEmpty().toString() + descriptionOrgText.text.toString().isNotEmpty())
+                Log.e("sarasa2",nameOrgText.text.toString() + descriptionOrgText.text.toString())
+                if (!(nameOrgText.text.toString().isEmpty() || descriptionOrgText.text.toString().isEmpty()) && myOrg != null) {
                     lifecycleScope.launch {
+                        myOrg!!.name = nameOrgText.text.toString()
+                        myOrg!!.description = descriptionOrgText.text.toString()
+                        myOrg!!.website = webSiteOrgText.text.toString()
                         RequestUpdateOrg.sendRequest(myOrg!!.id)
                         var move = true;
                         if(RequestUpdateOrg.returnApiResponseMessage() == "Forbidden") {
                             Snackbar.make(view, objStrings.user_not_allow, Snackbar.LENGTH_SHORT).show();
                             move = false;
                         } else if(RequestUpdateOrg.retunCodeUpdateOrg() == "200"){
-                            myOrg!!.name = nameOrgText.text.toString()
-                            myOrg!!.description = descriptionOrgText.text.toString()
-                            myOrg!!.website = webSiteOrgText.text.toString()
                             Toast.makeText(
                                 requireActivity(),
                                 objStrings.update_successfully,
@@ -92,6 +95,12 @@ class UpdateFragment : Fragment() {
                         }
                         if (move) findNavController().popBackStack()
                     }
+                } else {
+                    Toast.makeText(
+                        requireActivity(),
+                        objStrings.empty_fields,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }else{

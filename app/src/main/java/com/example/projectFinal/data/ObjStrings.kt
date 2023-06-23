@@ -11,6 +11,7 @@ object objStrings {
     val update_successfully = "Update successfully"
     val created_successfully = "Created successfully"
     val cant_update = "Couldn't update"
+    val empty_fields = "Some fields are empty or could not recover organization"
     val user_not_allow = "User not allow to perform the action"
     val fields_required = "Both fields are required"
     val delete_orgs = "Delete organization succesfull"
