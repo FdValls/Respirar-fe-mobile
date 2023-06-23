@@ -83,8 +83,8 @@ class  Fragment_edit_user : Fragment() {
 
         btnSave.setOnClickListener {
             lifecycleScope.launch {
-                var userDataChanged = hasUserChanged();
-                if (userDataChanged) {
+                var userDataChanged = userDidntEdit();
+                if (userDataChanged &&checkForNotEmptyFields()) {
                     RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
                     if(RequestUpdateUser.returnCodeUpdateOUser() == "200" || RequestUpdateUser.returnCodeUpdateOUser() == "201"){
                         Toast.makeText(
@@ -96,16 +96,60 @@ class  Fragment_edit_user : Fragment() {
                         Snackbar.make(view, objStrings.cant_update, Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                findNavController().popBackStack()
+                if (checkForNotEmptyFields()) findNavController().popBackStack()
             }
         }
     }
 
-    private fun hasUserChanged(): Boolean {
-        var change = false;
-        if (username.text.toString() != myUser.username || email.text.toString() != myUser.email || description.text.toString() != myUser.description || website.text.toString() != myUser.website) {
-            change = true
+    fun checkForNotEmptyFields(): Boolean {
+        var emptyField = "";
+        var notEmptyFileds = true;
+        if(email.text.toString().isBlank()) emptyField = "email"
+        if(username.text.toString().isBlank()) emptyField = "username"
+        if(!emptyField.isBlank()){
+            notEmptyFileds = false;
+            Snackbar.make(view!!, objStrings.cant_update + ", " + emptyField + " can't be empty", Snackbar.LENGTH_SHORT).show();
         }
-        return change;
+        return notEmptyFileds;
     }
+
+    fun checkInsertedValues(editText: EditText, myUserField: String?): Boolean{
+        var returnValue = false;
+        if ( editText.text.toString() != myUserField ) {
+            var editTextModifiedOne = (myUserField != null || myUserField != " ") && editText.text.toString().isBlank();
+            var editTextModifieTwo = (myUserField == null || myUserField == " ") && !editText.text.toString().isBlank();
+            var editTextFullChanged = !editTextModifiedOne && !editTextModifieTwo
+            if(editTextModifiedOne || editTextModifieTwo || editTextFullChanged){
+                returnValue = true
+            }
+        }
+        return returnValue;
+    }
+
+
+    private fun userDidntEdit(): Boolean {
+        var userModifiedDescription: Boolean = checkInsertedValues(description, myUser.description)
+        var userModifiedWebsite: Boolean = checkInsertedValues(website, myUser.website);
+        if (userModifiedDescription && description.text.toString().isBlank()) {
+            description.setText(" ")
+        }
+        if (userModifiedWebsite && website.text.toString().isBlank()) {
+            website.setText(" ")
+        }
+
+        val userModifiedEmail = myUser.email != email.text.toString()
+        val userModifiedUsername = myUser.username != username.text.toString()
+
+        val noChangesToAnyField = !userModifiedDescription && !userModifiedWebsite && !userModifiedEmail && !userModifiedUsername
+        val noChangesToNullFields = myUser.description == null && myUser.website == null && noChangesToAnyField
+
+        val shouldCallAPI = !(noChangesToAnyField || (noChangesToNullFields && myUser.description != null && myUser.website != null))
+
+        return shouldCallAPI
+    }
+
+
+
+
+
 }

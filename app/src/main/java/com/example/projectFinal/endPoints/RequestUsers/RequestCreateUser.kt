@@ -45,7 +45,7 @@ object RequestCreateUser {
         val createUserRequest = CreateUserRequest(user)
 
         val response = apiService.postData(authToken, createUserRequest)
-
+        code = response.code().toString()
         println("RESPONSE Creating User: $response")
 
         if (response.isSuccessful) {
@@ -54,7 +54,6 @@ object RequestCreateUser {
                 println("Code Creating User: ${response.code()}")
                 val responseBodyString = responseBody.string()
                 println("RESPONSE Creating User: ${response.body()}")
-                code = response.code().toString()
                 //Parsear a JSON para obtener los datos
                 val gson = Gson()
                 val jsonObject = gson.fromJson(responseBodyString, JsonObject::class.java)
@@ -76,6 +75,11 @@ object RequestCreateUser {
             println("Request failed: ${response.code()}")
         }
         return dtoUser
+    }
+
+
+    fun returnCodeCreateUser():String{
+        return code
     }
 
 }

@@ -14,6 +14,8 @@ object objStrings {
     val empty_fields = "Some fields are empty or could not recover organization"
     val user_not_allow = "User not allow to perform the action"
     val fields_required = "Both fields are required"
+    val email_in_use = "The email is already in use"
+    val pass_not_equal = "Passwords do not match"
     val delete_orgs = "Delete organization succesfull"
     val denied = "Not allowed, only administrator"
     val owner = "owner"

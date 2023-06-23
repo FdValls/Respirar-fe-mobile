@@ -1,5 +1,6 @@
 package com.example.projectFinal.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +9,12 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.projectFinal.R
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestUsers.RequestCreateUser
 import kotlinx.coroutines.launch
+import values.objStrings
 import kotlin.properties.Delegates
 
 class RegisterActivity : AppCompatActivity() {
@@ -40,44 +43,31 @@ class RegisterActivity : AppCompatActivity() {
             val password = passwordEditText.text.toString()
             val confirmPassword = confirmPasswordEditText.text.toString()
 
-            Log.d("Registro", "Username: $username")
-            Log.d("Registro", "Email: $email")
-            Log.d("Registro", "Contraseña: $password")
-            Log.d("Registro", "Confirmar contraseña: $confirmPassword")
+            fun showMessage(message: String) {
+                Toast.makeText(
+                    this@RegisterActivity,
+                    message,
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+
 
             if (password == confirmPassword) {
                 if (!username.isEmpty() && !email.isEmpty()) {
-
                     lifecycleScope.launch {
                         RequestCreateUser.sendRequest(username, email, confirmPassword)
-                        if (RequestCreateUser.sendRequest(
-                                username,
-                                email,
-                                confirmPassword
-                            ) != null
-                        ) {
-                            Toast.makeText(
-                                this@RegisterActivity,
-                                "Creado con éxito",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                        if (RequestCreateUser.returnCodeCreateUser() == "201") {
+                            showMessage(objStrings.created_successfully)
+                        } else if (RequestCreateUser.returnCodeCreateUser() == "409") {
+                            showMessage(objStrings.email_in_use);
                         }
                     }
-
                 }else{
-                    Toast.makeText(
-                        this@RegisterActivity,
-                        "Verifique los campos username y email",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    showMessage(objStrings.fields_required)
                 }
-
             }else{
-                Toast.makeText(
-                    this@RegisterActivity,
-                    "Las contraseñas no coindicen",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showMessage(objStrings.pass_not_equal)
             }
         }
     }
