@@ -31,8 +31,6 @@ class  Fragment_edit_user : Fragment() {
     private var isEnableEdit: Boolean = false
     private lateinit var userId: String
     private lateinit var myUser: UserDto
-    private var myUserDescriStartNull: Boolean = false
-    private var myUserWebsiteStartNull: Boolean = false
     lateinit var v: View
 
 
@@ -78,8 +76,6 @@ class  Fragment_edit_user : Fragment() {
             email.setText(myUser.email)
             description.setText(myUser.description)
             website.setText(myUser.website)
-            if (myUser.description == null || myUser.description == " ") myUserDescriStartNull = true;
-            if (myUser.website == null || myUser.website == " ") myUserWebsiteStartNull = true;
         }
         btnSave = view.findViewById(R.id.save_button)
 
@@ -88,7 +84,7 @@ class  Fragment_edit_user : Fragment() {
         btnSave.setOnClickListener {
             lifecycleScope.launch {
                 var userDataChanged = userDidntEdit();
-                if (userDataChanged) {
+                if (userDataChanged &&checkForNotEmptyFields()) {
                     RequestUpdateUser.sendRequest(userId, username.text.toString(),email.text.toString(), isEnableEdit,myUser.gravatar,myUser.date_password,description.text.toString(), website.text.toString())
                     if(RequestUpdateUser.returnCodeUpdateOUser() == "200" || RequestUpdateUser.returnCodeUpdateOUser() == "201"){
                         Toast.makeText(
@@ -100,68 +96,60 @@ class  Fragment_edit_user : Fragment() {
                         Snackbar.make(view, objStrings.cant_update, Snackbar.LENGTH_SHORT).show();
                     }
                 }
-                findNavController().popBackStack()
+                if (checkForNotEmptyFields()) findNavController().popBackStack()
             }
         }
     }
 
-    private fun userDidntEdit(): Boolean {
-        var userDatachange = true;
-        var descriChange  = true;
-        var webChange = true
-        if (description.text.toString().isBlank()) description.setText(" ");
-        if (website.text.toString().isBlank()) website.setText(" ");
-        val userNameDontChange = username.text.toString() == myUser.username
-        val userEmailDontChange = email.text.toString() == myUser.email
-        val userDescriDontChange = myUserDescriStartNull && description.text.toString().isBlank() && description.text.toString().isEmpty()
-        val userWebDontChange = myUserWebsiteStartNull && website.text.toString().isBlank() && website.text.toString().isEmpty()
-        val userDescriDontChangeTwo = !myUserDescriStartNull && !description.text.toString().isBlank() && !description.text.toString().isEmpty()
-        val userWebDontChangeTwo = !myUserWebsiteStartNull && !website.text.toString().isBlank() && !website.text.toString().isEmpty()
-        val userDescriDontChangeThree = description.text.toString() == myUser.description
-        val userWebDontChangeThree = website.text.toString() == myUser.website
-        println("User dont change: "+(username.text.toString() == myUser.username).toString())
-        println("Email dont change: "+(email.text.toString() == myUser.email).toString())
-        println("Descri dont change: "+(myUserDescriStartNull && description.text.toString().isBlank()).toString())
-        println("Web dont change: "+(myUserWebsiteStartNull && website.text.toString().isBlank()).toString())
-        println("Descri two dont change: "+(!myUserDescriStartNull && !description.text.toString().isBlank()).toString())
-        println("Web two dont change: "+(!myUserWebsiteStartNull && !website.text.toString().isBlank()).toString())
-        println("Descri Three dont change: "+(description.text.toString() == myUser.description).toString())
-        println("Descri Three dont change: "+(website.text.toString() == myUser.website).toString())
-        if(userDescriDontChange || userDescriDontChangeTwo || userDescriDontChangeThree) {
-            descriChange = false;
+    fun checkForNotEmptyFields(): Boolean {
+        var emptyField = "";
+        var notEmptyFileds = true;
+        if(email.text.toString().isBlank()) emptyField = "email"
+        if(username.text.toString().isBlank()) emptyField = "username"
+        if(!emptyField.isBlank()){
+            notEmptyFileds = false;
+            Snackbar.make(view!!, objStrings.cant_update + ", " + emptyField + " can't be empty", Snackbar.LENGTH_SHORT).show();
         }
-        if(userWebDontChange || userWebDontChangeTwo || userWebDontChangeThree) {
-            webChange = false;
-        }
-        println("Descri change: "+descriChange)
-        println("Web change: "+webChange)
-        if ((userNameDontChange && userEmailDontChange) && (descriChange && webChange)) {
-            userDatachange = false
-        }
-        println("User data change: "+userDatachange)
-        return userDatachange;
+        return notEmptyFileds;
     }
 
-    /*private fun String?.isNullOrBlankOrEmpty(): Boolean {
-        return this.isNullOrBlank() || this.isEmpty()
+    fun checkInsertedValues(editText: EditText, myUserField: String?): Boolean{
+        var returnValue = false;
+        if ( editText.text.toString() != myUserField ) {
+            var editTextModifiedOne = (myUserField != null || myUserField != " ") && editText.text.toString().isBlank();
+            var editTextModifieTwo = (myUserField == null || myUserField == " ") && !editText.text.toString().isBlank();
+            var editTextFullChanged = !editTextModifiedOne && !editTextModifieTwo
+            if(editTextModifiedOne || editTextModifieTwo || editTextFullChanged){
+                returnValue = true
+            }
+        }
+        return returnValue;
     }
+
+
     private fun userDidntEdit(): Boolean {
-        if (description.text.toString().isBlank()) {
+        var userModifiedDescription: Boolean = checkInsertedValues(description, myUser.description)
+        var userModifiedWebsite: Boolean = checkInsertedValues(website, myUser.website);
+        if (userModifiedDescription && description.text.toString().isBlank()) {
             description.setText(" ")
         }
-        if (website.text.toString().isBlank()) {
+        if (userModifiedWebsite && website.text.toString().isBlank()) {
             website.setText(" ")
         }
 
-        val userNameDontChange = username.text.toString() == myUser.username
-        val userEmailDontChange = email.text.toString() == myUser.email
-        val userDescriDontChange = myUserDescriStartNull && description.text.toString().isNullOrBlankOrEmpty()
-        val userWebDontChange = myUserWebsiteStartNull && website.text.toString().isNullOrBlankOrEmpty()
-        val userDescriDontChangeTwo = !myUserDescriStartNull && !description.text.toString().isNullOrBlankOrEmpty()
-        val userWebDontChangeTwo = !myUserWebsiteStartNull && !website.text.toString().isNullOrBlankOrEmpty()
-        val userDescriDontChangeThree = description.text.toString() == myUser.description
-        val userWebDontChangeThree = website.text.toString() == myUser.website
+        val userModifiedEmail = myUser.email != email.text.toString()
+        val userModifiedUsername = myUser.username != username.text.toString()
 
-        return (userNameDontChange && userEmailDontChange) && !(userDescriDontChange || userWebDontChange || userDescriDontChangeTwo || userDescriDontChangeThree || userWebDontChangeTwo || userWebDontChangeThree)
-    }*/
+        val noChangesToAnyField = !userModifiedDescription && !userModifiedWebsite && !userModifiedEmail && !userModifiedUsername
+        val noChangesToNullFields = myUser.description == null && myUser.website == null && noChangesToAnyField
+
+        val shouldCallAPI = !(noChangesToAnyField || (noChangesToNullFields && myUser.description != null && myUser.website != null))
+
+        return shouldCallAPI
+    }
+
+
+
+
+
 }

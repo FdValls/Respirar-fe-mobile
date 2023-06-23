@@ -16,17 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/edit_avatar_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_camera"
-        app:layout_constraintBottom_toBottomOf="@id/avatar_image"
-        app:layout_constraintStart_toEndOf="@id/avatar_image"
-        app:layout_constraintTop_toTopOf="@id/avatar_image"
-        app:layout_constraintVertical_bias="1.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/settings_second_vertical_guideline"
         android:layout_width="wrap_content"
