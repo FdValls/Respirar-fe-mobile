@@ -4,7 +4,7 @@ Web: [Identity Manager
 ](http://46.17.108.45:3000/)
 
 # FIWARE Keyrock [Identity Manager]
-A continuación explicaremos brevemente la integracion con FIWARE a traves de __Keyrock__ , un habilitador de identidades que nos permite atutenticarnos en la api. Explicaremos tanto la funcionalidad, cómo tambien la creación de usuarios, organizaciones y asignaciones de roles.
+A continuación explicaremos brevemente la integracion con FIWARE a traves de __Keyrock__ , un habilitador de identidades que nos permite autenticarnos en la api. Explicaremos tanto la funcionalidad, cómo tambien la creación de usuarios, organizaciones y asignaciones de roles.
 
 __Integrantes__\
 ...
