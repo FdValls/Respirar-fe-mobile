@@ -41,7 +41,27 @@ __Roles__
 
 
 __Funcionalidad__\
-(...) -> 
+
+Nuesta app comienza con la pantalla de login, el cual previamente deberá haberse creado un usuario en la pagina de keyrock y debe ser habilitado por un administrador.
+Luego del login dependiendo de los permisos que tenga el usaurio verá las vistas permitidas (hay restricciones para la vista de algunos fragmentos dependiendo del rol que tenga el usuario, si es o no "admin").
+
+Dashboard principal:
+
+- Lista de organizaciones en la cual esta involucrado el usuario
+
+Perfil NO administrado:
+
+- Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
+
+Perfil administrado: 
+
+- Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
+
+- Creación, edición y eliminación de usuarios.
+
+- Asignacion de usuarios con su correspondiente rol a una organización (siempre y cuando sea "owner" de esa organización).
+
+- Visualización de usuarios y rol correspondientes a la organización seleccionada.
 
 # Consultas
 fernandodanielvalls@gmail.com\
