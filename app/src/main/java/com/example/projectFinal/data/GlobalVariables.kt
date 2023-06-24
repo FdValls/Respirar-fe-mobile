@@ -7,7 +7,7 @@ import com.google.gson.JsonArray
 class GlobalVariables : Application() {
 
     var myXSubjectToken: String = ""
-    var url = "http://46.17.108.45:3000/"
+    var url = "http://ip172-18-0-85-cibfdjogftqg00c683bg-3000.direct.labs.play-with-docker.com/"
     var listUsers = mutableListOf<UserDto>()
     var listOrganizationsForUpdate = mutableListOf<Organization>()
     var userData: String = ""

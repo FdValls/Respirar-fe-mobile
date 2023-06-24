@@ -59,12 +59,12 @@
     <fragment
         android:id="@+id/createOrgFragment"
         android:name="com.example.projectFinal.activities.ui.organization.CreateOrgFragment"
-        android:label="fragment_create_org"
+        android:label="Create organization"
         tools:layout="@layout/fragment_create_org" />
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.projectFinal.activities.ui.organization.UpdateFragment"
-        android:label="UpdateFragment" >
+        android:label="Update organization" >
         <argument
             android:name="idOrg"
             app:argType="string"
@@ -73,7 +73,7 @@
     <fragment
         android:id="@+id/switchOwnerMemberFragment"
         android:name="com.example.projectFinal.activities.ui.organization.SwitchOwnerMemberFragment"
-        android:label="Asignar usuarios/roles"
+        android:label="Users/roles"
         tools:layout="@layout/fragment_switch_list" >
         <argument
             android:name="idOrg"
