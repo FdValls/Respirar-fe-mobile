@@ -25,4 +25,7 @@ object objStrings {
     val no_id_selected = "No id selected"
     val too_much_org_to_update = "Theres more than 1 organization selected"
     val not_org_selected = "No organization selected"
+    val not_member_or_owner = "Not a member of the organization, cannot be deleted"
+    val assigned_user_as_member = "You assigned user as a member"
+    val assigned_user_as_owner = "You assigned user as a owner"
 }

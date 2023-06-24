@@ -66,8 +66,6 @@ class OrgListAdapter (
             // SOLO IDS
             keys = myMap.keys.toList()
 
-            holder.setRole(myMap[keys[position]].toString())
-
             // OBJETO ORGANIZATION
             orgList[position].name.let { holder.setName(it) }
             orgList[position].description.let { holder.setDescription(it) }
@@ -94,13 +92,11 @@ class OrgListAdapter (
 
                 if (checkBox.isChecked) {
                     isCardCheck = true
-                    // GlobalVariables.getInstance().idGlobalForUpdate = orgList[position].id
                     GlobalVariables.getInstance().listOrgToModify.add(orgList[position].id)
                     holder.getCheckBox().isEnabled = true
                     holder.getCheckBox().setTextColor(Color.BLACK)
                 }
                 else {
-                    // GlobalVariables.getInstance().idGlobalForUpdate = ""
                     GlobalVariables.getInstance().listOrgToModify.remove(orgList[position].id)
                     holder.getCheckBox().setTextColor(Color.GRAY)
                 }
@@ -143,6 +139,12 @@ class OrgListAdapter (
                                 Snackbar.LENGTH_SHORT
                             ).show()
                         }
+                    } else {
+                        Snackbar.make(
+                            view,
+                            denied,
+                            Snackbar.LENGTH_SHORT
+                        ).show()
                     }
                 }
             }

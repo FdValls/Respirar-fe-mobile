@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -34,6 +35,7 @@ class OrganizationFragment : Fragment() {
     private lateinit var btnDelete: Button
     private lateinit var btnUpdate: Button
     private lateinit var users: MutableList<UserDto>
+    private lateinit var progressBar: ProgressBar
 
     companion object {
         fun newInstance() = OrganizationFragment()
@@ -44,7 +46,18 @@ class OrganizationFragment : Fragment() {
 
         CoroutineScope(Dispatchers.Main).launch {
             RequestListAllOrganization.sendRequest()
+
+            orgContactos.adapter = orgListAdapter
+
+            progressBar.visibility = View.GONE
         }
+
+        val layoutParams = progressBar.layoutParams
+        layoutParams.width = 440 // Nuevo ancho en píxeles
+        layoutParams.height = 440 // Nuevo alto en píxeles
+        progressBar.layoutParams = layoutParams
+
+        progressBar.visibility = View.VISIBLE
     }
 
     override fun onCreateView(
@@ -57,6 +70,8 @@ class OrganizationFragment : Fragment() {
         btnCreate = v.findViewById(R.id.id_UpdateOkBtnOrg)
         btnDelete = v.findViewById(R.id.id_DeleteBtnOrg)
         btnUpdate = v.findViewById(R.id.id_UpdateBtnOrg)
+
+        progressBar = v.findViewById(R.id.progressBar)
 
         return v
     }

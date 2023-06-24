@@ -19,8 +19,11 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import values.objStrings.assigned_user_as_member
+import values.objStrings.assigned_user_as_owner
 import values.objStrings.delete_member
 import values.objStrings.member
+import values.objStrings.not_member_or_owner
 import values.objStrings.owner
 
 
@@ -87,18 +90,14 @@ class ContactListOrgUsersSwitchAdapter(
                 CoroutineScope(Dispatchers.Main).launch {
                     doc = onItemClick(position)
                     RequestAdministrationUserOrg.sendRequest(doc.id_user, doc.id_org)
-                    if (RequestAdministrationUserOrg.returnCode() == "201") {
-                        RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,
-                            member)
-                    }
+                    Snackbar.make(view, assigned_user_as_member, Snackbar.LENGTH_SHORT).show();
                 }
             } else {
                 CoroutineScope(Dispatchers.Main).launch {
                     doc = onItemClick(position)
                     RequestAddUserAsAnOwnerOfAnOrganization.sendRequest(doc.id_user, doc.id_org,
                         owner)
-                    if (RequestAddUserAsAnOwnerOfAnOrganization.returnCode() == "201") {
-                    }
+                    Snackbar.make(view, assigned_user_as_owner, Snackbar.LENGTH_SHORT).show();
                 }
             }
         }
@@ -128,14 +127,18 @@ class ContactListOrgUsersSwitchAdapter(
 
         icon.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
+                var roleMember: String
                 doc = onItemClick(position)
                 RequestReadUserRolesWithinAnOrganization.sendRequest(doc.id_user, doc.id_org)
-                val role = RequestReadUserRolesWithinAnOrganization.returnRole()
-                if (role == owner|| role == member) {
-                    RequestRemoveUserFromOrganization.sendRequest(doc.id_user, doc.id_org, role)
-                    if (RequestRemoveUserFromOrganization.returnCode() == "204") {
+                if(RequestReadUserRolesWithinAnOrganization.returnCode() != "404"){
+                    roleMember = RequestReadUserRolesWithinAnOrganization.returnRole()
+                    if (roleMember == owner|| roleMember == member) {
+                        RequestRemoveUserFromOrganization.sendRequest(doc.id_user, doc.id_org, roleMember)
                         Snackbar.make(view, delete_member, Snackbar.LENGTH_SHORT).show();
                     }
+                }
+                else{
+                    Snackbar.make(view,not_member_or_owner, Snackbar.LENGTH_SHORT).show();
                 }
                 val checkBox = holder.getCheckBox()
                 switch = holder.getSwitch()
@@ -144,7 +147,6 @@ class ContactListOrgUsersSwitchAdapter(
                 switch.isEnabled = false
                 switch.setTextColor(Color.GRAY)
             }
-
         }
 
     }
