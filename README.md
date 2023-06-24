@@ -7,11 +7,11 @@ Web: [Identity Manager
 A continuación explicaremos brevemente la integracion con FIWARE a traves de __Keyrock__ , un habilitador de identidades que nos permite autenticarnos en la api. Explicaremos tanto la funcionalidad, cómo tambien la creación de usuarios, organizaciones y asignaciones de roles.
 
 __Integrantes__\
-Fernando Valls
-Ezequiel Cherone
-Moises Fuks
-Juan Manuel Campagna
-Joaquin Charovsky
+Fernando Valls\
+Ezequiel Cherone\
+Moises Fuks\
+Juan Manuel Campagna\
+Joaquin Charovsky\
 Elyelin Carrasquero 
 
 __Roles__
@@ -25,7 +25,7 @@ __Roles__
 
 - Moises Fuks 
     
-    Mobile - login - huella biometrica - crud user
+    Mobile - login - huella biométrica - crud user
 
 - Juan Manuel Campagna 
 
@@ -37,7 +37,7 @@ __Roles__
 
 - Elyelin Carrasquero 
 
-    Mobile - styles - testing - docuemntacion - manuales
+    Mobile - styles - testing - documentación - manuales
 
 
 __Funcionalidad__
@@ -49,17 +49,17 @@ Dashboard principal:
 
 - Lista de organizaciones en la cual esta involucrado el usuario
 
-Perfil NO administrado:
+Perfil NO administrador:
 
 - Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
 
-Perfil administrado: 
+Perfil administrador: 
 
 - Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
 
 - Creación, edición y eliminación de usuarios.
 
-- Asignacion de usuarios con su correspondiente rol a una organización (siempre y cuando sea "owner" de esa organización).
+- Asignación de usuarios con su correspondiente rol a una organización (siempre y cuando sea "owner" de esa organización).
 
 - Visualización de usuarios y rol correspondientes a la organización seleccionada.
 
