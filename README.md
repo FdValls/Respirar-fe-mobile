@@ -120,7 +120,7 @@ A continuación explicaremos brevemente la integracion con FIWARE a traves de __
 __Integrantes__\
 Fernando Valls\
 Ezequiel Cherone\
-Moises Fuks\
+Moises Natan Fuks\
 Juan Manuel Campagna\
 Joaquin Charovsky\
 Elyelin Carrasquero 
@@ -134,9 +134,9 @@ __Roles__
 
     Mobile - configuración nav lateral - login - crud usuarios / dockerizacion y montaje servidor
 
-- Moises Fuks 
+- Moises Natan Fuks 
     
-    Mobile - login - huella biométrica - crud user
+    Mobile - login - estilos -  huella biométrica - crud user
 
 - Juan Manuel Campagna 
 
@@ -177,6 +177,7 @@ Perfil administrador:
 # Consultas
 fernandodanielvalls@gmail.com\
 campagnajuanmanuel@gmail.com\
+moshifuks2001@gmail.com
 chero2005@hotmail.com\
 joaquincharovsky@gmail.com\
 elyelin15@gmail.com
