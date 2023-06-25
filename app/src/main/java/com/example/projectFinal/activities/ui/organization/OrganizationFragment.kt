@@ -18,6 +18,7 @@ import com.example.projectFinal.adapter.OrgListAdapter
 import com.example.projectFinal.data.GlobalVariables
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestDeleteOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
+import com.example.projectFinal.utils.Organization
 import com.example.projectFinal.utils.UserDto
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,6 +37,7 @@ class OrganizationFragment : Fragment() {
     private lateinit var btnUpdate: Button
     private lateinit var users: MutableList<UserDto>
     private lateinit var progressBar: ProgressBar
+    private lateinit var orgs:  MutableList<Organization>
 
     companion object {
         fun newInstance() = OrganizationFragment()
@@ -45,9 +47,11 @@ class OrganizationFragment : Fragment() {
         super.onResume()
 
         CoroutineScope(Dispatchers.Main).launch {
+
             RequestListAllOrganization.sendRequest()
 
             orgContactos.adapter = orgListAdapter
+
 
             progressBar.visibility = View.GONE
         }
@@ -83,7 +87,7 @@ class OrganizationFragment : Fragment() {
             RequestListAllOrganization.sendRequest()
         }
 
-        var orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
+        orgs = GlobalVariables.getInstance().listOrganizationsForUpdate
 
         users = GlobalVariables.getInstance().listUsers
 
@@ -120,6 +124,7 @@ class OrganizationFragment : Fragment() {
                         objStrings.delete_orgs,
                         Toast.LENGTH_SHORT
                     ).show()
+                    GlobalVariables.getInstance().listOrganizationsForUpdate.clear()
                     findNavController().popBackStack()
                 } else {
                     Toast.makeText(

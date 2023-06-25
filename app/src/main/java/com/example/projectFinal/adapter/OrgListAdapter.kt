@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.projectFinal.R
 import com.example.projectFinal.activities.ui.organization.OrganizationFragmentDirections
 import com.example.projectFinal.data.GlobalVariables
+import com.example.projectFinal.endPoints.Request.RequestListUsersWithinAnOrganization
 import com.example.projectFinal.endPoints.RequestOrganizations.RequestListAllOrganization
 import com.example.projectFinal.endPoints.RequestUsers.RequestListAllUser
 import com.example.projectFinal.holders.OrgHolder
@@ -22,6 +23,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import values.objStrings.denied
 import values.objStrings.owner
 
@@ -36,6 +38,7 @@ class OrgListAdapter (
     private var isCardCheck: Boolean = false
     private var onlyButton: Boolean = true
     private lateinit var checkCard: CheckBox
+    private lateinit var userDataJson: JSONObject
     private lateinit var myMap: MutableMap<String, String>
     private var keys: List<String> = listOf()
 
@@ -103,9 +106,13 @@ class OrgListAdapter (
             }
 
             holder.getCardButtonGestionarLayout().setOnClickListener {
+                userDataJson = JSONObject(GlobalVariables.getInstance().userData)
+                val userObject = userDataJson.getJSONObject("User")
+                val role = userObject.getBoolean("admin")
+
                 CoroutineScope(Dispatchers.Main).launch {
                     onlyButton = true
-                    if (RequestListAllUser.sendRequest() && (onlyButton && myMap[orgList[position].id].toString() == owner)) {
+                    if (RequestListAllUser.sendRequest() && role && (onlyButton && myMap[orgList[position].id].toString() == owner)) {
                         val action2 =
                             OrganizationFragmentDirections.actionNavOrganizationToSwitchOwnerMemberFragment(
                                 orgList[position].id
@@ -123,9 +130,17 @@ class OrgListAdapter (
             }
 
             holder.getCardButtonVerLayout().setOnClickListener {
+
+                userDataJson = JSONObject(GlobalVariables.getInstance().userData)
+                val userObject = userDataJson.getJSONObject("User")
+                val role = userObject.getBoolean("admin")
+
                 CoroutineScope(Dispatchers.Main).launch {
                     onlyButton = true
-                    if (onlyButton && RequestListAllUser.sendRequest()) {
+//                    if (onlyButton && RequestListAllUser.sendRequest()) {
+                    RequestListUsersWithinAnOrganization.sendRequest(orgList[position].id)
+                    val list = RequestListUsersWithinAnOrganization.returnListJsonObject()
+                    if (onlyButton && list.size != 0 && role) {
                         if (myMap[orgList[position].id].toString() == owner) {
                             val action3 =
                                 OrganizationFragmentDirections.actionNavOrganizationToOrganizationListUsersFragment2(

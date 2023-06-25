@@ -1,7 +1,9 @@
 package com.example.projectFinal.activities
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -153,7 +155,9 @@ class NavActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_logout -> {
-                // Aquí puedes iniciar la nueva actividad que deseas abrir al hacer clic en el elemento del menú
+                GlobalVariables.getInstance().listOrganizationsForUpdate.clear()
+                GlobalVariables.getInstance().listUsers.clear()
+                GlobalVariables.getInstance().listOrgToModify.clear()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 return true

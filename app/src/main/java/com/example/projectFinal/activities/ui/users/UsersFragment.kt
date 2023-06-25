@@ -93,4 +93,8 @@ class UsersFragment : Fragment(), OnViewItemUserListener {
         val action = UsersFragmentDirections.actionNavUsersToFragmentEditCustomer3(user.id)
         v.findNavController().navigate(action)
     }
+
+
+
+
 }

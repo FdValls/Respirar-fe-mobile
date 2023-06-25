@@ -19,6 +19,7 @@ import values.objStrings.delete_user
 
 class ConctactUserDtoListAdapter (
     private var contactsList: MutableList<UserDto>,
+//    private val onItemClick: OnViewItemUserListener
     private val onItemClick: OnViewItemUserListener
 ) : RecyclerView.Adapter<ContactUserDtoHolder>() {
 
@@ -54,8 +55,10 @@ class ConctactUserDtoListAdapter (
             CoroutineScope(Dispatchers.Main).launch {
                 Snackbar.make(view, "$delete_user: ${contactsList[position].username}", Snackbar.LENGTH_SHORT).show();
                 val userDelete = GlobalVariables.getInstance().listUsers[position]
-                GlobalVariables.getInstance().listUsers.remove(userDelete)
+
                 RequestDeleteUser.sendRequest(contactsList[position].id)
+
+                GlobalVariables.getInstance().listUsers.remove(userDelete)
                 notifyItemRemoved(position)
             }
         }

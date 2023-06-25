@@ -8,6 +8,7 @@ import com.example.projectFinal.holders.ContactUserFullHolder
 import com.example.projectFinal.utils.UserFull
 
 class ContactUserFullListAdapter(
+//    private var contactsList: MutableList<UserFull>,
     private var contactsList: MutableList<UserFull>,
     val onItemClick: (Int) -> Boolean
 ) : RecyclerView.Adapter<ContactUserFullHolder>() {

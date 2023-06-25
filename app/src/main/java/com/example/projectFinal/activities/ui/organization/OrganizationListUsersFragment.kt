@@ -51,6 +51,8 @@ class OrganizationListUsersFragment : Fragment() {
         val args: UpdateFragmentArgs by navArgs()
         orgId = args.idOrg.toString()
 
+        println("tengo el id org!!!!!!!!!!!!!!!1 " + orgId)
+
         v =  inflater.inflate(R.layout.fragment_organization_list_users, container, false)
 
         progressBar = v.findViewById(R.id.progressBar)
@@ -91,6 +93,7 @@ class OrganizationListUsersFragment : Fragment() {
             RequestListUsersWithinAnOrganization.sendRequest(orgId)
 
             array = RequestListUsersWithinAnOrganization.returnListUserFiltered()
+
             val gson = Gson()
             val jsonArray = gson.fromJson(array, JsonArray::class.java)
             for (jsonElement in jsonArray) {
