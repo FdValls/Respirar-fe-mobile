@@ -177,7 +177,7 @@ Perfil administrador:
 # Consultas
 fernandodanielvalls@gmail.com\
 campagnajuanmanuel@gmail.com\
-moshifuks2001@gmail.com
+moshifuks2001@gmail.com\
 chero2005@hotmail.com\
 joaquincharovsky@gmail.com\
 elyelin15@gmail.com
