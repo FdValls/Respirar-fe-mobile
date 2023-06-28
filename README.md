@@ -164,6 +164,8 @@ Perfil NO administrador:
 
 - Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
 
+- Asignación de usuarios con su correspondiente rol a una organización (siempre y cuando sea "owner" de esa organización).
+
 Perfil administrador: 
 
 - Creación, edición y eliminación de organizaciones (siempre y cuando sea "owner" de esa organización).
